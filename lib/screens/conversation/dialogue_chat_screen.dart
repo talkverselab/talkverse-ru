@@ -89,9 +89,8 @@ class _DialogueChatScreenState extends State<DialogueChatScreen> {
     for (var i = 0; i < turns.length; i++) {
       if (!_playing || !mounted) break;
       setState(() => _playingIndex = i);
-      await TtsService.instance.speak(_turnText(turns[i]));
+      await TtsService.instance.speak(_turnText(turns[i]), delay: const Duration(seconds: 1));
       if (!_playing || !mounted) break;
-      await Future.delayed(const Duration(milliseconds: 350));
     }
     if (mounted) {
       setState(() {
