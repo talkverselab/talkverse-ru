@@ -88,35 +88,25 @@ class _Word extends StatelessWidget {
 
     final inflColor = tok.gender == Gender.none ? AppColors.ink : tok.gender.color;
     final inflWeight = tok.verb ? FontWeight.w800 : FontWeight.w700;
+    final hasInfl = inflTxt.isNotEmpty;
 
-    // 성별에 따라 바뀌는 단어 → 형광 하이라이트(성색).
-    final hlColor = (tok.gender == Gender.none ? AppColors.amber : tok.gender.color).withValues(alpha: 0.24);
-    Paint? hl() => emphasize ? (Paint()..color = hlColor) : null;
-
+    // 형광 = 남/여 토글로 바뀌는 부분(emphasize). 밑줄 = 동사 활용 어미(verb).
+    final hl = emphasize ? (Paint()..color = inflColor.withValues(alpha: 0.24)) : null;
     final stemStyle = AppType.sans(size, weight: FontWeight.w600, color: AppColors.ink, height: 1.25)
-        .copyWith(background: hl());
-    final inflStyle = AppType.sans(size, weight: inflWeight, color: inflColor, height: 1.25)
-        .copyWith(background: hl());
+        .copyWith(background: hl);
+    final inflStyle = AppType.sans(size, weight: inflWeight, color: inflColor, height: 1.25).copyWith(
+      background: hl,
+      decoration: tok.verb ? TextDecoration.underline : TextDecoration.none,
+      decorationColor: inflColor,
+      decorationThickness: 2,
+    );
 
     return GestureDetector(
       onTap: () => TtsService.instance.speak(tok.surface),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text.rich(TextSpan(children: [
-            TextSpan(text: stem, style: stemStyle),
-            if (inflTxt.isNotEmpty) TextSpan(text: inflTxt, style: inflStyle),
-          ])),
-          if (tok.josa != null)
-            Container(
-              margin: const EdgeInsets.only(top: 3),
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-              decoration: BoxDecoration(color: AppColors.surfaceAlt, borderRadius: BorderRadius.circular(5)),
-              child: Text(tok.josa!, style: AppType.sans(9.5, weight: FontWeight.w700, color: AppColors.inkFaint)),
-            ),
-        ],
-      ),
+      child: Text.rich(TextSpan(children: [
+        TextSpan(text: stem, style: stemStyle),
+        if (hasInfl) TextSpan(text: inflTxt, style: inflStyle),
+      ])),
     );
   }
 }
@@ -140,21 +130,23 @@ class SentenceReading extends StatelessWidget {
               final t = tokens[i];
               final emp = emphasize.contains(i);
               final inflColor = t.gender == Gender.none ? AppColors.ink : t.gender.color;
-              final hlColor = (t.gender == Gender.none ? AppColors.amber : t.gender.color).withValues(alpha: 0.24);
-              Paint? hl() => emp ? (Paint()..color = hlColor) : null;
+              final hl = emp ? (Paint()..color = inflColor.withValues(alpha: 0.24)) : null;
               return GestureDetector(
                 onTap: () => TtsService.instance.speak(t.surface),
                 child: Text.rich(TextSpan(children: [
                   if ((t.stemKo ?? '').isNotEmpty)
                     TextSpan(
                       text: t.stemKo,
-                      style: AppType.sans(size, weight: FontWeight.w500, color: AppColors.inkSoft).copyWith(background: hl()),
+                      style: AppType.sans(size, weight: FontWeight.w500, color: AppColors.inkSoft).copyWith(background: hl),
                     ),
                   if ((t.inflKo ?? '').isNotEmpty)
                     TextSpan(
                       text: t.inflKo,
-                      style: AppType.sans(size, weight: t.verb ? FontWeight.w800 : FontWeight.w700, color: inflColor)
-                          .copyWith(background: hl()),
+                      style: AppType.sans(size, weight: t.verb ? FontWeight.w800 : FontWeight.w700, color: inflColor).copyWith(
+                        background: hl,
+                        decoration: t.verb ? TextDecoration.underline : TextDecoration.none,
+                        decorationColor: inflColor,
+                      ),
                     ),
                 ])),
               );
