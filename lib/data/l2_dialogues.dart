@@ -26,8 +26,8 @@ const l2Dialogues = <Dialogue>[
         Tok('А', stemKo: '아'),
         Tok('ты', stemKo: '띄'),
         Tok('в', stemKo: '브'),
-        Tok('како́м', stemKo: '까꼼'),
-        Tok('го́род', infl: 'е', stemKo: '고라드', inflKo: '예', gender: Gender.masc, josa: '에서'),
+        Tok('как', infl: 'о́м', stemKo: '까', inflKo: '꼼', gender: Gender.masc),
+        Tok('го́род', infl: 'е', stemKo: '고라드', inflKo: '예', gender: Gender.masc),
         Tok('жив', infl: 'ёшь?', stemKo: '즤', inflKo: '뵤시', verb: true),
       ]),
       ChatTurn('B', ko: '난 모스크바 살아. 너 러시아어 잘하네!', tokens: [
