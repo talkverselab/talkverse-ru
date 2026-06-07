@@ -39,7 +39,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => TtsService.instance.speak(_cur.tts));
+    WidgetsBinding.instance.addPostFrameCallback((_) => TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1)));
   }
 
   @override
@@ -60,7 +60,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       if (_i < 0) _i += n;
       _flip.value = 0;
     });
-    TtsService.instance.speak(_cur.tts);
+    TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1));
   }
 
   void _shuffle() {
@@ -69,7 +69,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       _i = 0;
       _flip.value = 0;
     });
-    TtsService.instance.speak(_cur.tts);
+    TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1));
   }
 
   @override

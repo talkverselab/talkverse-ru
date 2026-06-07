@@ -29,11 +29,13 @@ class TtsService {
   }
 
   /// 강세 기호(´)는 제거해 합성기 호환을 높인다.
-  Future<void> speak(String text) async {
+  /// [delay] — 자동 재생 시 읽을 시간을 주기 위한 지연(수동 탭은 0).
+  Future<void> speak(String text, {Duration delay = Duration.zero}) async {
     await _init();
     final clean = text.replaceAll('́', '').trim();
     if (clean.isEmpty) return;
     await _tts.stop();
+    if (delay > Duration.zero) await Future.delayed(delay);
     await _tts.speak(clean);
   }
 
