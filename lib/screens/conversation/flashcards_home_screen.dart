@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/curriculum_sentences.dart';
 import '../../data/l2_dialogues.dart';
+import '../../data/spoonfed_sentences.dart';
 import '../../domain/models/dialogue.dart';
 import '../../domain/models/flashcard.dart';
 import '../../domain/models/grammar_stage.dart';
@@ -11,6 +12,7 @@ import '../../theme/app_typography.dart';
 import '../../widgets/ui_kit.dart';
 import 'dialogue_chat_screen.dart';
 import 'flashcard_session_screen.dart';
+import 'spoonfed_course_screen.dart';
 
 /// 회화 탭 — 문법 문장을 플래시카드로 굴려 익히는 덱 목록.
 class FlashcardsHomeScreen extends StatelessWidget {
@@ -77,6 +79,26 @@ class FlashcardsHomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
+        ],
+        const SizedBox(height: 14),
+        const Eyebrow('떠먹여주는 문장 · 600'),
+        const SizedBox(height: 10),
+        for (var i = 0; i < spoonfedCourses.length; i++) ...[
+          _DeckCard(
+            title: spoonfedCourses[i].title,
+            subtitle: '${spoonfedCourses[i].sentences.length}문장 · 리스트 + 플래시카드',
+            fill: _fills[i % _fills.length],
+            icon: Icons.restaurant_rounded,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => SpoonfedCourseScreen(
+                  course: spoonfedCourses[i],
+                  fill: _fills[i % _fills.length],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
         ],
         const SizedBox(height: 14),
         const Eyebrow('플래시카드 · 문법 문장'),
