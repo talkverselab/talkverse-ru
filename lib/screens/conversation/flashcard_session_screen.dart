@@ -29,6 +29,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
     with SingleTickerProviderStateMixin {
   late final List<FlashItem> _items = [...widget.items];
   int _i = 0;
+  bool _koFirst = true; // true = 한→러 (기본), false = 러→한
   late final AnimationController _flip = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 380),
@@ -39,7 +40,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1)));
+    WidgetsBinding.instance.addPostFrameCallback((_) => _speakIfRuVisible(delayed: true));
   }
 
   @override
@@ -48,9 +49,26 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
     super.dispose();
   }
 
+  /// 러시아어 면이 보일 때만 자동 발음 (한→러 앞면에서 정답 유출 방지).
+  void _speakIfRuVisible({bool delayed = false}) {
+    if (_koFirst) return;
+    TtsService.instance
+        .speak(_cur.tts, delay: delayed ? const Duration(seconds: 1) : Duration.zero);
+  }
+
   void _toggleFlip() {
     if (_flip.isAnimating) return;
-    _flip.value < 0.5 ? _flip.forward() : _flip.reverse();
+    final revealing = _flip.value < 0.5;
+    revealing ? _flip.forward() : _flip.reverse();
+    if (revealing && _koFirst) TtsService.instance.speak(_cur.tts);
+  }
+
+  void _toggleDirection() {
+    setState(() {
+      _koFirst = !_koFirst;
+      _flip.value = 0;
+    });
+    _speakIfRuVisible();
   }
 
   void _go(int delta) {
@@ -60,7 +78,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       if (_i < 0) _i += n;
       _flip.value = 0;
     });
-    TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1));
+    _speakIfRuVisible(delayed: true);
   }
 
   void _shuffle() {
@@ -69,7 +87,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       _i = 0;
       _flip.value = 0;
     });
-    TtsService.instance.speak(_cur.tts, delay: const Duration(seconds: 1));
+    _speakIfRuVisible(delayed: true);
   }
 
   @override
@@ -78,6 +96,12 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       appBar: AppBar(
         title: Text(widget.title, style: AppType.serif(18)),
         actions: [
+          TextButton.icon(
+            onPressed: _toggleDirection,
+            icon: const Icon(Icons.swap_horiz_rounded, color: AppColors.ink, size: 20),
+            label: Text(_koFirst ? '한 → 러' : '러 → 한',
+                style: AppType.sans(13, weight: FontWeight.w800, color: AppColors.ink)),
+          ),
           IconButton(
             icon: const Icon(Icons.shuffle_rounded),
             tooltip: '섞기',
@@ -148,6 +172,30 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
     );
   }
 
+  /// 러시아어 면 — 색칠 토큰 / plain 문장+독음 / 단어.
+  List<Widget> _ruSide(FlashItem it) => [
+        if (it.tokens != null) ...[
+          SentenceText(tokens: it.tokens!, size: 26),
+          const SizedBox(height: 12),
+          SentenceReading(tokens: it.tokens!, size: 15),
+        ] else if (it.reading != null) ...[
+          Text(it.word ?? '',
+              textAlign: TextAlign.center, style: AppType.serif(25, height: 1.25)),
+          const SizedBox(height: 12),
+          Text(it.reading!,
+              textAlign: TextAlign.center,
+              style: AppType.sans(15,
+                  weight: FontWeight.w600, color: AppColors.inkSoft, height: 1.4)),
+        ] else
+          Text(it.word ?? '',
+              textAlign: TextAlign.center, style: AppType.serif(44, height: 1.1)),
+      ];
+
+  /// 한국어 면 — 뜻.
+  List<Widget> _koSide(FlashItem it) => [
+        Text(it.back, textAlign: TextAlign.center, style: AppType.serif(26, height: 1.25)),
+      ];
+
   Widget _front() {
     final it = _cur;
     return _CardShell(
@@ -155,17 +203,13 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (it.tokens != null) ...[
-            SentenceText(tokens: it.tokens!, size: 26),
-            const SizedBox(height: 12),
-            SentenceReading(tokens: it.tokens!, size: 15),
-          ] else
-            Text(it.word ?? '',
-                textAlign: TextAlign.center, style: AppType.serif(44, height: 1.1)),
+          ...(_koFirst ? _koSide(it) : _ruSide(it)),
           const SizedBox(height: 22),
-          _SpeakBtn(text: it.tts),
-          const SizedBox(height: 8),
-          Text('탭하면 뜻 보기',
+          if (!_koFirst) ...[
+            _SpeakBtn(text: it.tts),
+            const SizedBox(height: 8),
+          ],
+          Text(_koFirst ? '탭하면 러시아어 보기' : '탭하면 뜻 보기',
               style: AppType.sans(11.5, weight: FontWeight.w600, color: AppColors.inkSoft)),
         ],
       ),
@@ -179,8 +223,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(it.back,
-              textAlign: TextAlign.center, style: AppType.serif(26, height: 1.25)),
+          ...(_koFirst ? _ruSide(it) : _koSide(it)),
           if (it.note != null) ...[
             const SizedBox(height: 14),
             Container(
