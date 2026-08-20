@@ -16,10 +16,14 @@ class FlashcardSessionScreen extends StatefulWidget {
     required this.title,
     required this.items,
     this.fill = AppColors.sky,
+    this.onSeen,
   });
   final String title;
   final List<FlashItem> items;
   final Color fill;
+
+  /// 본 카드 수(최댓값)가 늘어날 때 호출 — 진행 기록용.
+  final ValueChanged<int>? onSeen;
 
   @override
   State<FlashcardSessionScreen> createState() => _FlashcardSessionScreenState();
@@ -37,9 +41,20 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
 
   FlashItem get _cur => _items[_i];
 
+  int _maxSeen = 0;
+
+  void _reportSeen() {
+    final seen = _i + 1;
+    if (seen > _maxSeen) {
+      _maxSeen = seen;
+      widget.onSeen?.call(seen);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _reportSeen();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakIfRuVisible(delayed: true));
   }
 
@@ -78,6 +93,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       if (_i < 0) _i += n;
       _flip.value = 0;
     });
+    _reportSeen();
     _speakIfRuVisible(delayed: true);
   }
 

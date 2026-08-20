@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../data/l2_dialogues.dart';
+import '../data/spoonfed_sentences.dart';
+import '../domain/models/dialogue.dart';
+import '../services/progress_service.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
+import '../widgets/today_card.dart';
 import '../widgets/ui_kit.dart';
 import 'alphabet/cyrillic_alphabet_screen.dart';
 import 'cases/cases_home_screen.dart';
+import 'conversation/dialogue_chat_screen.dart';
 import 'conversation/flashcards_home_screen.dart';
+import 'conversation/spoonfed_course_screen.dart';
 import 'curriculum/curriculum_home_screen.dart';
+import 'progress_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
     _TabDef('홈', Icons.cottage_rounded, Icons.cottage_outlined),
     _TabDef('회화', Icons.style_rounded, Icons.style_outlined),
     _TabDef('문법', Icons.account_tree_rounded, Icons.account_tree_outlined),
-    _TabDef('내 학습', Icons.person_rounded, Icons.person_outline_rounded),
+    _TabDef('진행', Icons.bar_chart_rounded, Icons.bar_chart_outlined),
   ];
 
   @override
@@ -37,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
             _HomeTab(onJump: (i) => setState(() => _index = i)),
             const FlashcardsHomeScreen(),
             const CurriculumHomeScreen(),
-            const _LearningTab(),
+            const ProgressScreen(),
           ],
         ),
       ),
@@ -58,153 +66,281 @@ class _TabDef {
 }
 
 // ─────────────────────────────────────────────────────────── 홈 탭
+// zh 앱 UX 구조 이식: 인사 헤더 + 🔥스트릭 + '오늘의 학습' 이어하기 + 메뉴 그리드.
 
 class _HomeTab extends StatelessWidget {
   const _HomeTab({required this.onJump});
   final ValueChanged<int> onJump;
 
+  /// 오늘의 학습 대상 결정 — 마지막 활동 이어하기, 없으면 다음 미방문 다이얼로그.
+  _TodayTarget _resolveToday() {
+    final ps = ProgressService.instance;
+    final last = ps.lastActivity;
+
+    if (last != null && last.startsWith('spoonfed:')) {
+      final id = last.substring('spoonfed:'.length);
+      final course = spoonfedCourses.where((c) => c.id == id).firstOrNull;
+      if (course != null && ps.spoonfedSeen(id) < course.sentences.length) {
+        return _TodayTarget.spoonfed(course, ps.spoonfedSeen(id));
+      }
+    }
+
+    final visited = ps.visitedDialogues;
+    final next = l2Dialogues.where((d) => !visited.contains(d.id)).firstOrNull;
+    if (next != null) {
+      return _TodayTarget.dialogue(next, visited.length);
+    }
+
+    // 다이얼로그 전부 완료 → 미완료 떠먹여주는 코스.
+    final course = spoonfedCourses
+        .where((c) => ps.spoonfedSeen(c.id) < c.sentences.length)
+        .firstOrNull;
+    if (course != null) {
+      return _TodayTarget.spoonfed(course, ps.spoonfedSeen(course.id));
+    }
+    return _TodayTarget.dialogue(l2Dialogues.first, visited.length);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
-      children: [
-        const SizedBox(height: 2),
-        const BrandMark(),
-        const SizedBox(height: 26),
-        const Eyebrow('한국 화자를 위한 러시아어'),
-        const SizedBox(height: 10),
-        Text('약 300단어로\n문법 한 바퀴를 닫는다',
-            style: AppType.serif(28, height: 1.16)),
-        const SizedBox(height: 12),
-        Text(
-          '자국 영화·드라마 1,300만 토큰에서 추린 절벽 어휘. '
-          '한 번에 하나, 나머지는 흘립니다. 격은 한국어 조사와 1:1 — 거의 공짜.',
-          style: AppType.sans(14, color: AppColors.inkSoft, height: 1.55),
-        ),
-        const SizedBox(height: 22),
-        _HeroCard(
-          eyebrow: '문법 골격',
-          title: '10단계 선형 커리큘럼',
-          subtitle: '알파벳 50 + 문법 100 = L1 골격',
-          fill: AppColors.mint,
-          icon: Icons.account_tree_rounded,
-          onTap: () => onJump(2),
-        ),
-        const SizedBox(height: 12),
-        _HeroCard(
-          eyebrow: '플래시카드',
-          title: '문장으로 굴려 익히기',
-          subtitle: '문법 문장을 카드로 · 뒤집기 + 발음',
-          fill: AppColors.lilac,
-          icon: Icons.style_rounded,
-          onTap: () => onJump(1),
-        ),
-        const SizedBox(height: 12),
-        _HeroCard(
-          eyebrow: '격변화 · cliff',
-          title: '격 6개를 조사처럼',
-          subtitle: '156 → 251 → 685 → 1,985 lemma 절벽',
-          fill: AppColors.peach,
-          icon: Icons.layers_rounded,
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CasesHomeScreen()),
-          ),
-        ),
-        const SizedBox(height: 12),
-        _HeroCard(
-          eyebrow: '키릴 알파벳 33자',
-          title: 'Аа · 소리부터',
-          subtitle: '모음 · 가짜친구 · 러시아 자음 · 나머지',
-          fill: AppColors.sky,
-          icon: Icons.abc_rounded,
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CyrillicAlphabetScreen()),
-          ),
-        ),
-        const SizedBox(height: 26),
-        const Eyebrow('왜 한국인에게 유리한가'),
-        const SizedBox(height: 12),
-        Row(
-          children: const [
-            Expanded(child: _StatCard(value: '1:1', label: '격 ↔ 조사', fill: AppColors.peach)),
-            SizedBox(width: 12),
-            Expanded(child: _StatCard(value: '자유', label: '어순', fill: AppColors.mint)),
-            SizedBox(width: 12),
-            Expanded(child: _StatCard(value: '0', label: '관사', fill: AppColors.sky)),
-          ],
-        ),
-        const SizedBox(height: 14),
-        OutlineCard(
-          fill: AppColors.lilacLight,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(Icons.hearing_rounded, color: AppColors.ink, size: 20),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  '진짜 보스는 상(вид) 하나. 한국어·영어에 1:1 대응이 없어 '
-                  '현지 듣기로 떠넘깁니다.',
-                  style: AppType.sans(13, weight: FontWeight.w500, color: AppColors.ink, height: 1.5),
+    final ps = ProgressService.instance;
+    return ValueListenableBuilder<int>(
+      valueListenable: ps.revision,
+      builder: (context, _, _) {
+        final today = _resolveToday();
+        return ListView(
+          padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
+          children: [
+            // ── 인사 헤더 + 스트릭 ────────────────────────
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Приве́т! 👋', style: AppType.serif(26)),
+                      const SizedBox(height: 4),
+                      Text('한국 화자를 위한 러시아어 — 오늘도 한 문장.',
+                          style: AppType.sans(12.5,
+                              weight: FontWeight.w500,
+                              color: AppColors.inkSoft)),
+                    ],
+                  ),
                 ),
+                const SizedBox(width: 10),
+                StreakChip(days: ps.streak),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // ── 오늘의 학습 (이어하기) ────────────────────
+            const Eyebrow('오늘의 학습'),
+            const SizedBox(height: 10),
+            _todayCard(context, today),
+            const SizedBox(height: 24),
+
+            // ── 메인 메뉴 그리드 ─────────────────────────
+            const Eyebrow('메인 메뉴'),
+            const SizedBox(height: 10),
+            _MenuGrid(onJump: onJump),
+            const SizedBox(height: 24),
+
+            // ── 왜 한국인에게 유리한가 ────────────────────
+            const Eyebrow('왜 한국인에게 유리한가'),
+            const SizedBox(height: 12),
+            Row(
+              children: const [
+                Expanded(
+                    child: _StatCard(
+                        value: '1:1', label: '격 ↔ 조사', fill: AppColors.peach)),
+                SizedBox(width: 12),
+                Expanded(
+                    child: _StatCard(
+                        value: '자유', label: '어순', fill: AppColors.mint)),
+                SizedBox(width: 12),
+                Expanded(
+                    child:
+                        _StatCard(value: '0', label: '관사', fill: AppColors.sky)),
+              ],
+            ),
+            const SizedBox(height: 14),
+            OutlineCard(
+              fill: AppColors.lilacLight,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(Icons.hearing_rounded,
+                      color: AppColors.ink, size: 20),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      '진짜 보스는 상(вид) 하나. 한국어·영어에 1:1 대응이 없어 '
+                      '현지 듣기로 떠넘깁니다.',
+                      style: AppType.sans(13,
+                          weight: FontWeight.w500,
+                          color: AppColors.ink,
+                          height: 1.5),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 26),
+            Center(
+              child: Text('러시아어유니버스 · 2026',
+                  style: AppType.sans(11,
+                      weight: FontWeight.w600,
+                      color: AppColors.inkFaint,
+                      spacing: 3)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _todayCard(BuildContext context, _TodayTarget t) {
+    if (t.course != null) {
+      final c = t.course!;
+      return TodayCard(
+        tag: '떠먹여주는',
+        title: c.title,
+        subtitle: t.progress > 0 ? '보던 카드 이어서 굴리기' : '오늘 첫 카드 시작',
+        progress: t.progress,
+        total: c.sentences.length,
+        fill: AppColors.mint,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (_) =>
+                  SpoonfedCourseScreen(course: c, fill: AppColors.mint)),
         ),
-      ],
+      );
+    }
+    final d = t.dialogue!;
+    return TodayCard(
+      tag: 'L2 회화',
+      title: d.title,
+      subtitle: '${d.turns.length}턴 · ${d.tone.ko} · 반전 ${d.twistLabel}',
+      progress: t.progress,
+      total: l2Dialogues.length,
+      fill: AppColors.sky,
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => DialogueChatScreen(dialogue: d)),
+      ),
     );
   }
 }
 
-class _HeroCard extends StatelessWidget {
-  const _HeroCard({
-    required this.eyebrow,
-    required this.title,
-    required this.subtitle,
-    required this.fill,
-    required this.icon,
-    required this.onTap,
-  });
-  final String eyebrow;
-  final String title;
-  final String subtitle;
-  final Color fill;
+class _TodayTarget {
+  final Dialogue? dialogue;
+  final SpoonfedCourse? course;
+  final int progress;
+  _TodayTarget.dialogue(this.dialogue, this.progress) : course = null;
+  _TodayTarget.spoonfed(this.course, this.progress) : dialogue = null;
+}
+
+// ─────────────────────────────────────────────────── 메뉴 그리드
+
+class _MenuGrid extends StatelessWidget {
+  const _MenuGrid({required this.onJump});
+  final ValueChanged<int> onJump;
+
+  @override
+  Widget build(BuildContext context) {
+    final ps = ProgressService.instance;
+    final nextCourse = spoonfedCourses
+            .where((c) => ps.spoonfedSeen(c.id) < c.sentences.length)
+            .firstOrNull ??
+        spoonfedCourses.first;
+
+    final items = <_MenuItem>[
+      _MenuItem('회화 챗', '다이얼로그 ${l2Dialogues.length}', Icons.chat_bubble_rounded,
+          AppColors.sky, () => onJump(1)),
+      _MenuItem(
+          '떠먹여주는 600',
+          nextCourse.title,
+          Icons.restaurant_rounded,
+          AppColors.mint,
+          () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => SpoonfedCourseScreen(
+                  course: nextCourse, fill: AppColors.mint)))),
+      _MenuItem('문법 10단계', '알파벳 50 + 문법 100', Icons.account_tree_rounded,
+          AppColors.peach, () => onJump(2)),
+      _MenuItem(
+          '격변화 cliff',
+          '격 6개를 조사처럼',
+          Icons.layers_rounded,
+          AppColors.lilac,
+          () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const CasesHomeScreen()))),
+      _MenuItem(
+          '알파벳 33자',
+          'Аа · 소리부터',
+          Icons.abc_rounded,
+          AppColors.sky,
+          () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => const CyrillicAlphabetScreen()))),
+      _MenuItem('진행 리포트', '스트릭 · 섹션별', Icons.bar_chart_rounded,
+          AppColors.peach, () => onJump(3)),
+    ];
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+        childAspectRatio: 1.55,
+      ),
+      itemCount: items.length,
+      itemBuilder: (context, i) => _MenuTile(item: items[i]),
+    );
+  }
+}
+
+class _MenuItem {
+  final String label;
+  final String sub;
   final IconData icon;
+  final Color fill;
   final VoidCallback onTap;
+  _MenuItem(this.label, this.sub, this.icon, this.fill, this.onTap);
+}
+
+class _MenuTile extends StatelessWidget {
+  const _MenuTile({required this.item});
+  final _MenuItem item;
 
   @override
   Widget build(BuildContext context) {
     return OutlineCard(
-      fill: fill,
-      padding: const EdgeInsets.all(18),
-      onTap: onTap,
-      child: Row(
+      fill: item.fill,
+      padding: const EdgeInsets.all(14),
+      onTap: item.onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(eyebrow.toUpperCase(),
-                    style: AppType.sans(10.5, weight: FontWeight.w800, color: AppColors.inkSoft, spacing: 1.2)),
-                const SizedBox(height: 8),
-                Text(title, style: AppType.serif(20)),
-                const SizedBox(height: 6),
-                Text(subtitle,
-                    style: AppType.sans(12.5, weight: FontWeight.w500, color: AppColors.inkSoft, height: 1.4)),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
           Container(
-            width: 50,
-            height: 50,
+            width: 36,
+            height: 36,
             decoration: BoxDecoration(
               color: AppColors.surface,
               shape: BoxShape.circle,
-              border: Border.all(color: AppColors.outline, width: 1.6),
+              border: Border.all(color: AppColors.outline, width: 1.4),
             ),
-            child: Icon(icon, color: AppColors.ink, size: 24),
+            child: Icon(item.icon, color: AppColors.ink, size: 18),
           ),
+          const SizedBox(height: 10),
+          Text(item.label, style: AppType.serif(15.5)),
+          const SizedBox(height: 2),
+          Text(item.sub,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppType.sans(11,
+                  weight: FontWeight.w600, color: AppColors.inkSoft)),
         ],
       ),
     );
@@ -212,7 +348,8 @@ class _HeroCard extends StatelessWidget {
 }
 
 class _StatCard extends StatelessWidget {
-  const _StatCard({required this.value, required this.label, required this.fill});
+  const _StatCard(
+      {required this.value, required this.label, required this.fill});
   final String value;
   final String label;
   final Color fill;
@@ -226,61 +363,11 @@ class _StatCard extends StatelessWidget {
         children: [
           Text(value, style: AppType.serif(22)),
           const SizedBox(height: 4),
-          Text(label, style: AppType.sans(12, weight: FontWeight.w700, color: AppColors.inkSoft)),
+          Text(label,
+              style: AppType.sans(12,
+                  weight: FontWeight.w700, color: AppColors.inkSoft)),
         ],
       ),
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────── 내 학습 / placeholder
-
-class _LearningTab extends StatelessWidget {
-  const _LearningTab();
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
-      children: [
-        Text('내 학습', style: AppType.serif(26)),
-        const SizedBox(height: 6),
-        Text('L1~L4 lemma 1,985개 · 빈도순 · POS 필터',
-            style: AppType.sans(13, color: AppColors.inkSoft)),
-        const SizedBox(height: 20),
-        OutlineCard(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CasesHomeScreen()),
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Row(
-            children: [
-              Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  color: AppColors.peach,
-                  borderRadius: BorderRadius.circular(13),
-                  border: Border.all(color: AppColors.outline, width: 1.4),
-                ),
-                child: const Icon(Icons.menu_book_rounded, color: AppColors.ink),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('단어 사전 · cliff browser', style: AppType.serif(16)),
-                    const SizedBox(height: 3),
-                    Text('격변화 5단계 절벽 탐색',
-                        style: AppType.sans(12.5, color: AppColors.inkSoft)),
-                  ],
-                ),
-              ),
-              const Icon(Icons.chevron_right_rounded, color: AppColors.inkFaint),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
@@ -288,7 +375,8 @@ class _LearningTab extends StatelessWidget {
 // ─────────────────────────────────────────────────────── 하단 내비
 
 class _BottomNav extends StatelessWidget {
-  const _BottomNav({required this.index, required this.tabs, required this.onTap});
+  const _BottomNav(
+      {required this.index, required this.tabs, required this.onTap});
   final int index;
   final List<_TabDef> tabs;
   final ValueChanged<int> onTap;
@@ -323,7 +411,8 @@ class _BottomNav extends StatelessWidget {
 }
 
 class _NavItem extends StatelessWidget {
-  const _NavItem({required this.def, required this.selected, required this.onTap});
+  const _NavItem(
+      {required this.def, required this.selected, required this.onTap});
   final _TabDef def;
   final bool selected;
   final VoidCallback onTap;
@@ -341,12 +430,14 @@ class _NavItem extends StatelessWidget {
             scale: selected ? 1.1 : 1,
             duration: const Duration(milliseconds: 220),
             curve: Curves.easeOutBack,
-            child: Icon(selected ? def.active : def.inactive, color: color, size: 25),
+            child: Icon(selected ? def.active : def.inactive,
+                color: color, size: 25),
           ),
           const SizedBox(height: 4),
           Text(def.label,
               style: AppType.sans(10.5,
-                  weight: selected ? FontWeight.w800 : FontWeight.w600, color: color)),
+                  weight: selected ? FontWeight.w800 : FontWeight.w600,
+                  color: color)),
         ],
       ),
     );

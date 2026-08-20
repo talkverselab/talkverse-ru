@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'theme/app_theme.dart';
 import 'data/db/app_database.dart';
 import 'screens/main_screen.dart';
+import 'services/progress_service.dart';
 
 late final AppDatabase appDb;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   appDb = AppDatabase();
+  await ProgressService.instance.init();
   runApp(const RussianUniverseApp());
 }
 
