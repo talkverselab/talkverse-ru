@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/display_settings.dart';
 import '../../domain/models/dialogue.dart';
 import '../../domain/models/flashcard.dart';
+import '../../services/progress_service.dart';
 import '../../services/tts_service.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
@@ -25,6 +26,12 @@ class _DialogueChatScreenState extends State<DialogueChatScreen> {
   final Set<int> _revealed = {};
   bool _playing = false;
   int _playingIndex = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    ProgressService.instance.markDialogueVisited(widget.dialogue.id);
+  }
 
   Color _fillFor(String speaker) {
     switch (speaker) {

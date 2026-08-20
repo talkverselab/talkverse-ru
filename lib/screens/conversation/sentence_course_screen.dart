@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/sentence_sentences.dart';
 import '../../domain/models/flashcard.dart';
+import '../../services/progress_service.dart';
 import '../../services/tts_service.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
@@ -21,12 +22,22 @@ class SentenceCourseScreen extends StatefulWidget {
 class _SentenceCourseScreenState extends State<SentenceCourseScreen> {
   int? _expanded; // 펼쳐진 문장 index (주요단어 노트)
 
+  @override
+  void initState() {
+    super.initState();
+    // 코스 열람 = 오늘 활동 + 이어하기 대상 기록 (본 카드 수는 유지).
+    ProgressService.instance.recordSentence(
+        widget.course.id, ProgressService.instance.sentenceSeen(widget.course.id));
+  }
+
   void _openFlashcards() {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => FlashcardSessionScreen(
         title: widget.course.title,
         fill: widget.fill,
         items: [for (final s in widget.course.sentences) FlashItem.fromSentence(s)],
+        onSeen: (n) =>
+            ProgressService.instance.recordSentence(widget.course.id, n),
       ),
     ));
   }
