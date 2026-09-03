@@ -120,6 +120,16 @@ class SentenceReading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: DisplaySettings.showReading,
+      builder: (context, on, _) {
+        if (!on) return const SizedBox.shrink();
+        return _readingWrap();
+      },
+    );
+  }
+
+  Widget _readingWrap() {
     return Wrap(
       spacing: 6,
       runSpacing: 4,

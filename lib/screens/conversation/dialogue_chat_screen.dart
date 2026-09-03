@@ -135,6 +135,7 @@ class _DialogueChatScreenState extends State<DialogueChatScreen> {
       appBar: AppBar(
         title: Text(d.title, style: AppType.serif(17)),
         actions: [
+          const ReadingToggleAction(),
           // 악센트(강세) 표시 토글
           GestureDetector(
             onTap: () => setState(() => DisplaySettings.showAccents.value = !DisplaySettings.showAccents.value),

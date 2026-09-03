@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'theme/app_theme.dart';
+import 'core/display_settings.dart';
 import 'data/db/app_database.dart';
 import 'screens/main_screen.dart';
 import 'services/progress_service.dart';
@@ -11,6 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   appDb = AppDatabase();
   await ProgressService.instance.init();
+  await DisplaySettings.load();
   runApp(const RussianUniverseApp());
 }
 

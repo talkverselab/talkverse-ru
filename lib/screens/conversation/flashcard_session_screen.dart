@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../core/display_settings.dart';
 import '../../domain/models/flashcard.dart';
 import '../../services/tts_service.dart';
 import '../../theme/app_colors.dart';
@@ -112,6 +113,7 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
       appBar: AppBar(
         title: Text(widget.title, style: AppType.serif(18)),
         actions: [
+          const ReadingToggleAction(),
           TextButton.icon(
             onPressed: _toggleDirection,
             icon: const Icon(Icons.swap_horiz_rounded, color: AppColors.ink, size: 20),
@@ -198,10 +200,17 @@ class _FlashcardSessionScreenState extends State<FlashcardSessionScreen>
           Text(it.word ?? '',
               textAlign: TextAlign.center, style: AppType.serif(25, height: 1.25)),
           const SizedBox(height: 12),
-          Text(it.reading!,
-              textAlign: TextAlign.center,
-              style: AppType.sans(15,
-                  weight: FontWeight.w600, color: AppColors.inkSoft, height: 1.4)),
+          ValueListenableBuilder<bool>(
+            valueListenable: DisplaySettings.showReading,
+            builder: (context, on, _) => !on
+                ? const SizedBox.shrink()
+                : Text(it.reading!,
+                    textAlign: TextAlign.center,
+                    style: AppType.sans(15,
+                        weight: FontWeight.w600,
+                        color: AppColors.inkSoft,
+                        height: 1.4)),
+          ),
         ] else
           Text(it.word ?? '',
               textAlign: TextAlign.center, style: AppType.serif(44, height: 1.1)),
