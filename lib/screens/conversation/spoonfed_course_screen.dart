@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/spoonfed_sentences.dart';
+import '../../core/display_settings.dart';
 import '../../domain/models/flashcard.dart';
 import '../../services/progress_service.dart';
 import '../../services/tts_service.dart';
@@ -50,6 +51,7 @@ class _SpoonfedCourseScreenState extends State<SpoonfedCourseScreen> {
       appBar: AppBar(
         title: Text(c.title, style: AppType.serif(18)),
         actions: [
+          const ReadingToggleAction(),
           IconButton(
             icon: const Icon(Icons.style_rounded),
             tooltip: '플래시카드',
@@ -96,11 +98,16 @@ class _SpoonfedCourseScreenState extends State<SpoonfedCourseScreen> {
                           children: [
                             Text(s.ru, style: AppType.serif(17, height: 1.3)),
                             const SizedBox(height: 4),
-                            Text(s.reading,
-                                style: AppType.sans(12.5,
-                                    weight: FontWeight.w600,
-                                    color: AppColors.inkSoft,
-                                    height: 1.35)),
+                            ValueListenableBuilder<bool>(
+                              valueListenable: DisplaySettings.showReading,
+                              builder: (context, on, _) => !on
+                                  ? const SizedBox.shrink()
+                                  : Text(s.reading,
+                                      style: AppType.sans(12.5,
+                                          weight: FontWeight.w600,
+                                          color: AppColors.inkSoft,
+                                          height: 1.35)),
+                            ),
                             const SizedBox(height: 5),
                             Text(s.ko,
                                 style: AppType.sans(13.5,
