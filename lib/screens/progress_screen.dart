@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'update_screen.dart';
+
 import '../data/l2_dialogues.dart';
 import '../data/spoonfed_sentences.dart';
 import '../services/progress_service.dart';
@@ -33,6 +35,7 @@ class ProgressScreen extends StatelessWidget {
         return ListView(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
           children: [
+            const UpdateEntryTile(),
             Text('진행', style: AppType.serif(26)),
             const SizedBox(height: 6),
             Text('다이얼로그 · 떠먹여주는 문장 · 연속 학습',
