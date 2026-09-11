@@ -1,307 +1,151 @@
+import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 
-import 'update_screen.dart';
+import '../core/theme.dart';
+import '../main.dart';
+import '../widgets/spanish_decor.dart';
 
-import '../data/l2_dialogues.dart';
-import '../data/spoonfed_sentences.dart';
-import '../services/progress_service.dart';
-import '../theme/app_colors.dart';
-import '../theme/app_typography.dart';
-import '../widgets/ui_kit.dart';
-import 'cases/cases_home_screen.dart';
-
-/// 진행 탭 — 전체 진행 · 스트릭 · 주간 활동 · 섹션별 진행. (zh ProgressScreen 구조 이식)
-class ProgressScreen extends StatelessWidget {
+/// 진행 — 턴 학습 / 동사 / 단어 집계.
+class ProgressScreen extends StatefulWidget {
   const ProgressScreen({super.key});
 
   @override
+  State<ProgressScreen> createState() => _ProgressScreenState();
+}
+
+class _ProgressScreenState extends State<ProgressScreen> {
+  int _turnsTotal = 0;
+  int _turnsLearned = 0;
+  int _verbsTotal = 0;
+  int _verbsKnown = 0;
+  int _wordsTotal = 0;
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final turnsTotal = await appDb.turns.count().getSingle();
+    final progress = await appDb.select(appDb.userProgress).get();
+    final verbsTotal = await appDb.verbs.count().getSingle();
+    final vp = await appDb.select(appDb.verbProgress).get();
+    final wordsTotal = await appDb.words.count().getSingle();
+    if (!mounted) return;
+    setState(() {
+      _turnsTotal = turnsTotal;
+      _turnsLearned = progress.where((p) => p.learned).length;
+      _verbsTotal = verbsTotal;
+      _verbsKnown = vp.where((p) => p.known).length;
+      _wordsTotal = wordsTotal;
+      _loading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ps = ProgressService.instance;
-    return ValueListenableBuilder<int>(
-      valueListenable: ps.revision,
-      builder: (context, _, _) {
-        final visited = ps.visitedDialogues.length;
-        final dialogueTotal = l2Dialogues.length;
-        final spoonSeen = [
-          for (final c in spoonfedCourses) ps.spoonfedSeen(c.id)
-        ].fold<int>(0, (a, b) => a + b);
-        final spoonTotal = [
-          for (final c in spoonfedCourses) c.sentences.length
-        ].fold<int>(0, (a, b) => a + b);
-        final done = visited + spoonSeen;
-        final total = dialogueTotal + spoonTotal;
-        final pct = total > 0 ? done / total : 0.0;
+    return Scaffold(
+      backgroundColor: AppColors.cal,
+      appBar: AppBar(
+        title: const Text('진행 · Прогресс'),
+        actions: [
+          IconButton(icon: const Icon(Icons.refresh), onPressed: _load),
+        ],
+      ),
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                _StatCard(
+                  label: '회화 턴',
+                  badge: 'Ch',
+                  done: _turnsLearned,
+                  total: _turnsTotal,
+                  color: AppColors.rojo,
+                ),
+                const SizedBox(height: 10),
+                _StatCard(
+                  label: '핵심 동사',
+                  badge: 'V',
+                  done: _verbsKnown,
+                  total: _verbsTotal,
+                  color: AppColors.irregular,
+                ),
+                const SizedBox(height: 10),
+                _StatCard(
+                  label: '빈도 단어 (DB)',
+                  badge: 'W',
+                  done: _wordsTotal,
+                  total: _wordsTotal,
+                  color: AppColors.oliva,
+                ),
+                const SizedBox(height: 24),
+                const BandDivider(),
+                const SizedBox(height: 12),
+                Center(
+                  child: Text(
+                    'Poco a poco se va lejos',
+                    style: TextStyle(color: AppColors.tintaLight, fontSize: 12, letterSpacing: 2),
+                  ),
+                ),
+              ],
+            ),
+    );
+  }
+}
 
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+class _StatCard extends StatelessWidget {
+  final String label;
+  final String badge;
+  final int done;
+  final int total;
+  final Color color;
+  const _StatCard({
+    required this.label,
+    required this.badge,
+    required this.done,
+    required this.total,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final ratio = total == 0 ? 0.0 : done / total;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
           children: [
-            const UpdateEntryTile(),
-            Text('진행', style: AppType.serif(26)),
-            const SizedBox(height: 6),
-            Text('다이얼로그 · 떠먹여주는 문장 · 연속 학습',
-                style: AppType.sans(13, color: AppColors.inkSoft)),
-            const SizedBox(height: 18),
-
-            // ── 전체 진행 ────────────────────────────────
-            OutlineCard(
-              fill: AppColors.sky,
-              radius: 24,
-              padding: const EdgeInsets.all(20),
+            TileBadge(text: badge, size: 44, color: color),
+            const SizedBox(width: 14),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Eyebrow('전체 진행'),
-                  const SizedBox(height: 8),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('${(pct * 100).toStringAsFixed(1)}%',
-                          style: AppType.serif(36, height: 1)),
-                      const SizedBox(width: 10),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: Text('$done / $total 문장·다이얼로그',
-                            style: AppType.sans(12.5,
-                                weight: FontWeight.w700,
-                                color: AppColors.inkSoft)),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 14),
+                  Text(label, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
+                  const SizedBox(height: 6),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(99),
+                    borderRadius: BorderRadius.circular(3),
                     child: LinearProgressIndicator(
-                      value: pct,
-                      minHeight: 10,
-                      backgroundColor: AppColors.surface,
-                      valueColor:
-                          const AlwaysStoppedAnimation(AppColors.ink),
+                      value: ratio,
+                      minHeight: 7,
+                      backgroundColor: AppColors.calDeep,
+                      color: color,
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // ── 스탯 3칸 ─────────────────────────────────
-            Row(
-              children: [
-                Expanded(
-                    child: _StatBox(
-                        value: '${ps.streak}일',
-                        label: '연속 학습 🔥',
-                        fill: AppColors.peach)),
-                const SizedBox(width: 10),
-                Expanded(
-                    child: _StatBox(
-                        value: '$visited/$dialogueTotal',
-                        label: '다이얼로그',
-                        fill: AppColors.mint)),
-                const SizedBox(width: 10),
-                Expanded(
-                    child: _StatBox(
-                        value: '$spoonSeen',
-                        label: '본 문장 카드',
-                        fill: AppColors.lilac)),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // ── 주간 활동 ────────────────────────────────
-            const Eyebrow('이번 주'),
-            const SizedBox(height: 10),
-            OutlineCard(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-              child: _WeekRow(active: ps.weekActive),
-            ),
-            const SizedBox(height: 20),
-
-            // ── 섹션별 진행 ──────────────────────────────
-            const Eyebrow('섹션별 진행'),
-            const SizedBox(height: 10),
-            _SectionBar(
-              title: 'L2 회화 다이얼로그',
-              done: visited,
-              total: dialogueTotal,
-              fill: AppColors.sky,
-            ),
-            const SizedBox(height: 10),
-            for (final c in spoonfedCourses) ...[
-              _SectionBar(
-                title: '떠먹여주는 ${c.title}',
-                done: ps.spoonfedSeen(c.id),
-                total: c.sentences.length,
-                fill: AppColors.mint,
-              ),
-              const SizedBox(height: 10),
-            ],
-            const SizedBox(height: 10),
-
-            // ── 사전 (기존 내 학습 카드 이식) ─────────────
-            const Eyebrow('사전'),
-            const SizedBox(height: 10),
-            OutlineCard(
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const CasesHomeScreen()),
-              ),
-              padding: const EdgeInsets.all(18),
-              child: Row(
-                children: [
-                  Container(
-                    width: 46,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      color: AppColors.peach,
-                      borderRadius: BorderRadius.circular(13),
-                      border:
-                          Border.all(color: AppColors.outline, width: 1.4),
-                    ),
-                    child: const Icon(Icons.menu_book_rounded,
-                        color: AppColors.ink),
+                  const SizedBox(height: 4),
+                  Text(
+                    '$done / $total  (${(ratio * 100).toStringAsFixed(0)}%)',
+                    style: const TextStyle(fontSize: 11, color: AppColors.tintaLight),
                   ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('단어 사전 · cliff browser',
-                            style: AppType.serif(16)),
-                        const SizedBox(height: 3),
-                        Text('격변화 5단계 절벽 탐색',
-                            style: AppType.sans(12.5,
-                                color: AppColors.inkSoft)),
-                      ],
-                    ),
-                  ),
-                  const Icon(Icons.chevron_right_rounded,
-                      color: AppColors.inkFaint),
                 ],
               ),
             ),
           ],
-        );
-      },
-    );
-  }
-}
-
-class _StatBox extends StatelessWidget {
-  const _StatBox(
-      {required this.value, required this.label, required this.fill});
-  final String value;
-  final String label;
-  final Color fill;
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlineCard(
-      fill: fill,
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      child: Column(
-        children: [
-          Text(value, style: AppType.serif(19)),
-          const SizedBox(height: 4),
-          Text(label,
-              textAlign: TextAlign.center,
-              style: AppType.sans(11,
-                  weight: FontWeight.w700, color: AppColors.inkSoft)),
-        ],
-      ),
-    );
-  }
-}
-
-class _WeekRow extends StatelessWidget {
-  const _WeekRow({required this.active});
-  final List<bool> active;
-
-  static const _labels = ['월', '화', '수', '목', '금', '토', '일'];
-
-  @override
-  Widget build(BuildContext context) {
-    final todayIdx = DateTime.now().weekday - 1;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        for (var i = 0; i < 7; i++)
-          Column(
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: active[i] ? AppColors.ink : AppColors.surfaceAlt,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: i == todayIdx
-                        ? AppColors.outline
-                        : AppColors.line,
-                    width: i == todayIdx ? 1.8 : 1.2,
-                  ),
-                ),
-                child: active[i]
-                    ? const Icon(Icons.check_rounded,
-                        color: AppColors.inkOnDark, size: 16)
-                    : null,
-              ),
-              const SizedBox(height: 5),
-              Text(_labels[i],
-                  style: AppType.sans(10.5,
-                      weight:
-                          i == todayIdx ? FontWeight.w800 : FontWeight.w600,
-                      color: i == todayIdx
-                          ? AppColors.ink
-                          : AppColors.inkFaint)),
-            ],
-          ),
-      ],
-    );
-  }
-}
-
-class _SectionBar extends StatelessWidget {
-  const _SectionBar(
-      {required this.title,
-      required this.done,
-      required this.total,
-      required this.fill});
-  final String title;
-  final int done;
-  final int total;
-  final Color fill;
-
-  @override
-  Widget build(BuildContext context) {
-    final pct = total > 0 ? done / total : 0.0;
-    return OutlineCard(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                  child: Text(title,
-                      style: AppType.sans(13.5,
-                          weight: FontWeight.w700, color: AppColors.ink))),
-              Text('$done / $total',
-                  style: AppType.sans(12,
-                      weight: FontWeight.w800, color: AppColors.inkSoft)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(99),
-            child: LinearProgressIndicator(
-              value: pct,
-              minHeight: 7,
-              backgroundColor: AppColors.surfaceAlt,
-              valueColor: AlwaysStoppedAnimation(
-                  pct >= 1 ? AppColors.online : AppColors.ink),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -1,19 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:russian_universe/data/spoonfed_sentences.dart';
+import 'package:russian_universe/core/theme.dart';
 
 void main() {
-  test('떠먹여주는 문장 — 코스 6개 × 100문장, 번호 연속', () {
-    expect(spoonfedCourses.length, 6);
-    var expectedNo = 1;
-    for (final c in spoonfedCourses) {
-      expect(c.sentences.length, 100, reason: c.title);
-      for (final s in c.sentences) {
-        expect(s.no, expectedNo++);
-        expect(s.ru, isNotEmpty);
-        expect(s.reading, isNotEmpty);
-        expect(s.ko, isNotEmpty);
-      }
-    }
+  testWidgets('Theme builds', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      theme: AppTheme.light(),
+      home: const Scaffold(body: Text('hola')),
+    ));
+    expect(find.text('hola'), findsOneWidget);
+  });
+
+  test('conjColor maps groups', () {
+    expect(conjColor('ar'), AppColors.ar);
+    expect(conjColor('irregular'), AppColors.irregular);
+    expect(conjColor(null), AppColors.neutral);
   });
 }

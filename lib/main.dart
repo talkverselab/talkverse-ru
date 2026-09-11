@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-import 'theme/app_theme.dart';
-import 'core/display_settings.dart';
+import 'core/theme.dart';
 import 'data/db/app_database.dart';
+import 'data/db/seed_loader.dart';
 import 'screens/main_screen.dart';
-import 'services/progress_service.dart';
+import 'services/ko_reading.dart';
 
 late final AppDatabase appDb;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   appDb = AppDatabase();
-  await ProgressService.instance.init();
-  await DisplaySettings.load();
-  runApp(const RussianUniverseApp());
+  await SeedLoader(appDb).seedIfNeeded();
+  await KoReadingPrefs.load();
+  runApp(const GermanUniverseApp());
 }
 
-class RussianUniverseApp extends StatelessWidget {
-  const RussianUniverseApp({super.key});
+class GermanUniverseApp extends StatelessWidget {
+  const GermanUniverseApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,43 +1,91 @@
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// 러시아어 음성 합성 — 차분한 학습용 속도.
+/// flutter_tts 기반 — 시스템 de-DE voice 사용.
 ///
-/// 한 번에 하나씩만 재생(이전 재생 중단). ru-RU 음성이 기기에 없으면
-/// [available]=false 로 떨어져 화면에서 안내할 수 있다.
+/// 화자별 음성: 기기에 남/여 de 보이스가 있으면 voice 전환,
+/// 없으면 피치(남 0.72 / 여 1.12)로 구분한다.
 class TtsService {
   TtsService._();
   static final TtsService instance = TtsService._();
 
-  final FlutterTts _tts = FlutterTts();
-  bool _inited = false;
-  bool available = true;
+  static const String locale = 'ru-RU';
 
-  Future<void> _init() async {
-    if (_inited) return;
-    _inited = true;
+  final FlutterTts _tts = FlutterTts();
+  bool _initialized = false;
+  String? _speaking;
+
+  Map<String, String>? _maleVoice;
+  Map<String, String>? _femaleVoice;
+  bool _voicesScanned = false;
+
+  Future<void> _ensureInit() async {
+    if (_initialized) return;
+    await _tts.setLanguage(locale);
+    await _tts.setSpeechRate(0.45);
+    await _tts.setPitch(1.0);
+    await _tts.setVolume(1.0);
+    _tts.setCompletionHandler(() => _speaking = null);
+    _tts.setCancelHandler(() => _speaking = null);
+    _tts.setErrorHandler((msg) => _speaking = null);
+    _initialized = true;
+  }
+
+  /// de 보이스 중 이름에 male/female 힌트가 있는 것을 1회 스캔.
+  Future<void> _scanVoices() async {
+    if (_voicesScanned) return;
+    _voicesScanned = true;
     try {
-      final langs = (await _tts.getLanguages) as List?;
-      available = langs == null ||
-          langs.any((l) => l.toString().toLowerCase().startsWith('ru'));
-      await _tts.setLanguage('ru-RU');
-      await _tts.setSpeechRate(0.42); // 학습자용 느린 속도
-      await _tts.setPitch(1.0);
-      await _tts.awaitSpeakCompletion(true);
+      final voices = await _tts.getVoices;
+      if (voices is! List) return;
+      for (final v in voices) {
+        if (v is! Map) continue;
+        final name = (v['name'] ?? '').toString();
+        final vLocale = (v['locale'] ?? '').toString();
+        if (!vLocale.toLowerCase().startsWith('de')) continue;
+        final lower = name.toLowerCase();
+        final voice = {'name': name, 'locale': vLocale};
+        if (_maleVoice == null &&
+            (lower.contains('male') && !lower.contains('female'))) {
+          _maleVoice = voice;
+        }
+        if (_femaleVoice == null && lower.contains('female')) {
+          _femaleVoice = voice;
+        }
+      }
     } catch (_) {
-      available = false;
+      // 보이스 목록 실패 시 피치 폴백만 사용
     }
   }
 
-  /// 강세 기호(´)는 제거해 합성기 호환을 높인다.
-  /// [delay] — 자동 재생 시 읽을 시간을 주기 위한 지연(수동 탭은 0).
-  Future<void> speak(String text, {Duration delay = Duration.zero}) async {
-    await _init();
-    final clean = text.replaceAll('́', '').trim();
-    if (clean.isEmpty) return;
-    await _tts.stop();
-    if (delay > Duration.zero) await Future.delayed(delay);
-    await _tts.speak(clean);
+  bool isSpeaking(String text) => _speaking == text;
+
+  Future<void> speak(String text) => _speakWith(text, null, 1.0);
+
+  /// 화자 성별에 맞춰 읽기. gender: 'male' | 'female'
+  Future<void> speakAs(String text, {required String gender}) async {
+    await _scanVoices();
+    final male = gender == 'male';
+    final voice = male ? _maleVoice : _femaleVoice;
+    final pitch = voice != null ? 1.0 : (male ? 0.72 : 1.12);
+    await _speakWith(text, voice, pitch);
   }
 
-  Future<void> stop() => _tts.stop();
+  Future<void> _speakWith(
+      String text, Map<String, String>? voice, double pitch) async {
+    await _ensureInit();
+    await _tts.stop();
+    if (voice != null) {
+      await _tts.setVoice(voice);
+    } else {
+      await _tts.setLanguage(locale);
+    }
+    await _tts.setPitch(pitch);
+    _speaking = text;
+    await _tts.speak(text);
+  }
+
+  Future<void> stop() async {
+    await _tts.stop();
+    _speaking = null;
+  }
 }
