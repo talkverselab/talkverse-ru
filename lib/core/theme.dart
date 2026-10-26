@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 
-/// Deutschland 컬러 팔레트 — 국기 Schwarz·Rot·Gold + 석회벽 백색·올리브·청색
+/// 컬러 팔레트 — talkverse.uk 톤(2026-10-26).
+///
+/// 흰 바탕 + 남색 글자 + 인디고 포인트 하나. 이름(rojo·gualda·cal…)은 키트 원본
+/// 팔레트에서 온 것이라 화면 코드가 그대로 쓰고, 값만 사이트 토큰에 맞췄다.
 class AppColors {
-  // 主色 — Rojo (국기 빨강)
-  static const Color rojo = Color(0xFF1C3F94);
-  static const Color rojoDeep = Color(0xFF12296B);
-  static const Color rojoLight = Color(0xFF4C6BC2);
+  // 주색 — 사이트 `--accent` 인디고
+  static const Color rojo = Color(0xFF635BFF);
+  static const Color rojoDeep = Color(0xFF4B44D6); // `--accent-ink`
+  static const Color rojoLight = Color(0xFFA9A4FF);
 
-  // 副色 — Gualda (국기 노랑/금)
-  static const Color gualda = Color(0xFFD4A017);
-  static const Color gualdaBright = Color(0xFFF0C14B);
-  static const Color gualdaDeep = Color(0xFF9C7410);
+  // 테두리·구분선 — `--line` 계열, 밝은 강조는 히어로 피치, 진한 쪽은 `--muted`
+  static const Color gualda = Color(0xFFDDE3EC);
+  static const Color gualdaBright = Color(0xFFFFD39B);
+  static const Color gualdaDeep = Color(0xFF6B7C93);
 
-  // Tinta (잉크, 본문 텍스트)
-  static const Color tinta = Color(0xFF1F1A17);
-  static const Color tintaLight = Color(0xFF5A4F48);
+  // 글자 — `--ink` / `--body`
+  static const Color tinta = Color(0xFF0A2540);
+  static const Color tintaLight = Color(0xFF425466);
 
-  // Cal (석회 벽, 부드러운 미색 배경)
-  static const Color cal = Color(0xFFFBF5E6);
-  static const Color calDeep = Color(0xFFF1E6C8);
+  // 바탕 — 흰색 / `--soft`
+  static const Color cal = Color(0xFFFFFFFF);
+  static const Color calDeep = Color(0xFFF6F9FC);
 
-  // Oliva (보조 강조)
-  static const Color oliva = Color(0xFF3E8E5A);
+  // 보조 강조 — 차분한 청록(완료·학습됨)
+  static const Color oliva = Color(0xFF0E7C8C);
 
-  // Mediterráneo (정보성 강조)
-  static const Color mar = Color(0xFFC8102E);
+  // 정보성 강조 — 러시아어 카드색(talkverse.uk 언어 카드 `--lc`)
+  static const Color mar = Color(0xFF5AA9E6);
 
   // 명사 성(gender) 시각화
   static const Color masc = Color(0xFF1E88E5); // el / -o
@@ -48,16 +51,16 @@ class AppTheme {
       colorScheme: ColorScheme(
         brightness: Brightness.light,
         primary: AppColors.rojo,
-        onPrimary: AppColors.cal,
+        onPrimary: Colors.white,
         primaryContainer: AppColors.rojoLight,
         onPrimaryContainer: AppColors.tinta,
-        secondary: AppColors.gualda,
-        onSecondary: AppColors.tinta,
+        secondary: AppColors.tinta,
+        onSecondary: Colors.white,
         secondaryContainer: AppColors.gualdaBright,
         onSecondaryContainer: AppColors.tinta,
         tertiary: AppColors.oliva,
         onTertiary: AppColors.cal,
-        tertiaryContainer: const Color(0xFFD6E4B0),
+        tertiaryContainer: const Color(0xFFCDEFF2),
         onTertiaryContainer: AppColors.tinta,
         error: const Color(0xFFB00020),
         onError: Colors.white,
@@ -66,40 +69,72 @@ class AppTheme {
         surfaceContainerHighest: AppColors.calDeep,
         onSurfaceVariant: AppColors.tintaLight,
         outline: AppColors.gualdaDeep,
-        outlineVariant: const Color(0xFFDCCDA4),
+        outlineVariant: AppColors.gualda,
       ),
       scaffoldBackgroundColor: AppColors.cal,
       fontFamily: 'Pretendard',
     );
 
     return base.copyWith(
+      textTheme: base.textTheme.apply(
+        bodyColor: AppColors.tintaLight,
+        displayColor: AppColors.tinta,
+      ),
       appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: AppColors.rojo,
-        foregroundColor: AppColors.cal,
+        scrolledUnderElevation: 0,
+        backgroundColor: AppColors.cal,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: AppColors.tinta,
+        shape: Border(bottom: BorderSide(color: AppColors.gualda, width: 1)),
         titleTextStyle: TextStyle(
-          color: AppColors.cal,
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.2,
+          color: AppColors.tinta,
+          fontSize: 17,
+          fontWeight: FontWeight.w600,
+          letterSpacing: -0.2,
         ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
         color: AppColors.cal,
+        surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: const BorderSide(color: AppColors.gualda, width: 0.8),
+          borderRadius: BorderRadius.circular(14),
+          side: const BorderSide(color: AppColors.gualda, width: 1),
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.rojo,
+          foregroundColor: Colors.white,
+          shape: const StadiumBorder(),
+          textStyle: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.rojo,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shape: const StadiumBorder(),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.tinta,
+          side: const BorderSide(color: AppColors.gualda),
+          shape: const StadiumBorder(),
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: AppColors.tinta,
-        indicatorColor: AppColors.rojo,
+        backgroundColor: AppColors.cal,
+        surfaceTintColor: Colors.transparent,
+        indicatorColor: const Color(0xFFECEAFF),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
           return TextStyle(
-            color: selected ? AppColors.gualdaBright : AppColors.calDeep,
+            color: selected ? AppColors.rojoDeep : AppColors.gualdaDeep,
             fontSize: 11,
             fontWeight: FontWeight.w600,
           );
@@ -107,7 +142,7 @@ class AppTheme {
         iconTheme: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
           return IconThemeData(
-            color: selected ? AppColors.cal : AppColors.calDeep,
+            color: selected ? AppColors.rojo : AppColors.gualdaDeep,
             size: 24,
           );
         }),
@@ -118,10 +153,11 @@ class AppTheme {
         side: const BorderSide(color: AppColors.gualda),
         selectedColor: AppColors.rojo,
         secondaryLabelStyle: const TextStyle(color: AppColors.cal),
+        shape: const StadiumBorder(),
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.gualda,
-        thickness: 0.5,
+        thickness: 1,
       ),
       listTileTheme: const ListTileThemeData(
         iconColor: AppColors.rojo,
