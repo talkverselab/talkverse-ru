@@ -85,7 +85,7 @@ class BandPanel extends StatelessWidget {
   }
 }
 
-/// 구분 강조선 — 사이트 강조 그라데이션(인디고 → 하늘색).
+/// 구분 강조선 — 사이트 강조 그라데이션(하늘색 → 인디고).
 class BandDivider extends StatelessWidget {
   final double height;
   const BandDivider({super.key, this.height = 6});
@@ -96,7 +96,7 @@ class BandDivider extends StatelessWidget {
       height: math.max(2, height / 2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(height),
-        gradient: const LinearGradient(colors: [Color(0xFF635BFF), Color(0xFF00B3FF)]),
+        gradient: const LinearGradient(colors: [Color(0xFF00B3FF), Color(0xFF635BFF)]),
       ),
     );
   }
