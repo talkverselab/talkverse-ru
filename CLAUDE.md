@@ -89,7 +89,8 @@ adb -s R3CY20HDN2K install --user 0 -r <apk>
 (회화 · 문법 · 문장 카드 · 말하기 · 청크 검색 · 단어 · 표현 · 빈도 단어 · 단어 카드 · 앱 업데이트).
 
 - **이전 코드·자산은 `talkverse/_legacy/ru/`** 에 그대로 있다(리포 밖). git 이력에도 남아 있다.
-- 옮긴 콘텐츠: 러시아어 회화 18편(144턴, 편마다 반전) · 문장 600(문법 2~7강 + 표현) · 단계별 예문 35 · 기초 명사 50
+- 옮긴 콘텐츠: 러시아어 회화 18편(144턴, 편마다 반전) · 단계별 예문 35 · 기초 명사 50.
+  (외부 강의 자료에서 가져온 문장 600 — 문법 2~7강·표현 — 은 2026-11-02 저작권 정리로 삭제. 표현·문법은 자체 제작으로 다시 채운다.)
 - 콘텐츠 이전 스크립트: `_update_kit/migrate_content.py`, 재구축: `_update_kit/rebuild_app.py`.
 - 대상어 문장 칸 이름은 템플릿 그대로 `es` 다. 언어와 무관하게 "대상어"로 읽는다.
 - 화면 코드는 8개 앱 공용 키트(`_update_kit/port6/`)에서 왔다. 고칠 일이 있으면 키트를 고쳐 다시 배포한다.
@@ -125,3 +126,10 @@ adb -s R3CY20HDN2K install --user 0 -r <apk>
   절차: `docs/ios-build-and-testflight.md`.
 - `ios/Runner/Info.plist` 에 마이크·음성 인식 권한 문구가 있다(말하기 연습). 지우면 iOS 에서 크래시.
 - `release.yml`(Android) 은 `ios/**`·`docs/**`·`tools/**` 만 바뀐 푸시는 건너뛴다.
+
+## 8. Zealot 무선 설치 (apps.talkverse.uk) — 2026-10-11
+
+- **Zealot 앱이름: 러시아어유니버스** (앱 표시 이름 그대로. 2026-10-11 정함 — 그전에 Zealot 에 올린 적 없음. 바꾸면 Zealot 에 다른 앱이 새로 생긴다.)
+- 올리기: `bash tools/zealot_push.sh ["변경 내용 한 줄"]` — `build/app/outputs/flutter-apk/` 의 가장 최근 release APK 를
+  `~/bin/zealot-upload` 로 올린다(빌드는 하지 않음. 변경 내용을 안 주면 최근 커밋 제목). 서명 SHA-1 이 §1 값과 다르면 올리지 않는다.
+- **덮어 설치 상태(2026-10-11 확인)**: 서명 = `android/key.properties` + `android/app/signing-key.jks` 가 이미 있고 §1 과 같은 키(SHA-1 `9C:C4:…:47:6B`, 스페인어 앱의 확인된 키 파일과 동일) — 단 **맥미니의 `~/.android/debug.keystore` 는 다른 키**라서 §1 의 `cp ~/.android/debug.keystore …` 를 맥미니에서 다시 실행하면 안 된다. 버전 코드 = `pubspec.yaml` `0.1.0+1` 인데 폰에 깔린 CI 빌드는 4(릴리스 워크플로 실행 번호)이므로, 맥에서 빌드할 때는 `--build-number=<5 이상, CI 실행 번호보다 큰 값>` 을 줘야 덮어 설치된다.
