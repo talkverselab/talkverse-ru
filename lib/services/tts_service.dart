@@ -1,9 +1,9 @@
 import 'package:flutter_tts/flutter_tts.dart';
 import '../core/platform.dart';
 
-/// flutter_tts 기반 — 시스템 de-DE voice 사용.
+/// flutter_tts 기반 — 시스템 ru-RU voice 사용.
 ///
-/// 화자별 음성: 기기에 남/여 de 보이스가 있으면 voice 전환,
+/// 화자별 음성: 기기에 남/여 ru 보이스가 있으면 voice 전환,
 /// 없으면 피치(남 0.72 / 여 1.12)로 구분한다.
 class TtsService {
   TtsService._();
@@ -43,7 +43,7 @@ class TtsService {
     _initialized = true;
   }
 
-  /// de 보이스 중 이름에 male/female 힌트가 있는 것을 1회 스캔.
+  /// ru 보이스 중 이름에 male/female 힌트가 있는 것을 1회 스캔.
   Future<void> _scanVoices() async {
     if (_voicesScanned) return;
     _voicesScanned = true;
@@ -54,7 +54,7 @@ class TtsService {
         if (v is! Map) continue;
         final name = (v['name'] ?? '').toString();
         final vLocale = (v['locale'] ?? '').toString();
-        if (!vLocale.toLowerCase().startsWith('de')) continue;
+        if (!vLocale.toLowerCase().startsWith('ru')) continue;
         final lower = name.toLowerCase();
         final voice = {'name': name, 'locale': vLocale};
         // 안드로이드는 이름에 male/female 이 들어 있고, iOS 는 gender 필드로 준다.
@@ -75,16 +75,17 @@ class TtsService {
   Future<void> speak(String text) => _speakWith(text, null, 1.0);
 
   /// 화자 성별에 맞춰 읽기. gender: 'male' | 'female'
-  Future<void> speakAs(String text, {required String gender}) async {
+  /// rate: 말 속도(기본 0.45) — 회화 재생 패널의 속도 칩이 바꾼다.
+  Future<void> speakAs(String text, {required String gender, double? rate}) async {
     await _scanVoices();
     final male = gender == 'male';
     final voice = male ? _maleVoice : _femaleVoice;
     final pitch = voice != null ? 1.0 : (male ? 0.72 : 1.12);
-    await _speakWith(text, voice, pitch);
+    await _speakWith(text, voice, pitch, rate: rate);
   }
 
   Future<void> _speakWith(
-      String text, Map<String, String>? voice, double pitch) async {
+      String text, Map<String, String>? voice, double pitch, {double? rate}) async {
     await _ensureInit();
     await _tts.stop();
     if (voice != null) {

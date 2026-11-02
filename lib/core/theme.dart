@@ -42,7 +42,31 @@ class AppColors {
 
   // brand alias
   static const Color brand = rojo;
+
+  // ── 일본어앱에서 옮긴 화면(회화 리더·그림 카드·성과)이 쓰는 이름 — 2026-11-03 ──
+  // 일본어앱 구리색 자리 = 러시아어 포인트 하늘색(캐릭터·UX 시안 통과 색 #5AA9E6)의 글자 대비용 진한 판.
+  static const Color beni = Color(0xFF2F7FBF); // 강조(버튼·현재 턴·성과)
+  static const Color beniDeep = Color(0xFF1F5F94);
+  static const Color beniLight = Color(0xFF5AA9E6); // 사이트 러시아어 카드색
+  static const Color kinDeep = Color(0xFF7C5CFF); // 카드색 옅은 쪽(보라)
+  static const Color ai = rojo; // 인디고 — 선택·보조 강조
+  static const Color sumi = tinta;
+  static const Color sumiLight = tintaLight;
+  static const Color washi = cal;
+  static const Color washiDeep = calDeep;
+  static const Color matcha = Color(0xFF0E6245); // 완료·맞음
+  static const Color line = Color(0xFFE6EBF1);
+  static const Color muted = gualdaDeep;
+
+  /// 「러시아어」 워드마크 그라데이션(하늘색 → 보라). 제목 글자·구분선.
+  static const LinearGradient wordmark = LinearGradient(colors: [beni, kinDeep]);
 }
+
+/// 카드·타일 공통 그림자(사이트 `0 2px 5px -1px rgba(50,50,93,.1), 0 1px 3px -1px rgba(0,0,0,.1)`)
+const List<BoxShadow> kCardShadow = [
+  BoxShadow(color: Color(0x1A32325D), blurRadius: 5, offset: Offset(0, 2)),
+  BoxShadow(color: Color(0x1A000000), blurRadius: 3, offset: Offset(0, 1)),
+];
 
 class AppTheme {
   static ThemeData light() {

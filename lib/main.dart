@@ -4,6 +4,8 @@ import 'core/theme.dart';
 import 'data/db/app_database.dart';
 import 'data/db/seed_loader.dart';
 import 'screens/main_screen.dart';
+import 'services/achievement_service.dart';
+import 'services/learner_prefs.dart';
 import 'services/ko_reading.dart';
 import 'core/l10n.dart';
 
@@ -15,6 +17,8 @@ void main() async {
   await SeedLoader(appDb).seedIfNeeded();
   await KoReadingPrefs.load();
   await AppLangPrefs.load();
+  await LearnerPrefs.load();
+  await AchievementService.instance.load();
   runApp(const GermanUniverseApp());
 }
 
