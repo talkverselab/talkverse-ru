@@ -172,11 +172,13 @@ class _SettingsGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.cal,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.gualda.withValues(alpha: 0.5)),
+    // 배경·테두리는 Material 이 그린다 — ListTile 의 눌림 효과가 배경 상자에 가려지지 않게(디버그 경고)
+    return Material(
+      color: AppColors.cal,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+        side: const BorderSide(color: AppColors.line),
       ),
       child: Column(
         children: [

@@ -92,7 +92,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 const SizedBox(height: 12),
                 Center(
                   child: Text(
-                    'Poco a poco se va lejos',
+                    'Тише едешь — дальше будешь',
                     style: TextStyle(color: AppColors.tintaLight, fontSize: 12, letterSpacing: 2),
                   ),
                 ),

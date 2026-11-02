@@ -155,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                           Row(
                             children: const [
                               Text(
-                                '¡Hola!',
+                                'Приве́т!',
                                 style: TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w700,
@@ -316,7 +316,7 @@ class _TodayMissionState extends State<_TodayMission> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              meta.level == 'L1' ? 'PRINCIPIANTE 1' : meta.level,
+              meta.level == 'L1' ? 'НАЧАЛО · L1' : meta.level,
               style: const TextStyle(
                 color: AppColors.gualdaBright,
                 fontSize: 11,
@@ -335,7 +335,7 @@ class _TodayMissionState extends State<_TodayMission> {
             ),
             const SizedBox(height: 2),
             Text(
-              trf('Minjun & Lucía 스토리 {0}', [meta.emoji]),
+              trf('채팅앱에서 만난 현지인 {0}', [meta.emoji]),
               style: TextStyle(color: AppColors.cal.withValues(alpha: 0.85), fontSize: 12),
             ),
             const SizedBox(height: 12),
@@ -385,7 +385,7 @@ class _MenuGrid extends StatelessWidget {
       _MenuItem(label: tr('빈도 단어'), sub: 'Частота', badge: 'F', color: AppColors.mar,
         builder: (_) => const WordFreqScreen()),
       _MenuItem(label: tr('발음'), sub: 'Произношение', badge: 'rr', color: AppColors.er,
-        builder: (_) => _ComingSoon(title: tr('발음 (rr · ñ · 강세)'))),
+        builder: (_) => _ComingSoon(title: tr('발음 (강세 · 아깐예)'))),
       _MenuItem(label: tr('단어 카드'), sub: 'Карточки', badge: 'R', color: AppColors.gualdaDeep,
         builder: (_) => const WordFlashcardScreen()),
     ];
