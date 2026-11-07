@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'update_screen.dart';
+import 'about_screen.dart';
 
 import '../core/theme.dart';
 import '../services/learner_prefs.dart';
 import '../widgets/spanish_decor.dart';
 import '../core/l10n.dart';
-import '../core/platform.dart';
+import '../core/pane.dart';
+import '../services/ko_reading.dart';
 
 Future<void> _editName(BuildContext context) async {
   final c = TextEditingController(text: LearnerPrefs.name.value);
@@ -35,7 +36,6 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          if (!isIOS) const UpdateEntryTile(),
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
@@ -103,44 +103,34 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 18),
           _SectionTitle(tr('설정')),
           const SizedBox(height: 8),
-          _SettingsGroup(items: [
+          ValueListenableBuilder<bool>(valueListenable: KoReadingPrefs.show, builder: (context, _, _) => _SettingsGroup(items: [
             _SettingItem(
                 icon: Icons.language,
                 title: tr('언어 / Language'),
                 subtitle: '${AppLangPrefs.lang.value.label}  →  ${AppLangPrefs.peekNext().label}',
                 onTap: AppLangPrefs.next),
-            if (isIOS)
-              _SettingItem(
-                  icon: Icons.flight_takeoff,
-                  title: tr('앱 업데이트'),
-                  subtitle: tr('아이폰은 TestFlight 앱에서 새 빌드를 받습니다')),
-            _SettingItem(icon: Icons.volume_up, title: tr('TTS 음성'), subtitle: tr('ru-RU (시스템 보이스)')),
-            _SettingItem(icon: Icons.public, title: tr('변종'), subtitle: tr('표준 러시아어 (Россия) · Русский')),
-            _SettingItem(icon: Icons.palette, title: tr('테마'), subtitle: tr('낮 · 흰 바탕 · 하늘색 #5AA9E6')),
-          ]),
+            _SettingItem(
+                icon: Icons.translate,
+                title: tr('한글 독음'),
+                subtitle: KoReadingPrefs.show.value ? tr('표시 — 탭하면 숨김') : tr('숨김 — 탭하면 표시'),
+                onTap: () => KoReadingPrefs.toggle(context)),
+          ])),
           const SizedBox(height: 16),
           _SectionTitle(tr('정보')),
           const SizedBox(height: 8),
           _SettingsGroup(items: [
+            _SettingItem(
+                icon: Icons.landscape_outlined,
+                title: tr('앱 소개'),
+                subtitle: tr('절벽구간 — 이 앱이 단어를 나누는 기준'),
+                onTap: () => openPane(context, (_) => const AboutScreen())),
             _SettingItem(icon: Icons.info_outline, title: tr('앱 버전'), subtitle: '0.1.0 · alpha'),
-            _SettingItem(icon: Icons.code, title: 'Stack', subtitle: 'Flutter 3.41 · Material 3 · Drift'),
             _SettingItem(icon: Icons.copyright, title: tr('저작권'), subtitle: tr('러시아어유니버스 · 2026')),
           ]),
           const SizedBox(height: 20),
           const BandDivider(),
           const SizedBox(height: 12),
           const Center(child: SolMark(size: 28)),
-          const SizedBox(height: 6),
-          Center(
-            child: Text(
-              'Übung macht den Meister',
-              style: TextStyle(
-                color: AppColors.tintaLight,
-                fontSize: 11,
-                letterSpacing: 3,
-              ),
-            ),
-          ),
           const SizedBox(height: 32),
         ],
       ),

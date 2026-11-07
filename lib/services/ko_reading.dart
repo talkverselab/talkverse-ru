@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/l10n.dart';
+import '../core/theme.dart';
 
 /// 한글독음(발음 표기) 표시/숨김 전역 설정 — 모든 메뉴 공용.
-/// (es 앱은 rd 필드가 이미 한글독음 데이터라 변환기 없이 표시만 제어)
+/// (rd 필드가 이미 한글독음 데이터라 변환기 없이 표시만 제어)
+/// 기본 미표시(일본어앱 후리가나 토글과 같은 규칙, 2026-11-07). 켤 때 「힘들어도 독음을 보지 않고 익혀보세요」.
 class KoReadingPrefs {
   KoReadingPrefs._();
 
   static const _key = 'show_ko_reading';
-  static final ValueNotifier<bool> show = ValueNotifier<bool>(true);
+  static final ValueNotifier<bool> show = ValueNotifier<bool>(false);
 
   static Future<void> load() async {
     final p = await SharedPreferences.getInstance();
-    show.value = p.getBool(_key) ?? true;
+    show.value = p.getBool(_key) ?? false;
   }
 
-  static Future<void> toggle() async {
+  static Future<void> toggle(BuildContext context) async {
     show.value = !show.value;
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    if (show.value) {
+      messenger
+        ?..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          content: Text(tr('힘들어도 독음을 보지 않고 익혀보세요')),
+          duration: const Duration(seconds: 3),
+          backgroundColor: AppColors.sumi,
+        ));
+    }
     final p = await SharedPreferences.getInstance();
     await p.setBool(_key, show.value);
   }
@@ -36,7 +48,7 @@ class KoReadingToggleAction extends StatelessWidget {
         final color = on ? base : base.withValues(alpha: 0.35);
         return IconButton(
           tooltip: on ? tr('한글독음 숨기기') : tr('한글독음 표시'),
-          onPressed: KoReadingPrefs.toggle,
+          onPressed: () => KoReadingPrefs.toggle(context),
           icon: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(

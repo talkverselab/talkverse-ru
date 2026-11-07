@@ -5,6 +5,7 @@ import '../core/platform.dart';
 import '../core/theme.dart';
 import '../main.dart';
 import '../widgets/spanish_decor.dart';
+import 'about_screen.dart';
 import 'chunk_search_screen.dart';
 import 'conversation_screen.dart';
 import 'dialogue_screen.dart';
@@ -86,6 +87,32 @@ class _MainScreenState extends State<MainScreen> {
                     for (final t in _tabs)
                       NavigationRailDestination(icon: t.icon, selectedIcon: t.selectedIcon, label: Text(t.label)),
                   ],
+                  // 맨 아래 「앱 소개」 — 절벽구간 설명(일본어앱 2026-11-07)
+                  trailing: Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: Builder(
+                          builder: (context) => InkWell(
+                            onTap: () => openPane(context, (_) => const AboutScreen()),
+                            borderRadius: BorderRadius.circular(8),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.info_outline, color: AppColors.muted, size: 22),
+                                  const SizedBox(height: 4),
+                                  Text(tr('앱 소개'), style: const TextStyle(color: AppColors.muted, fontSize: 11, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 const VerticalDivider(width: 1, thickness: 1, color: AppColors.line),
                 SizedBox(width: left, child: stack),
@@ -363,44 +390,63 @@ class _TodayMissionState extends State<_TodayMission> {
 class _MenuGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final items = <_MenuItem>[
-      _MenuItem(label: tr('회화'), sub: 'Разговор', badge: 'Ch', color: AppColors.beni,
-        builder: (_) => const DialogueHomeScreen()),
-      _MenuItem(label: tr('회화 노트'), sub: 'Эпизоды', badge: 'N', color: AppColors.rojo,
-        builder: (_) => const ConversationScreen()),
-      _MenuItem(label: tr('문법'), sub: 'Грамматика', badge: 'G', color: AppColors.rojoDeep,
-        builder: (_) => const GrammarHubScreen()),
-      _MenuItem(label: tr('문장 카드'), sub: 'Фразы', badge: 'S', color: AppColors.tinta,
-        builder: (_) => const SentenceFlashcardScreen()),
-      _MenuItem(label: tr('말하기'), sub: 'Речь', badge: '🎙', color: AppColors.rojo,
-        builder: (_) => const SpeakingPracticeScreen()),
-      _MenuItem(label: tr('청크 검색'), sub: 'Поиск', badge: '🔍', color: AppColors.gualdaDeep,
-        builder: (_) => const ChunkSearchScreen()),
-      _MenuItem(label: tr('단어'), sub: 'Слова', badge: 'W', color: AppColors.oliva,
-        builder: (_) => const TopicVocabScreen()),
-      _MenuItem(label: tr('표현'), sub: 'Выражения', badge: 'E', color: AppColors.rojoLight,
-        builder: (_) => TopicVocabScreen(
-            title: tr('주제별 표현'),
-            asset: 'assets/data/vocab/travel_expressions.json')),
-      _MenuItem(label: tr('빈도 단어'), sub: 'Частота', badge: 'F', color: AppColors.mar,
-        builder: (_) => const WordFreqScreen()),
-      _MenuItem(label: tr('발음'), sub: 'Произношение', badge: 'rr', color: AppColors.er,
-        builder: (_) => _ComingSoon(title: tr('발음 (강세 · 아깐예)'))),
-      _MenuItem(label: tr('단어 카드'), sub: 'Карточки', badge: 'R', color: AppColors.gualdaDeep,
-        builder: (_) => const WordFlashcardScreen()),
+    // 메뉴 순서(일본어앱 2026-11-07): 기초 → 문법 → 회화 → 단어 → 참고.
+    final sections = <(String, List<_MenuItem>)>[
+      (tr('기초'), [
+        _MenuItem(label: tr('발음'), sub: 'Произношение', badge: 'Ё', color: AppColors.er,
+          builder: (_) => _ComingSoon(title: tr('발음 (강세 · 아깐예)'))),
+      ]),
+      (tr('문법'), [
+        _MenuItem(label: tr('문법'), sub: 'Грамматика', badge: 'G', color: AppColors.rojoDeep,
+          builder: (_) => const GrammarHubScreen()),
+      ]),
+      (tr('회화'), [
+        _MenuItem(label: tr('회화'), sub: 'Разговор', badge: 'Ch', color: AppColors.beni,
+          builder: (_) => const DialogueHomeScreen()),
+        _MenuItem(label: tr('문장 카드'), sub: 'Фразы', badge: 'S', color: AppColors.tinta,
+          builder: (_) => const SentenceFlashcardScreen()),
+        _MenuItem(label: tr('문장 말하기'), sub: tr('한글 보고 러시아어로'), badge: '🎙', color: AppColors.rojo,
+          builder: (_) => const SpeakingPracticeScreen()),
+      ]),
+      (tr('단어'), [
+        _MenuItem(label: tr('절벽 단어'), sub: tr('R1~R5 · 빈도 2,000'), badge: 'F', color: AppColors.mar,
+          builder: (_) => const WordFreqScreen()),
+        _MenuItem(label: tr('단어 카드'), sub: 'Карточки', badge: 'R', color: AppColors.gualdaDeep,
+          builder: (_) => const WordFlashcardScreen()),
+      ]),
+      (tr('참고'), [
+        _MenuItem(label: tr('표현'), sub: 'Выражения', badge: 'E', color: AppColors.rojoLight,
+          builder: (_) => TopicVocabScreen(
+              title: tr('주제별 표현'),
+              asset: 'assets/data/vocab/travel_expressions.json')),
+        _MenuItem(label: tr('청크 검색'), sub: 'Поиск', badge: '🔍', color: AppColors.gualdaDeep,
+          builder: (_) => const ChunkSearchScreen()),
+      ]),
     ];
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        mainAxisExtent: 150, // 고정 높이 — 아이패드 왼쪽 좁은 칸(300~440)에서 비율로 잡으면 아래가 넘친다
-      ),
-      itemCount: items.length,
-      itemBuilder: (context, i) => _MenuTile(item: items[i]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final (title, items) in sections) ...[
+          Padding(
+            padding: const EdgeInsets.only(top: 6, bottom: 8),
+            child: Text(title, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.tintaLight)),
+          ),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              mainAxisExtent: 150, // 고정 높이 — 아이패드 왼쪽 좁은 칸(300~440)에서 비율로 잡으면 아래가 넘친다
+            ),
+            itemCount: items.length,
+            itemBuilder: (context, i) => _MenuTile(item: items[i]),
+          ),
+          const SizedBox(height: 8),
+        ],
+      ],
     );
   }
 }

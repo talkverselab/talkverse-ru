@@ -10,6 +10,7 @@ import '../screens/dialogue_card_screen.dart';
 import '../services/achievement_service.dart';
 import '../services/art_service.dart';
 import '../services/dialogue_service.dart';
+import '../services/ko_reading.dart';
 import '../services/learner_prefs.dart';
 import '../services/tts_service.dart';
 import 'achievement_desk.dart';
@@ -35,7 +36,6 @@ class _EpisodePlayPaneState extends State<EpisodePlayPane> {
   bool _playing = false;
   double _rate = 1.0; // 0.75 / 1.0 / 1.25
   bool _showGloss = false;
-  bool _showRd = true;
   bool _showKo = true;
   int _session = 0; // 재생 루프 세대(중단 판별)
   bool _done = false; // 완주 연출 표시
@@ -48,11 +48,15 @@ class _EpisodePlayPaneState extends State<EpisodePlayPane> {
   @override
   void initState() {
     super.initState();
+    KoReadingPrefs.show.addListener(_onRd);
     if (widget.autoPlay) WidgetsBinding.instance.addPostFrameCallback((_) => _play());
   }
 
+  void _onRd() { if (mounted) setState(() {}); }
+
   @override
   void dispose() {
+    KoReadingPrefs.show.removeListener(_onRd);
     _session++;
     TtsService.instance.stop();
     super.dispose();
@@ -114,31 +118,32 @@ class _EpisodePlayPaneState extends State<EpisodePlayPane> {
   @override
   Widget build(BuildContext context) {
     final wide = isWide(context);
+    final showRd = KoReadingPrefs.show.value;
     final script = _Script(
       d: d,
       current: _i,
       keys: _keys,
       showGloss: _showGloss,
-      showRd: _showRd,
+      showRd: showRd,
       showKo: _showKo,
       onTap: (i) => _goto(i, play: true),
       onSpeak: _speakOne,
     );
-    final cut = _CutPanel(d: d, turn: turn, showGloss: _showGloss, showRd: _showRd, showKo: _showKo, onSpeak: () => _speakOne(turn));
+    final cut = _CutPanel(d: d, turn: turn, showGloss: _showGloss, showRd: showRd, showKo: _showKo, onSpeak: () => _speakOne(turn));
     final controls = _ControlBar(
       playing: _playing,
       index: _i,
       total: d.turns.length,
       rate: _rate,
       showGloss: _showGloss,
-      showRd: _showRd,
+      showRd: showRd,
       showKo: _showKo,
       hasRd: d.turns.any((t) => t.rd.isNotEmpty),
       onPlay: _playing ? _pause : _play,
       onSeek: (v) => _goto(v),
       onRate: () => setState(() => _rate = _rate >= 1.25 ? 0.75 : (_rate + 0.25)),
       onGloss: () => setState(() => _showGloss = !_showGloss),
-      onRd: () => setState(() => _showRd = !_showRd),
+      onRd: () => KoReadingPrefs.toggle(context),
       onKo: () => setState(() => _showKo = !_showKo),
     );
     return LayoutBuilder(builder: (context, c) {
