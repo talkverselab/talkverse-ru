@@ -1,0 +1,32 @@
+{
+ "ep": "r1_friends_a4",
+ "cast": {
+  "B": "katya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "cheerful"
+  ],
+  "3": [
+   "teasing"
+  ],
+  "4": [
+   "flustered"
+  ],
+  "5": [
+   "tsukkomi"
+  ],
+  "6": [
+   "sad"
+  ],
+  "7": [
+   "gentle"
+  ],
+  "8": [
+   "excited"
+  ]
+ }
+}

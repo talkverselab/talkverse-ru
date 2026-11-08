@@ -1,0 +1,35 @@
+{
+ "ep": "r2_friends_c2",
+ "cast": {
+  "B": "katya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "polite"
+  ],
+  "3": [
+   "annoyed"
+  ],
+  "4": [
+   "flustered"
+  ],
+  "5": [
+   "teasing"
+  ],
+  "6": [
+   "flustered"
+  ],
+  "7": [
+   "tsukkomi"
+  ],
+  "8": [
+   "shout"
+  ],
+  "9": [
+   "amused"
+  ]
+ }
+}

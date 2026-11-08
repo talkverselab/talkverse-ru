@@ -1,0 +1,32 @@
+{
+ "ep": "r1_life_a1",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "surprised"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "annoyed"
+  ],
+  "6": [
+   "flustered"
+  ],
+  "7": [
+   "tsukkomi"
+  ],
+  "8": [
+   "shout"
+  ]
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "ep": "r5_life_b2",
+ "cast": {
+  "B": "man_m"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "sad"
+  ],
+  "3": [
+   "polite"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "polite"
+  ],
+  "6": [
+   "worried"
+  ],
+  "7": [
+   "polite"
+  ],
+  "8": [
+   "flustered"
+  ],
+  "9": [
+   "surprised"
+  ],
+  "10": [
+   "stiff"
+  ],
+  "11": [
+   "polite"
+  ],
+  "12": [
+   "neutral"
+  ],
+  "13": [
+   "amused"
+  ],
+  "14": [
+   "worried"
+  ],
+  "15": [
+   "teasing"
+  ]
+ }
+}

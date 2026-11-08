@@ -20,9 +20,21 @@ import rd_ru  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 # 레벨 = 문법 단계(2026-11-08 결정 A1): 0 도구획득 · 1 격 골격 · 2 챗 실전 · 3 그래머2 · 4 어려운 문법 · 5 어휘 완주. 값 = 어휘 상한(절벽 tier 누적 lemma)
-CLIFF = {'R0': 156, 'R1': 156, 'R2': 251, 'R3': 251, 'R4': 685, 'R5': 1985}
-TURNS = {'R0': (6, 8), 'R1': (6, 8), 'R2': (6, 8), 'R3': (8, 12), 'R4': (12, 16), 'R5': (12, 16)}
+CLIFF = {'R0': 156, 'R1': 156, 'R2': 251, 'R3': 251, 'R4': 685, 'R5': 3000}   # R5 어휘 완주 = 단어 메뉴 상한 3,000(A11)
+TURNS = {'R0': (6, 8), 'R1': (6, 8), 'R2': (6, 10), 'R3': (8, 12), 'R4': (12, 16), 'R5': (12, 16)}   # R2 챗 실전은 짧은 턴이 많아 10까지
 TY_ONLY = ('R0', 'R1', 'R2')   # 존댓말 2인칭(вы)은 그래머2 뒤(A4)
+# 레벨의 문법 항목 자체인 낱말(docs/GRAMMAR_ELEMENTS_RU.md 결정) — 구간 밖으로 세지 않는다
+GRAMMAR_WORDS = {'R3': {'ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'двадцать', 'сто', 'много', 'мало', 'сколько',
+                        'друзья', 'дети', 'люди', 'родители'},
+                 'R4': {'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',
+                        'семь', 'восемь', 'девять', 'десять', 'двадцать', 'тридцать', 'сто',
+                        # 상 짝 10 + 편에서 쓴 짝
+                        'сделать', 'сказать', 'пойти', 'посмотреть', 'подождать', 'понять', 'дать', 'взять', 'уйти', 'прийти', 'убрать', 'убирать', 'прочитать', 'покупать', 'купить', 'позвонить', 'звонить', 'умирать', 'умереть', 'выспаться',
+                        # 운동동사
+                        'идти', 'ходить', 'ехать', 'ездить', 'бежать', 'бегать', 'поехать', 'приехать', 'уехать', 'выходить', 'выйти',
+                        # 재귀 -ся
+                        'готовиться', 'умыться', 'одеться', 'одеваться', 'решиться', 'бояться', 'нравиться', 'понравиться', 'встретиться', 'встречаться', 'успокоиться', 'учиться', 'смеяться'}}
+ALLOW_MAX = {'R4': 6}   # 어려운 문법 레벨은 항목 낱말이 많다
 TWIST = {'chaos', 'slip', 'reveal', 'emotion', 'ignore'}
 META = ('id', 'region', 'island', 'kind', 'title', 'scene', 'speakers', 'register', 'purpose', 'domain', 'expressions')
 WORD = re.compile(r'[А-Яа-яЁё́]+(?:-[А-Яа-яЁё́]+)*')
@@ -38,7 +50,10 @@ def missing_stress(text):
     for i, w in enumerate(ws):
         if i and ws[i - 1].lower() in ('за\u0301', 'на\u0301', 'по\u0301', 'и\u0301з'):  # 강세가 전치사로 옮겨 간 말(за́ город)
             continue
-        for part in w.split('-'):
+        parts = w.split('-')
+        if len(parts) > 1 and any(rd_ru.ACC in p for p in parts):   # 붙임표 낱말은 한 곳에만 강세(что́-то·что-нибу́дь)
+            continue
+        for part in parts:
             if sum(c in rd_ru.VOW for c in part.lower()) > 1 and rd_ru.ACC not in part and 'ё' not in part.lower():
                 bad.append(part)
     return bad
@@ -74,11 +89,15 @@ def check(path, tier, morph, fix):
         if region in TY_ONLY and any(w.replace(rd_ru.ACC, '').lower() in ('вы', 'вас', 'вам', 'вами', 'ваш', 'ваша', 'ваше', 'ваши') for w in words(t['es'])):
             E(f'턴 {n}: 존댓말·복수 вы 는 {region} 에서 금지 — {t["es"]}')
         wc = len(words(t['es']))
-        if region in ('R0', 'R1') and wc < 3 and ep.get('kind') != 'chat' and n != len(turns):
-            E(f'턴 {n}: {wc}단어 < 3 — {t["es"]}')
+        minw = 2 if region == 'R0' else 3   # R0 도구획득은 2단어(«Что э́то?»)까지, R1 은 3단어 이상(1단어 단답 금지는 공통 원칙)
+        if region in ('R0', 'R1') and wc < minw and ep.get('kind') != 'chat' and n != len(turns):
+            E(f'턴 {n}: {wc}단어 < {minw} — {t["es"]}')
         if tier:
             limit, names = tier[0], {re.sub(rd_ru.ACC, '', v).lower() for v in ep['speakers'].values()}
-            pool = {p.normal_form for e in ep['expressions'] for w in words(e) for x in w.replace(rd_ru.ACC, '').lower().split('-') for p in morph.parse(x)}
+            pool = {p.normal_form for e in ep['expressions'] + ep.get('allow', []) for w in words(e) for x in w.replace(rd_ru.ACC, '').lower().split('-') for p in morph.parse(x)}
+            pool |= {'аня', 'катя', 'дима', 'миша', 'касу'} | GRAMMAR_WORDS.get(region, set())   # 고정 인물 이름 + 레벨 문법 낱말
+            if len(ep.get('allow', [])) > ALLOW_MAX.get(region, 3):
+                E(f'allow {len(ep["allow"])}개 > {ALLOW_MAX.get(region, 3)} (문법 단계 시연에 꼭 필요한 구간 밖 단어만)')
             found = []
             for key in ('es', 'es_f'):
                 for w in words(t.get(key, '')):

@@ -1,0 +1,50 @@
+{
+ "ep": "r4_friends_b2",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "annoyed"
+  ],
+  "4": [
+   "flustered"
+  ],
+  "5": [
+   "tsukkomi"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "neutral"
+  ],
+  "8": [
+   "shy"
+  ],
+  "9": [
+   "sad"
+  ],
+  "10": [
+   "excited"
+  ],
+  "11": [
+   "annoyed"
+  ],
+  "12": [
+   "flustered"
+  ],
+  "13": [
+   "teasing"
+  ],
+  "14": [
+   "amused"
+  ]
+ }
+}

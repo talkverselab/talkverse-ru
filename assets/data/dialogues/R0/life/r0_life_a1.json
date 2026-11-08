@@ -1,0 +1,117 @@
+{
+ "id": "r0_life_a1",
+ "region": "R0",
+ "island": "life",
+ "kind": "short",
+ "title": "어디야? 여기!",
+ "emoji": "📍",
+ "register": "ty",
+ "where": "전화",
+ "scene": "A 와 아냐가 전화로 서로 찾는다. 「여기·거기」가 계속 엇갈린다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "life"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "А́ня"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Ну",
+  "Где ты?",
+  "Вот",
+  "Что?!"
+ ],
+ "allow": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Ты где? Я здесь!",
+   "rd": "띄 그제 야 즈제시",
+   "ko": "너 어디야? 나 여기!",
+   "note": "здесь = 여기",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Я то́же здесь. Где здесь?",
+   "rd": "야 또지 즈제시 그제 즈제시",
+   "ko": "나도 여기. 여기가 어디?",
+   "note": null,
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Здесь — э́то здесь! У до́ма.",
+   "rd": "즈제시 에따 즈제시 우 도마",
+   "ko": "여기는 여기지! 집 앞.",
+   "note": "у до́ма = 집 옆에",
+   "tags": [],
+   "emotion": "annoyed",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Я у до́ма. Тебя́ тут нет.",
+   "rd": "야 우 도마 찌뱌 뚵 녵",
+   "ko": "나 집 앞인데. 넌 여기 없어.",
+   "note": "тебя́ нет = 네가 없다",
+   "tags": [],
+   "emotion": "surprised",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Как нет? Вот я! Вот дом!",
+   "rd": "깍 녵 봍 야 봍 돔",
+   "ko": "없다니? 나 여기! 집 여기!",
+   "note": null,
+   "tags": [],
+   "emotion": "shout",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "А́ня... э́то не мой дом. Э́то твой.",
+   "rd": "아냐 에따 니 모이 돔 에따 뜨보이",
+   "ko": "아냐... 그거 우리 집이 아니야. 너희 집이야.",
+   "note": null,
+   "tags": [
+    "twist"
+   ],
+   "emotion": "flustered",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ой. Тогда́ иди́ сюда́!",
+   "rd": "오이 따그다 이지 슈다",
+   "ko": "어. 그럼 이리 와!",
+   "note": "иди́ сюда́ = 이리 와(통문장)",
+   "tags": [],
+   "emotion": "amused",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

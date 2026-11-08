@@ -1,0 +1,50 @@
+{
+ "ep": "r4_love_b1",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "annoyed"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "gentle"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "teasing"
+  ],
+  "8": [
+   "worried"
+  ],
+  "9": [
+   "neutral"
+  ],
+  "10": [
+   "neutral"
+  ],
+  "11": [
+   "shy"
+  ],
+  "12": [
+   "surprised"
+  ],
+  "13": [
+   "gentle"
+  ],
+  "14": [
+   "gentle"
+  ]
+ }
+}

@@ -1,0 +1,121 @@
+{
+ "id": "r0_friends_a2",
+ "region": "R0",
+ "island": "friends",
+ "kind": "short",
+ "title": "이름이 뭐야",
+ "emoji": "👋",
+ "register": "ty",
+ "where": "길",
+ "scene": "지마가 A 의 이름을 자꾸 다르게 부른다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ди́ма"
+ },
+ "twist": 5,
+ "twist_type": "slip",
+ "expressions": [
+  "Приве́т",
+  "Ну",
+  "Ой",
+  "Ла́дно"
+ ],
+ "allow": [
+  "брат"
+ ],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Приве́т! Ты кто?",
+   "rd": "쁘리볱 띄 끄또",
+   "ko": "안녕! 너 누구야?",
+   "note": "кто = 누구",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Я {name}. А ты?",
+   "rd": "야 {name} 아 띄",
+   "ko": "나 {name}. 너는?",
+   "note": "А ты? = 너는?",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Я Ди́ма. Ты друг Ка́ти?",
+   "rd": "야 지마 띄 드룩 까찌",
+   "ko": "나 지마. 너 까쨔 친구야?",
+   "note": "друг Ка́ти = 까쨔의 친구(생격)",
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Да. Ты то́же её друг?",
+   "rd": "다 띄 또지 이요 드룩",
+   "ko": "응. 너도 까쨔 친구야?",
+   "note": "её = 그녀의",
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Нет. Я её брат. Ой, нет — друг!",
+   "rd": "녵 야 이요 브랕 오이 녵 드룩",
+   "ko": "아니. 난 걔 오빠. 어, 아니다 — 친구!",
+   "note": "брат = 형제",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "flustered",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Брат и́ли друг?",
+   "rd": "브랕 일리 드룩",
+   "ko": "오빠야 친구야?",
+   "note": null,
+   "tags": [],
+   "emotion": "teasing",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ну... друг. Но ка́ждый день у неё до́ма.",
+   "rd": "누 드룩 나 까즈듸 젠 우 니요 도마",
+   "ko": "음... 친구. 근데 매일 걔 집에 있어.",
+   "note": "у неё до́ма = 그녀 집에",
+   "tags": [],
+   "emotion": "amused",
+   "new": [
+    "каждый"
+   ]
+  }
+ ],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

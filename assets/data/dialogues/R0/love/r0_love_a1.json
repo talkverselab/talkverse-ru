@@ -1,0 +1,116 @@
+{
+ "id": "r0_love_a1",
+ "region": "R0",
+ "island": "love",
+ "kind": "short",
+ "title": "좋아, 아주 좋아",
+ "emoji": "😊",
+ "register": "ty",
+ "where": "공원",
+ "scene": "아냐가 A 에게 뭐가 좋냐고 묻는다. 대답이 한 단어씩 길어지다가 들킨다",
+ "purpose": [
+  "love"
+ ],
+ "domain": [
+  "love"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "А́ня"
+ },
+ "twist": 6,
+ "twist_type": "emotion",
+ "expressions": [
+  "Ну",
+  "Хорошо́",
+  "Пра́вда?"
+ ],
+ "allow": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Тебе́ здесь хорошо́?",
+   "rd": "찌볘 즈제시 하라쇼",
+   "ko": "너 여기 좋아?",
+   "note": "тебе́ хорошо́ = 너는 좋다(여격)",
+   "tags": [],
+   "emotion": "gentle",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Да, хорошо́. О́чень.",
+   "rd": "다 하라쇼 오친",
+   "ko": "응, 좋아. 아주.",
+   "note": null,
+   "tags": [],
+   "emotion": "cheerful",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "А что здесь хорошо́?",
+   "rd": "아 시또 즈제시 하라쇼",
+   "ko": "여기 뭐가 좋아?",
+   "note": null,
+   "tags": [],
+   "emotion": "teasing",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Дом хоро́ший. День хоро́ший.",
+   "rd": "돔 하로시 젠 하로시",
+   "ko": "집이 좋아. 날이 좋아.",
+   "note": "хоро́ший = 좋은(남성)",
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "И всё? То́лько дом и день?",
+   "rd": "이 프쇼 똘까 돔 이 젠",
+   "ko": "그게 다야? 집이랑 날만?",
+   "note": null,
+   "tags": [],
+   "emotion": "teasing",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Нет. Ты... то́же хоро́шая.",
+   "rd": "녵 띄 또지 하로샤야",
+   "ko": "아니. 너도... 좋아.",
+   "note": "хоро́шая = 좋은(여성)",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "shy",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Я зна́ю.",
+   "rd": "야 즈나유",
+   "ko": "알아.",
+   "note": null,
+   "tags": [],
+   "emotion": "amused",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

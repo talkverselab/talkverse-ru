@@ -1,0 +1,119 @@
+{
+ "id": "r0_life_a2",
+ "region": "R0",
+ "island": "life",
+ "kind": "short",
+ "title": "지금? 지금!",
+ "emoji": "⏰",
+ "register": "ty",
+ "where": "A 집",
+ "scene": "지마가 「지금」 가자고 한다. A 가 「나중에」로 버티다 진다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "life"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ди́ма"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Ну",
+  "Дава́й",
+  "Сейча́с",
+  "Пото́м"
+ ],
+ "allow": [
+  "каждый"
+ ],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Пойдём сейча́с!",
+   "rd": "빠이죰 씨차스",
+   "ko": "지금 가자!",
+   "note": "сейча́с = 지금",
+   "tags": [],
+   "emotion": "excited",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Нет, пото́м.",
+   "rd": "녵 빠똠",
+   "ko": "아니, 나중에.",
+   "note": "пото́м = 나중에",
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Пото́м — э́то когда́?",
+   "rd": "빠똠 에따 까그다",
+   "ko": "나중이 언젠데?",
+   "note": "когда́ = 언제",
+   "tags": [],
+   "emotion": "teasing",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Пото́м — э́то не сейча́с.",
+   "rd": "빠똠 에따 니 씨차스",
+   "ko": "나중은 지금이 아니야.",
+   "note": null,
+   "tags": [],
+   "emotion": "amused",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Сейча́с уже́ пото́м! Пойдём!",
+   "rd": "씨차스 우제 빠똠 빠이죰",
+   "ko": "이제 벌써 나중이야! 가자!",
+   "note": "уже́ = 이미",
+   "tags": [],
+   "emotion": "excited",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Ди́ма, ты ка́ждый раз так!",
+   "rd": "지마 띄 까즈듸 라스 딱",
+   "ko": "지마, 너 매번 이래!",
+   "note": "ка́ждый раз = 매번",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "shout",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ну да. И ка́ждый раз ты идёшь.",
+   "rd": "누 다 이 까즈듸 라스 띄 이죠시",
+   "ko": "그래. 그리고 매번 넌 가지.",
+   "note": "идёшь = 너는 간다",
+   "tags": [],
+   "emotion": "amused",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

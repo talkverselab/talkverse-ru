@@ -1,0 +1,163 @@
+{
+ "id": "r2_friends_c2",
+ "region": "R2",
+ "island": "friends",
+ "kind": "chat",
+ "title": "거의 다 왔어",
+ "emoji": "🏃",
+ "register": "chat",
+ "where": "채팅",
+ "scene": "까쨔가 늦는다. 「거의 다 왔어」가 네 번 반복되고 A 가 반격한다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ка́тя"
+ },
+ "twist": 7,
+ "twist_type": "chaos",
+ "expressions": [
+  "Ну",
+  "Ла́дно",
+  "Я уже́ иду́",
+  "Серьёзно?"
+ ],
+ "allow": [
+  "минута",
+  "улица",
+  "назад"
+ ],
+ "flags": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "A",
+   "es": "Ты где? Я жду.",
+   "rd": "띄 그제 야 즈두",
+   "ko": "어디야? 기다리고 있어.",
+   "note": "жду = 기다린다",
+   "tags": [],
+   "emotion": "neutral",
+   "ui": "bubble",
+   "at": "18:02",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "B",
+   "es": "Уже́ иду́! Пять мину́т.",
+   "rd": "우제 이두 뺘찌 미눝",
+   "ko": "가고 있어! 5분.",
+   "note": "уже́ иду́ = 가고 있다(통문장)",
+   "tags": [],
+   "emotion": "polite",
+   "ui": "bubble",
+   "at": "18:04",
+   "new": [
+    "пять"
+   ]
+  },
+  {
+   "num": 3,
+   "speaker": "A",
+   "es": "Ты э́то сказа́ла час наза́д.",
+   "rd": "띄 에따 스까잘라 차스 나잩",
+   "ko": "그 말 한 시간 전에 했잖아.",
+   "note": "час наза́д = 한 시간 전",
+   "tags": [],
+   "emotion": "annoyed",
+   "ui": "bubble",
+   "at": "18:06",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "B",
+   "es": "Сейча́с пра́вда иду́. Вот дом, вот у́лица.",
+   "rd": "씨차스 쁘라브다 이두 봍 돔 봍 울리짜",
+   "ko": "지금은 진짜 가고 있어. 집 보이고, 길 보여.",
+   "note": "у́лица = 거리",
+   "tags": [],
+   "emotion": "flustered",
+   "ui": "bubble",
+   "at": "18:08",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "A",
+   "es": "Кака́я у́лица?",
+   "rd": "까까야 울리짜",
+   "ko": "어느 길?",
+   "note": null,
+   "tags": [],
+   "emotion": "teasing",
+   "ui": "bubble",
+   "at": "18:10",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "B",
+   "es": "Моя́... Ой.",
+   "rd": "마야 오이",
+   "ko": "우리 집 앞... 어.",
+   "note": null,
+   "tags": [],
+   "emotion": "flustered",
+   "ui": "bubble",
+   "at": "18:12",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "A",
+   "es": "Ка́тя. Ты ещё до́ма.",
+   "rd": "까쨔 띄 이쇼 도마",
+   "ko": "까쨔. 너 아직 집이지.",
+   "note": null,
+   "tags": [
+    "twist"
+   ],
+   "emotion": "tsukkomi",
+   "ui": "bubble",
+   "at": "18:14",
+   "new": []
+  },
+  {
+   "num": 8,
+   "speaker": "B",
+   "es": "Ла́дно, да! Но я уже́ иду́!",
+   "rd": "라드나 다 나 야 우제 이두",
+   "ko": "알았어, 맞아! 근데 이제 진짜 가!",
+   "note": null,
+   "tags": [],
+   "emotion": "shout",
+   "ui": "bubble",
+   "at": "18:16",
+   "new": []
+  },
+  {
+   "num": 9,
+   "speaker": "A",
+   "es": "Я то́же до́ма. Я зна́ла, что так бу́дет.",
+   "rd": "야 또지 도마 야 즈날라 시또 딱 부짙",
+   "ko": "나도 집이야. 이럴 줄 알았어.",
+   "note": null,
+   "tags": [],
+   "emotion": "amused",
+   "ui": "bubble",
+   "at": "18:18",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

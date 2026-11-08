@@ -1,0 +1,32 @@
+{
+ "ep": "r1_culture_a1",
+ "cast": {
+  "B": "misha"
+ },
+ "turns": {
+  "1": [
+   "shy"
+  ],
+  "2": [
+   "cheerful"
+  ],
+  "3": [
+   "gentle"
+  ],
+  "4": [
+   "surprised"
+  ],
+  "5": [
+   "teasing"
+  ],
+  "6": [
+   "flustered"
+  ],
+  "7": [
+   "amused"
+  ],
+  "8": [
+   "flustered"
+  ]
+ }
+}

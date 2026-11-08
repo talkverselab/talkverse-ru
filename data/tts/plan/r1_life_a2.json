@@ -1,0 +1,32 @@
+{
+ "ep": "r1_life_a2",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "cheerful"
+  ],
+  "3": [
+   "surprised"
+  ],
+  "4": [
+   "teasing"
+  ],
+  "5": [
+   "flustered"
+  ],
+  "6": [
+   "excited"
+  ],
+  "7": [
+   "amused"
+  ],
+  "8": [
+   "shy"
+  ]
+ }
+}

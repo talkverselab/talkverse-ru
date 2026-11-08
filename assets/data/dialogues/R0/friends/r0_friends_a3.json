@@ -1,0 +1,128 @@
+{
+ "id": "r0_friends_a3",
+ "region": "R0",
+ "island": "friends",
+ "kind": "short",
+ "title": "응, 아니, 몰라",
+ "emoji": "🤷",
+ "register": "ty",
+ "where": "미샤 집",
+ "scene": "미샤가 질문을 쏟아낸다. A 는 세 마디로만 버틴다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ми́ша"
+ },
+ "twist": 7,
+ "twist_type": "reveal",
+ "expressions": [
+  "Да",
+  "Нет",
+  "Не зна́ю",
+  "Ну"
+ ],
+ "allow": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Ты зна́ешь Ди́му?",
+   "rd": "띄 즈나예시 지무",
+   "ko": "너 지마 알아?",
+   "note": "Ди́му = 지마를(대격)",
+   "tags": [],
+   "emotion": "shy",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Да, зна́ю.",
+   "rd": "다 즈나유",
+   "ko": "응, 알아.",
+   "note": null,
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Он твой друг?",
+   "rd": "온 뜨보이 드룩",
+   "ko": "네 친구야?",
+   "note": null,
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Нет, не друг.",
+   "rd": "녵 니 드룩",
+   "ko": "아니, 친구 아니야.",
+   "note": null,
+   "tags": [],
+   "emotion": "neutral",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "А кто он тебе́?",
+   "rd": "아 끄또 온 찌볘",
+   "ko": "그럼 너한테 누군데?",
+   "note": "кто он тебе́ = 너에게 그는 누구",
+   "tags": [],
+   "emotion": "surprised",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Не зна́ю. Он сам не зна́ет.",
+   "rd": "니 즈나유 온 삼 니 즈나옡",
+   "ko": "몰라. 자기도 몰라.",
+   "note": null,
+   "tags": [],
+   "emotion": "amused",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Он говори́т, что ты его́ друг.",
+   "rd": "온 가바맅 시또 띄 이보 드룩",
+   "ko": "걔는 네가 자기 친구라는데.",
+   "note": "что = ~라고(접속사)",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "teasing",
+   "new": []
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Тогда́ да. Друг.",
+   "rd": "따그다 다 드룩",
+   "ko": "그럼 응. 친구.",
+   "note": null,
+   "tags": [],
+   "emotion": "cheerful",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

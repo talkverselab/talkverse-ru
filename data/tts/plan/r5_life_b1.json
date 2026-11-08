@@ -1,0 +1,53 @@
+{
+ "ep": "r5_life_b1",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "neutral"
+  ],
+  "6": [
+   "worried"
+  ],
+  "7": [
+   "flustered"
+  ],
+  "8": [
+   "worried"
+  ],
+  "9": [
+   "flustered"
+  ],
+  "10": [
+   "shout"
+  ],
+  "11": [
+   "amused"
+  ],
+  "12": [
+   "annoyed"
+  ],
+  "13": [
+   "teasing"
+  ],
+  "14": [
+   "sad"
+  ],
+  "15": [
+   "cheerful"
+  ]
+ }
+}

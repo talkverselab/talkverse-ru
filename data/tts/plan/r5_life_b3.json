@@ -1,0 +1,53 @@
+{
+ "ep": "r5_life_b3",
+ "cast": {
+  "B": "katya"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "flustered"
+  ],
+  "3": [
+   "annoyed"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "polite"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "polite"
+  ],
+  "8": [
+   "cheerful"
+  ],
+  "9": [
+   "surprised"
+  ],
+  "10": [
+   "shy"
+  ],
+  "11": [
+   "shout"
+  ],
+  "12": [
+   "shy"
+  ],
+  "13": [
+   "annoyed"
+  ],
+  "14": [
+   "gentle"
+  ],
+  "15": [
+   "shy"
+  ]
+ }
+}

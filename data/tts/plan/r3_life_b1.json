@@ -1,0 +1,42 @@
+{
+ "ep": "r3_life_b1",
+ "cast": {
+  "B": "anya",
+  "C": "woman_m"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "stiff"
+  ],
+  "3": [
+   "amused"
+  ],
+  "4": [
+   "polite"
+  ],
+  "5": [
+   "flustered"
+  ],
+  "6": [
+   "teasing"
+  ],
+  "7": [
+   "teasing"
+  ],
+  "8": [
+   "shout"
+  ],
+  "9": [
+   "amused"
+  ],
+  "10": [
+   "flustered"
+  ],
+  "11": [
+   "polite"
+  ]
+ }
+}

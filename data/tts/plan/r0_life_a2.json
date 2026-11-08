@@ -1,0 +1,29 @@
+{
+ "ep": "r0_life_a2",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "excited"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "teasing"
+  ],
+  "4": [
+   "amused"
+  ],
+  "5": [
+   "excited"
+  ],
+  "6": [
+   "shout"
+  ],
+  "7": [
+   "amused"
+  ]
+ }
+}

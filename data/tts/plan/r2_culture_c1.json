@@ -1,0 +1,32 @@
+{
+ "ep": "r2_culture_c1",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "amused"
+  ],
+  "3": [
+   "annoyed"
+  ],
+  "4": [
+   "teasing"
+  ],
+  "5": [
+   "flustered"
+  ],
+  "6": [
+   "excited"
+  ],
+  "7": [
+   "amused"
+  ],
+  "8": [
+   "gentle"
+  ]
+ }
+}

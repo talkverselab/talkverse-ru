@@ -1,0 +1,38 @@
+{
+ "ep": "r3_love_b1",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "cheerful"
+  ],
+  "3": [
+   "flustered"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "worried"
+  ],
+  "6": [
+   "surprised"
+  ],
+  "7": [
+   "excited"
+  ],
+  "8": [
+   "shout"
+  ],
+  "9": [
+   "amused"
+  ],
+  "10": [
+   "flustered"
+  ]
+ }
+}

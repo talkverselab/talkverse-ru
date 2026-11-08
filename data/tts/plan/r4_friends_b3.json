@@ -1,0 +1,50 @@
+{
+ "ep": "r4_friends_b3",
+ "cast": {
+  "B": "misha"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "stiff"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "worried"
+  ],
+  "5": [
+   "gentle"
+  ],
+  "6": [
+   "worried"
+  ],
+  "7": [
+   "gentle"
+  ],
+  "8": [
+   "surprised"
+  ],
+  "9": [
+   "teasing"
+  ],
+  "10": [
+   "shout"
+  ],
+  "11": [
+   "amused"
+  ],
+  "12": [
+   "excited"
+  ],
+  "13": [
+   "tsukkomi"
+  ],
+  "14": [
+   "flustered"
+  ]
+ }
+}

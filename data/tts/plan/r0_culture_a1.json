@@ -1,0 +1,29 @@
+{
+ "ep": "r0_culture_a1",
+ "cast": {
+  "B": "katya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "surprised"
+  ],
+  "6": [
+   "teasing"
+  ],
+  "7": [
+   "shout"
+  ]
+ }
+}

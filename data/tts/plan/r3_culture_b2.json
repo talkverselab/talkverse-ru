@@ -1,0 +1,39 @@
+{
+ "ep": "r3_culture_b2",
+ "cast": {
+  "B": "dima",
+  "C": "katya"
+ },
+ "turns": {
+  "1": [
+   "excited"
+  ],
+  "2": [
+   "annoyed"
+  ],
+  "3": [
+   "surprised"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "neutral"
+  ],
+  "6": [
+   "shout"
+  ],
+  "7": [
+   "amused"
+  ],
+  "8": [
+   "gentle"
+  ],
+  "9": [
+   "surprised"
+  ],
+  "10": [
+   "flustered"
+  ]
+ }
+}

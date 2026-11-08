@@ -1,0 +1,151 @@
+{
+ "id": "r2_love_c6",
+ "region": "R2",
+ "island": "love",
+ "kind": "chat",
+ "title": "잘 자",
+ "emoji": "🌙",
+ "register": "chat",
+ "where": "채팅",
+ "scene": "밤 채팅. 「잘 자」를 말하고도 둘 다 안 잔다",
+ "purpose": [
+  "love"
+ ],
+ "domain": [
+  "love"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "А́ня"
+ },
+ "twist": 6,
+ "twist_type": "emotion",
+ "expressions": [
+  "Споко́йной но́чи",
+  "Ну",
+  "Ла́дно",
+  "Пока́"
+ ],
+ "allow": [
+  "поздно",
+  "спать"
+ ],
+ "flags": [
+  "romance"
+ ],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Уже́ по́здно. Споко́йной но́чи!",
+   "rd": "우제 뽀즈나 스빠꼬이나이 노치",
+   "ko": "벌써 늦었다. 잘 자!",
+   "note": "споко́йной но́чи = 잘 자(통문장, 생격)",
+   "tags": [],
+   "emotion": "gentle",
+   "ui": "bubble",
+   "at": "23:02",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Споко́йной но́чи. Пока́.",
+   "rd": "스빠꼬이나이 노치 빠까",
+   "ko": "잘 자. 안녕.",
+   "note": null,
+   "tags": [],
+   "emotion": "gentle",
+   "ui": "bubble",
+   "at": "23:04",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Ты ещё здесь?",
+   "rd": "띄 이쇼 즈제시",
+   "ko": "아직 있어?",
+   "note": null,
+   "tags": [],
+   "emotion": "teasing",
+   "ui": "bubble",
+   "at": "23:06",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Да. А ты почему́ здесь?",
+   "rd": "다 아 띄 빠치무 즈제시",
+   "ko": "응. 너는 왜 있어?",
+   "note": null,
+   "tags": [],
+   "emotion": "shy",
+   "ui": "bubble",
+   "at": "23:08",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Жду, когда́ ты уйдёшь.",
+   "rd": "즈두 까그다 띄 우이죠시",
+   "ko": "네가 나갈 때까지 기다려.",
+   "note": "уйдёшь = 나갈 것이다(통문장)",
+   "tags": [],
+   "emotion": "teasing",
+   "ui": "bubble",
+   "at": "23:10",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "А я жду тебя́. Так мы не бу́дем спать.",
+   "rd": "아 야 즈두 찌뱌 딱 믜 니 부짐 스빠찌",
+   "ko": "난 너 기다려. 이러면 우리 못 자.",
+   "note": "не бу́дем спать = 자지 않을 것이다",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "amused",
+   "ui": "bubble",
+   "at": "23:12",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ну и хорошо́.",
+   "rd": "누 이 하라쇼",
+   "ko": "그래도 좋아.",
+   "note": null,
+   "tags": [],
+   "emotion": "shy",
+   "ui": "bubble",
+   "at": "23:14",
+   "new": []
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Тогда́ расскажи́ мне что-нибу́дь.",
+   "rd": "따그다 라스까즤 므녜 시따 니부찌",
+   "ko": "그럼 뭐든 얘기해 줘.",
+   "note": "расскажи́ = 이야기해(명령, 통문장)",
+   "tags": [],
+   "emotion": "gentle",
+   "ui": "bubble",
+   "at": "23:16",
+   "new": [
+    "рассказать"
+   ]
+  }
+ ],
+ "draft": true,
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

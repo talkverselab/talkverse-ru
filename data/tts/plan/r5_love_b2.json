@@ -1,0 +1,53 @@
+{
+ "ep": "r5_love_b2",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "worried"
+  ],
+  "2": [
+   "sad"
+  ],
+  "3": [
+   "gentle"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "surprised"
+  ],
+  "6": [
+   "annoyed"
+  ],
+  "7": [
+   "neutral"
+  ],
+  "8": [
+   "shy"
+  ],
+  "9": [
+   "gentle"
+  ],
+  "10": [
+   "shy"
+  ],
+  "11": [
+   "gentle"
+  ],
+  "12": [
+   "worried"
+  ],
+  "13": [
+   "shy"
+  ],
+  "14": [
+   "gentle"
+  ],
+  "15": [
+   "gentle"
+  ]
+ }
+}

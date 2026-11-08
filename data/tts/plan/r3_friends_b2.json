@@ -1,0 +1,42 @@
+{
+ "ep": "r3_friends_b2",
+ "cast": {
+  "B": "dima",
+  "C": "katya"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "teasing"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "cheerful"
+  ],
+  "5": [
+   "excited"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "worried"
+  ],
+  "8": [
+   "amused"
+  ],
+  "9": [
+   "shout"
+  ],
+  "10": [
+   "flustered"
+  ],
+  "11": [
+   "teasing"
+  ]
+ }
+}

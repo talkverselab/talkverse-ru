@@ -1,0 +1,57 @@
+{
+ "ep": "r5_work_b1",
+ "cast": {
+  "B": "woman_m",
+  "C": "katya"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "stiff"
+  ],
+  "3": [
+   "polite"
+  ],
+  "4": [
+   "polite"
+  ],
+  "5": [
+   "polite"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "teasing"
+  ],
+  "8": [
+   "flustered"
+  ],
+  "9": [
+   "amused"
+  ],
+  "10": [
+   "surprised"
+  ],
+  "11": [
+   "shout"
+  ],
+  "12": [
+   "surprised"
+  ],
+  "13": [
+   "flustered"
+  ],
+  "14": [
+   "teasing"
+  ],
+  "15": [
+   "stiff"
+  ],
+  "16": [
+   "amused"
+  ]
+ }
+}

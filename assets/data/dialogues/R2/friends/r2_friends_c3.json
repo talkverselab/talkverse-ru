@@ -1,0 +1,162 @@
+{
+ "id": "r2_friends_c3",
+ "region": "R2",
+ "island": "friends",
+ "kind": "chat",
+ "title": "아무거나",
+ "emoji": "🍕",
+ "register": "chat",
+ "where": "채팅",
+ "scene": "단톡 아닌 1:1. 미샤가 뭐 먹을지 묻고 A 가 「아무거나」라 했더니 미샤가 전부 산다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ми́ша"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Ну",
+  "Ла́дно",
+  "Всё равно́",
+  "Что?!"
+ ],
+ "allow": [
+  "купить",
+  "домой"
+ ],
+ "flags": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Что ты хо́чешь есть? Я куплю́.",
+   "rd": "시또 띄 호치시 예스찌 야 꾸쁠류",
+   "ko": "뭐 먹고 싶어? 내가 사 올게.",
+   "note": "куплю́ = 살 것이다",
+   "tags": [],
+   "emotion": "polite",
+   "ui": "bubble",
+   "at": "19:02",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Всё равно́. Что хо́чешь.",
+   "rd": "프쇼 라브노 시또 호치시",
+   "ko": "아무거나. 네가 원하는 거.",
+   "note": "всё равно́ = 아무래도 좋다",
+   "tags": [],
+   "emotion": "neutral",
+   "ui": "bubble",
+   "at": "19:04",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Хорошо́. Э́то и́ли э́то?",
+   "rd": "하라쇼 에따 일리 에따",
+   "ko": "알았어. 이거야 이거야?",
+   "note": null,
+   "tags": [],
+   "emotion": "worried",
+   "ui": "bubble",
+   "at": "19:06",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Всё равно́!",
+   "rd": "프쇼 라브노",
+   "ko": "아무거나!",
+   "note": null,
+   "tags": [],
+   "emotion": "amused",
+   "ui": "bubble",
+   "at": "19:08",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Ла́дно. Я иду́ домо́й.",
+   "rd": "라드나 야 이두 다모이",
+   "ko": "알았어. 집으로 간다.",
+   "note": "иду́ домо́й = 집으로 간다(통문장)",
+   "tags": [],
+   "emotion": "stiff",
+   "ui": "bubble",
+   "at": "19:10",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Ми́ша... почему́ у тебя́ в рука́х всё?",
+   "rd": "미샤 빠치무 우 찌뱌 브 루까흐 프쇼",
+   "ko": "미샤... 왜 손에 다 들려 있어?",
+   "note": "в рука́х = 손에(전치격 복수, 통문장)",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "surprised",
+   "ui": "bubble",
+   "at": "19:12",
+   "new": []
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ты сказа́л «всё равно́». Я взял всё.",
+   "es_f": "Ты сказа́ла «всё равно́». Я взял всё.",
+   "rd": "띄 스까잘 프쇼 라브노 야 브쟐 프쇼",
+   "ko": "네가 「아무거나(다 같다)」라고 했잖아. 그래서 다 샀어.",
+   "note": "взял = 가져갔다",
+   "tags": [],
+   "emotion": "shy",
+   "ui": "bubble",
+   "at": "19:14",
+   "rd_f": "띄 스까잘라 프쇼 라브노 야 브쟐 프쇼",
+   "new": []
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Э́то не так рабо́тает!",
+   "rd": "에따 니 딱 라보따옡",
+   "ko": "그렇게 하는 게 아니야!",
+   "note": null,
+   "tags": [],
+   "emotion": "shout",
+   "ui": "bubble",
+   "at": "19:16",
+   "new": []
+  },
+  {
+   "num": 9,
+   "speaker": "B",
+   "es": "Тепе́рь я зна́ю.",
+   "rd": "찌뼤리 야 즈나유",
+   "ko": "이제 알았어.",
+   "note": null,
+   "tags": [],
+   "emotion": "flustered",
+   "ui": "bubble",
+   "at": "19:18",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

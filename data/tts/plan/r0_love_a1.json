@@ -1,0 +1,29 @@
+{
+ "ep": "r0_love_a1",
+ "cast": {
+  "B": "anya"
+ },
+ "turns": {
+  "1": [
+   "gentle"
+  ],
+  "2": [
+   "cheerful"
+  ],
+  "3": [
+   "teasing"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "teasing"
+  ],
+  "6": [
+   "shy"
+  ],
+  "7": [
+   "amused"
+  ]
+ }
+}

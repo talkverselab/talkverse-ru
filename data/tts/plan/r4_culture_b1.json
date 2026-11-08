@@ -1,0 +1,50 @@
+{
+ "ep": "r4_culture_b1",
+ "cast": {
+  "B": "misha"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "gentle"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "neutral"
+  ],
+  "6": [
+   "sad"
+  ],
+  "7": [
+   "surprised"
+  ],
+  "8": [
+   "gentle"
+  ],
+  "9": [
+   "gentle"
+  ],
+  "10": [
+   "shy"
+  ],
+  "11": [
+   "surprised"
+  ],
+  "12": [
+   "gentle"
+  ],
+  "13": [
+   "gentle"
+  ],
+  "14": [
+   "amused"
+  ]
+ }
+}

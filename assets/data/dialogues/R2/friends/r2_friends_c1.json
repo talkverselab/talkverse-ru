@@ -1,0 +1,150 @@
+{
+ "id": "r2_friends_c1",
+ "region": "R2",
+ "island": "friends",
+ "kind": "chat",
+ "title": "사진 보내 봐",
+ "emoji": "📷",
+ "register": "chat",
+ "where": "채팅",
+ "scene": "지마가 사진을 보내라고 한다. A 가 보낸 사진에 지마가 있다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ди́ма"
+ },
+ "twist": 6,
+ "twist_type": "reveal",
+ "expressions": [
+  "Ну",
+  "Дава́й",
+  "Ха-ха",
+  "Класс"
+ ],
+ "allow": [
+  "фото",
+  "похожий",
+  "телефон"
+ ],
+ "flags": [],
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Ты где сейча́с? Пошли́ фо́то!",
+   "rd": "띄 그제 씨차스 빠실리 포따",
+   "ko": "지금 어디? 사진 보내!",
+   "note": "пошли́ = 보내(명령, 통문장)",
+   "tags": [],
+   "emotion": "cheerful",
+   "ui": "bubble",
+   "at": "15:02",
+   "new": []
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Сейча́с. Вот.",
+   "rd": "씨차스 봍",
+   "ko": "지금. 자.",
+   "note": null,
+   "tags": [],
+   "emotion": "neutral",
+   "ui": "bubble",
+   "at": "15:04",
+   "new": []
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Э́то ты? А кто с тобо́й?",
+   "rd": "에따 띄 아 끄또 스 따보이",
+   "ko": "이거 너야? 같이 있는 사람 누구?",
+   "note": "с тобо́й = 너와(조격)",
+   "tags": [],
+   "emotion": "surprised",
+   "ui": "bubble",
+   "at": "15:06",
+   "new": []
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Не зна́ю. Како́й-то челове́к.",
+   "rd": "니 즈나유 까꼬이 따 칠라볙",
+   "ko": "몰라. 어떤 사람.",
+   "note": "како́й-то = 어떤",
+   "tags": [],
+   "emotion": "neutral",
+   "ui": "bubble",
+   "at": "15:08",
+   "new": []
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Он на меня́ похо́ж...",
+   "rd": "온 나 미냐 빠호시",
+   "ko": "나 닮았는데...",
+   "note": "похо́ж на + 대격 = ~와 닮다",
+   "tags": [],
+   "emotion": "worried",
+   "ui": "bubble",
+   "at": "15:10",
+   "new": []
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Ди́ма. Посмотри́ наза́д.",
+   "rd": "지마 빠스마뜨리 나잩",
+   "ko": "지마. 뒤 봐.",
+   "note": "посмотри́ = 봐(명령, 통문장)",
+   "tags": [
+    "twist"
+   ],
+   "emotion": "amused",
+   "ui": "bubble",
+   "at": "15:12",
+   "new": [
+    "назад"
+   ]
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Ой! Ты за мной?!",
+   "rd": "오이 띄 자 므노이",
+   "ko": "어! 너 내 뒤에 있어?!",
+   "note": "за мной = 내 뒤에(조격)",
+   "tags": [],
+   "emotion": "shout",
+   "ui": "bubble",
+   "at": "15:14",
+   "new": []
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Уже́ час. Ты всё вре́мя смо́тришь в телефо́н.",
+   "rd": "우제 차스 띄 프쇼 브례먀 스모뜨리시 브 찔리폰",
+   "ko": "한 시간째야. 너 계속 폰만 보더라.",
+   "note": "в телефо́н = 폰 안을(대격)",
+   "tags": [],
+   "emotion": "teasing",
+   "ui": "bubble",
+   "at": "15:16",
+   "new": []
+  }
+ ],
+ "draft": true,
+ "review": {
+  "stage": "claude_draft",
+  "date": "2026-11-08"
+ }
+}

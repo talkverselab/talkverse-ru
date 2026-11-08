@@ -1,0 +1,32 @@
+{
+ "ep": "r2_love_c4",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "shy"
+  ],
+  "2": [
+   "teasing"
+  ],
+  "3": [
+   "flustered"
+  ],
+  "4": [
+   "amused"
+  ],
+  "5": [
+   "shout"
+  ],
+  "6": [
+   "cheerful"
+  ],
+  "7": [
+   "worried"
+  ],
+  "8": [
+   "gentle"
+  ]
+ }
+}

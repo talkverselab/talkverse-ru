@@ -1,0 +1,35 @@
+{
+ "ep": "r3_culture_b1",
+ "cast": {
+  "B": "misha"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "worried"
+  ],
+  "4": [
+   "teasing"
+  ],
+  "5": [
+   "shout"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "annoyed"
+  ],
+  "8": [
+   "amused"
+  ],
+  "9": [
+   "sad"
+  ]
+ }
+}

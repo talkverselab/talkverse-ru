@@ -1,0 +1,32 @@
+{
+ "ep": "r0_friends_a3",
+ "cast": {
+  "B": "misha"
+ },
+ "turns": {
+  "1": [
+   "shy"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "neutral"
+  ],
+  "5": [
+   "surprised"
+  ],
+  "6": [
+   "amused"
+  ],
+  "7": [
+   "teasing"
+  ],
+  "8": [
+   "cheerful"
+  ]
+ }
+}

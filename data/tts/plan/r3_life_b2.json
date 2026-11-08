@@ -1,0 +1,38 @@
+{
+ "ep": "r3_life_b2",
+ "cast": {
+  "B": "woman_m"
+ },
+ "turns": {
+  "1": [
+   "polite"
+  ],
+  "2": [
+   "stiff"
+  ],
+  "3": [
+   "polite"
+  ],
+  "4": [
+   "flustered"
+  ],
+  "5": [
+   "polite"
+  ],
+  "6": [
+   "neutral"
+  ],
+  "7": [
+   "polite"
+  ],
+  "8": [
+   "flustered"
+  ],
+  "9": [
+   "cheerful"
+  ],
+  "10": [
+   "shy"
+  ]
+ }
+}

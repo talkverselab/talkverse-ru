@@ -1,0 +1,32 @@
+{
+ "ep": "r1_friends_a5",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": [
+   "cheerful"
+  ],
+  "4": [
+   "tsukkomi"
+  ],
+  "5": [
+   "excited"
+  ],
+  "6": [
+   "shout"
+  ],
+  "7": [
+   "teasing"
+  ],
+  "8": [
+   "amused"
+  ]
+ }
+}

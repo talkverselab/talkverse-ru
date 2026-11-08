@@ -1,0 +1,32 @@
+{
+ "ep": "r1_culture_a2",
+ "cast": {
+  "B": "katya"
+ },
+ "turns": {
+  "1": [
+   "neutral"
+  ],
+  "2": [
+   "teasing"
+  ],
+  "3": [
+   "neutral"
+  ],
+  "4": [
+   "shy"
+  ],
+  "5": [
+   "surprised"
+  ],
+  "6": [
+   "gentle"
+  ],
+  "7": [
+   "shout"
+  ],
+  "8": [
+   "gentle"
+  ]
+ }
+}
