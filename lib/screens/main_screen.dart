@@ -1,3 +1,4 @@
+import 'alphabet_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../core/pane.dart';
@@ -393,8 +394,8 @@ class _MenuGrid extends StatelessWidget {
     // 메뉴 순서(일본어앱 2026-11-07): 기초 → 문법 → 회화 → 단어 → 참고.
     final sections = <(String, List<_MenuItem>)>[
       (tr('기초'), [
-        _MenuItem(label: tr('발음'), sub: 'Произношение', badge: 'Ё', color: AppColors.er,
-          builder: (_) => _ComingSoon(title: tr('발음 (강세 · 아깐예)'))),
+        _MenuItem(label: tr('키릴 문자와 발음'), sub: 'Алфави́т', badge: 'Ё', color: AppColors.er,
+          builder: (_) => const AlphabetScreen()),
       ]),
       (tr('문법'), [
         _MenuItem(label: tr('문법'), sub: 'Грамматика', badge: 'G', color: AppColors.rojoDeep,
@@ -514,21 +515,3 @@ class _MenuTile extends StatelessWidget {
   }
 }
 
-class _ComingSoon extends StatelessWidget {
-  final String title;
-  const _ComingSoon({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.cal,
-      appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Text(
-          tr('Próximamente · 준비 중'),
-          style: TextStyle(color: AppColors.tintaLight, letterSpacing: 2),
-        ),
-      ),
-    );
-  }
-}
