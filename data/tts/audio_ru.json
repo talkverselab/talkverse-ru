@@ -1,0 +1,910 @@
+{
+"r2_love_c1": [
+{
+"turn": 1,
+"voice": "m",
+"speaker": "anya",
+"emotion": "teasing",
+"key": "audio/ru/r2_love_c1/01_m.mp4",
+"sha1": "c97211eb30d5e23d02a1715f455a154e6cc90de0",
+"ms": 3400
+},
+{
+"turn": 1,
+"voice": "f",
+"speaker": "anya",
+"emotion": "teasing",
+"key": "audio/ru/r2_love_c1/01_f.mp4",
+"sha1": "58092b2b3a93ddabf6f674a3ccd0aab0f536c3ce",
+"ms": 3800
+},
+{
+"turn": 2,
+"voice": "m",
+"speaker": "am",
+"emotion": "flustered",
+"key": "audio/ru/r2_love_c1/02_m.mp4",
+"sha1": "e5805c1fb5fff70b8baa0b8b6bd95ca5d6f81883",
+"ms": 4800
+},
+{
+"turn": 2,
+"voice": "f",
+"speaker": "af",
+"emotion": "flustered",
+"key": "audio/ru/r2_love_c1/02_f.mp4",
+"sha1": "85e716b8601432e25d00ff61cd114e687df91fa5",
+"ms": 5000
+},
+{
+"turn": 3,
+"voice": "m",
+"speaker": "anya",
+"emotion": "amused+teasing",
+"key": "audio/ru/r2_love_c1/03_m.mp4",
+"sha1": "c95149975137121b2ce8e5d6c6bf27753af78d82",
+"ms": 3400
+},
+{
+"turn": 3,
+"voice": "f",
+"speaker": "anya",
+"emotion": "amused+teasing",
+"key": "audio/ru/r2_love_c1/03_f.mp4",
+"sha1": "c95149975137121b2ce8e5d6c6bf27753af78d82",
+"ms": 3400
+},
+{
+"turn": 4,
+"voice": "m",
+"speaker": "am",
+"emotion": "worried",
+"key": "audio/ru/r2_love_c1/04_m.mp4",
+"sha1": "491f5e8d0033a8cba7b90eac856385a55ebf3c10",
+"ms": 2556
+},
+{
+"turn": 4,
+"voice": "f",
+"speaker": "af",
+"emotion": "worried",
+"key": "audio/ru/r2_love_c1/04_f.mp4",
+"sha1": "fec902d68f6960d04d1f46fdc25cf37ff3d60f58",
+"ms": 2040
+},
+{
+"turn": 5,
+"voice": "m",
+"speaker": "anya",
+"emotion": "teasing",
+"key": "audio/ru/r2_love_c1/05_m.mp4",
+"sha1": "77324f9dbedb5c74480093cdc23639b484c80fd9",
+"ms": 2637
+},
+{
+"turn": 5,
+"voice": "f",
+"speaker": "anya",
+"emotion": "teasing",
+"key": "audio/ru/r2_love_c1/05_f.mp4",
+"sha1": "77324f9dbedb5c74480093cdc23639b484c80fd9",
+"ms": 2637
+},
+{
+"turn": 6,
+"voice": "m",
+"speaker": "am",
+"emotion": "shy",
+"key": "audio/ru/r2_love_c1/06_m.mp4",
+"sha1": "424ae5d08c03443e10e3e725c28a12948e004d56",
+"ms": 1096
+},
+{
+"turn": 6,
+"voice": "f",
+"speaker": "af",
+"emotion": "shy",
+"key": "audio/ru/r2_love_c1/06_f.mp4",
+"sha1": "0327d0ea875b2cfe96208bf58b9a09e9498daafe",
+"ms": 1413
+},
+{
+"turn": 7,
+"voice": "m",
+"speaker": "anya",
+"emotion": "gentle",
+"key": "audio/ru/r2_love_c1/07_m.mp4",
+"sha1": "803f4181c6d87adbe5b3e2893d6ee12db8eb508d",
+"ms": 3100
+},
+{
+"turn": 7,
+"voice": "f",
+"speaker": "anya",
+"emotion": "gentle",
+"key": "audio/ru/r2_love_c1/07_f.mp4",
+"sha1": "803f4181c6d87adbe5b3e2893d6ee12db8eb508d",
+"ms": 3100
+},
+{
+"turn": 8,
+"voice": "m",
+"speaker": "am",
+"emotion": "flustered",
+"key": "audio/ru/r2_love_c1/08_m.mp4",
+"sha1": "8473e17c61c9e2a2f6ba0049380908d4dc6724f8",
+"ms": 1945
+},
+{
+"turn": 8,
+"voice": "f",
+"speaker": "af",
+"emotion": "flustered",
+"key": "audio/ru/r2_love_c1/08_f.mp4",
+"sha1": "1a70bed5cd3f3d9e6250c873d3dfcee8493dfbd2",
+"ms": 1760
+}
+],
+"r3_friends_b1": [
+{
+"turn": 1,
+"voice": "m",
+"speaker": "dima",
+"emotion": "cheerful",
+"key": "audio/ru/r3_friends_b1/01_m.mp4",
+"sha1": "0d6550f6c9647d7dadcc24e9e9822a54adbd9460",
+"ms": 5500
+},
+{
+"turn": 1,
+"voice": "f",
+"speaker": "dima",
+"emotion": "cheerful",
+"key": "audio/ru/r3_friends_b1/01_f.mp4",
+"sha1": "301d0cfe04c192148b334612b896cb9cf85fa005",
+"ms": 3400
+},
+{
+"turn": 2,
+"voice": "m",
+"speaker": "am",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/02_m.mp4",
+"sha1": "ade5d4e687b3c5da88017b4d0c6113989966976f",
+"ms": 2235
+},
+{
+"turn": 2,
+"voice": "f",
+"speaker": "af",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/02_f.mp4",
+"sha1": "cbf81aa3210a971379f00f7deda1321dcea676d6",
+"ms": 2751
+},
+{
+"turn": 3,
+"voice": "m",
+"speaker": "dima",
+"emotion": "neutral+amused",
+"key": "audio/ru/r3_friends_b1/03_m.mp4",
+"sha1": "7552cc5b7ebe42744b304b43881400e08d794c47",
+"ms": 4000
+},
+{
+"turn": 3,
+"voice": "f",
+"speaker": "dima",
+"emotion": "neutral+amused",
+"key": "audio/ru/r3_friends_b1/03_f.mp4",
+"sha1": "7552cc5b7ebe42744b304b43881400e08d794c47",
+"ms": 4000
+},
+{
+"turn": 4,
+"voice": "m",
+"speaker": "am",
+"emotion": "worried",
+"key": "audio/ru/r3_friends_b1/04_m.mp4",
+"sha1": "d1de4eb4a5f4ca4c7786e2cfa7fccfa071bd2433",
+"ms": 3400
+},
+{
+"turn": 4,
+"voice": "f",
+"speaker": "af",
+"emotion": "worried",
+"key": "audio/ru/r3_friends_b1/04_f.mp4",
+"sha1": "e6dccc05dd37e8740b205a4ac256dab6cbe378f4",
+"ms": 2997
+},
+{
+"turn": 5,
+"voice": "m",
+"speaker": "dima",
+"emotion": "cheerful",
+"key": "audio/ru/r3_friends_b1/05_m.mp4",
+"sha1": "711313fb8e044c4f3c9d729d97106976b589fec7",
+"ms": 3300
+},
+{
+"turn": 5,
+"voice": "f",
+"speaker": "dima",
+"emotion": "cheerful",
+"key": "audio/ru/r3_friends_b1/05_f.mp4",
+"sha1": "711313fb8e044c4f3c9d729d97106976b589fec7",
+"ms": 3300
+},
+{
+"turn": 6,
+"voice": "m",
+"speaker": "am",
+"emotion": "worried",
+"key": "audio/ru/r3_friends_b1/06_m.mp4",
+"sha1": "a4e254597c3528c1e1e5414173aa0e7befc83a6c",
+"ms": 1985
+},
+{
+"turn": 6,
+"voice": "f",
+"speaker": "af",
+"emotion": "worried",
+"key": "audio/ru/r3_friends_b1/06_f.mp4",
+"sha1": "437b7209b940cb96b66b80b7fc7f8cc62fb89335",
+"ms": 2580
+},
+{
+"turn": 7,
+"voice": "m",
+"speaker": "dima",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/07_m.mp4",
+"sha1": "41263e6f90802d6d6607d2cce11505ec6dca8ef9",
+"ms": 5100
+},
+{
+"turn": 7,
+"voice": "f",
+"speaker": "dima",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/07_f.mp4",
+"sha1": "41263e6f90802d6d6607d2cce11505ec6dca8ef9",
+"ms": 5100
+},
+{
+"turn": 8,
+"voice": "m",
+"speaker": "am",
+"emotion": "tsukkomi",
+"key": "audio/ru/r3_friends_b1/08_m.mp4",
+"sha1": "c3d6767b01d53cd6ecd50f035ab6fa6bb8d690af",
+"ms": 3400
+},
+{
+"turn": 8,
+"voice": "f",
+"speaker": "af",
+"emotion": "tsukkomi",
+"key": "audio/ru/r3_friends_b1/08_f.mp4",
+"sha1": "a1bc0abebe6a9c33f252c957c36dddfb5e704eb7",
+"ms": 3600
+},
+{
+"turn": 9,
+"voice": "m",
+"speaker": "dima",
+"emotion": "amused",
+"key": "audio/ru/r3_friends_b1/09_m.mp4",
+"sha1": "29fb574b49bbab8a1fddb38beffbebedb43ee6d9",
+"ms": 3700
+},
+{
+"turn": 9,
+"voice": "f",
+"speaker": "dima",
+"emotion": "amused",
+"key": "audio/ru/r3_friends_b1/09_f.mp4",
+"sha1": "29fb574b49bbab8a1fddb38beffbebedb43ee6d9",
+"ms": 3700
+},
+{
+"turn": 10,
+"voice": "m",
+"speaker": "am",
+"emotion": "flustered",
+"key": "audio/ru/r3_friends_b1/10_m.mp4",
+"sha1": "6498c0affb2aab23f7f8bcf07d351c1eb9720c85",
+"ms": 2597
+},
+{
+"turn": 10,
+"voice": "f",
+"speaker": "af",
+"emotion": "flustered",
+"key": "audio/ru/r3_friends_b1/10_f.mp4",
+"sha1": "a5df051b9f628afd4a1d00c9f2cda6d164be705e",
+"ms": 4100
+},
+{
+"turn": 11,
+"voice": "m",
+"speaker": "dima",
+"emotion": "amused",
+"key": "audio/ru/r3_friends_b1/11_m.mp4",
+"sha1": "cdf0e78d8f5fb40c9ab4e9a7cd25c6cb95e353d8",
+"ms": 3400
+},
+{
+"turn": 11,
+"voice": "f",
+"speaker": "dima",
+"emotion": "amused",
+"key": "audio/ru/r3_friends_b1/11_f.mp4",
+"sha1": "cdf0e78d8f5fb40c9ab4e9a7cd25c6cb95e353d8",
+"ms": 3400
+},
+{
+"turn": 12,
+"voice": "m",
+"speaker": "am",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/12_m.mp4",
+"sha1": "457455b7cb16b679adcd14d320fd45e53ab4ded9",
+"ms": 2163
+},
+{
+"turn": 12,
+"voice": "f",
+"speaker": "af",
+"emotion": "neutral",
+"key": "audio/ru/r3_friends_b1/12_f.mp4",
+"sha1": "1427f651484f24d6cf34e7357760313f6af8f5d8",
+"ms": 2014
+}
+],
+"r4_culture_a1": [
+{
+"turn": 1,
+"voice": "m",
+"speaker": "am",
+"emotion": "stiff",
+"key": "audio/ru/r4_culture_a1/01_m.mp4",
+"sha1": "006558de8358de0a0e8104b39158375bebd3aae4",
+"ms": 2835
+},
+{
+"turn": 1,
+"voice": "f",
+"speaker": "af",
+"emotion": "stiff",
+"key": "audio/ru/r4_culture_a1/01_f.mp4",
+"sha1": "053244746d4bdd6532dd6980c6506f49dbba47b5",
+"ms": 3500
+},
+{
+"turn": 2,
+"voice": "m",
+"speaker": "misha",
+"emotion": "worried",
+"key": "audio/ru/r4_culture_a1/02_m.mp4",
+"sha1": "7875c611c3ed1ca44bdabd2389bed48e717cd44e",
+"ms": 2528
+},
+{
+"turn": 2,
+"voice": "f",
+"speaker": "misha",
+"emotion": "worried",
+"key": "audio/ru/r4_culture_a1/02_f.mp4",
+"sha1": "7875c611c3ed1ca44bdabd2389bed48e717cd44e",
+"ms": 2528
+},
+{
+"turn": 3,
+"voice": "m",
+"speaker": "am",
+"emotion": "stiff+neutral",
+"key": "audio/ru/r4_culture_a1/03_m.mp4",
+"sha1": "aec0f533eb8231940292b30e41cd89083cb04560",
+"ms": 3900
+},
+{
+"turn": 3,
+"voice": "f",
+"speaker": "af",
+"emotion": "stiff+neutral",
+"key": "audio/ru/r4_culture_a1/03_f.mp4",
+"sha1": "bc812dfe21129db01c220eb5f1660db0c106f2e6",
+"ms": 3100
+},
+{
+"turn": 4,
+"voice": "m",
+"speaker": "misha",
+"emotion": "flustered",
+"key": "audio/ru/r4_culture_a1/04_m.mp4",
+"sha1": "13d0e96d60ef204fa90b0a3d04d040c00610f93d",
+"ms": 3700
+},
+{
+"turn": 4,
+"voice": "f",
+"speaker": "misha",
+"emotion": "flustered",
+"key": "audio/ru/r4_culture_a1/04_f.mp4",
+"sha1": "13d0e96d60ef204fa90b0a3d04d040c00610f93d",
+"ms": 3700
+},
+{
+"turn": 5,
+"voice": "m",
+"speaker": "am",
+"emotion": "gentle",
+"key": "audio/ru/r4_culture_a1/05_m.mp4",
+"sha1": "cb39d254ec3f31f9d239c3ecd1967429ddd37386",
+"ms": 2913
+},
+{
+"turn": 5,
+"voice": "f",
+"speaker": "af",
+"emotion": "gentle",
+"key": "audio/ru/r4_culture_a1/05_f.mp4",
+"sha1": "be1e79b7cc7341683afe1b2ed038e044d2fb9612",
+"ms": 3600
+},
+{
+"turn": 6,
+"voice": "m",
+"speaker": "misha",
+"emotion": "surprised",
+"key": "audio/ru/r4_culture_a1/06_m.mp4",
+"sha1": "0879f6480678e447e2878403282939af1d85e76d",
+"ms": 1732
+},
+{
+"turn": 6,
+"voice": "f",
+"speaker": "misha",
+"emotion": "surprised",
+"key": "audio/ru/r4_culture_a1/06_f.mp4",
+"sha1": "0879f6480678e447e2878403282939af1d85e76d",
+"ms": 1732
+},
+{
+"turn": 7,
+"voice": "m",
+"speaker": "am",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/07_m.mp4",
+"sha1": "cb134f8586a1c2890315e2415dbc412c5e17f460",
+"ms": 3600
+},
+{
+"turn": 7,
+"voice": "f",
+"speaker": "af",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/07_f.mp4",
+"sha1": "0bdb74d67c91b26df65cb66b8105b55b7bb52f17",
+"ms": 4200
+},
+{
+"turn": 8,
+"voice": "m",
+"speaker": "misha",
+"emotion": "surprised",
+"key": "audio/ru/r4_culture_a1/08_m.mp4",
+"sha1": "fe8e432a0311e5acab599ed7f1aec4300500eec7",
+"ms": 936
+},
+{
+"turn": 8,
+"voice": "f",
+"speaker": "misha",
+"emotion": "surprised",
+"key": "audio/ru/r4_culture_a1/08_f.mp4",
+"sha1": "fe8e432a0311e5acab599ed7f1aec4300500eec7",
+"ms": 936
+},
+{
+"turn": 9,
+"voice": "m",
+"speaker": "am",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/09_m.mp4",
+"sha1": "593178006846600baa1d351dd82a97f4c66d1885",
+"ms": 2499
+},
+{
+"turn": 9,
+"voice": "f",
+"speaker": "af",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/09_f.mp4",
+"sha1": "8b766f4c840f90f68f299b184fd2cf0a3fd7cc3b",
+"ms": 2133
+},
+{
+"turn": 10,
+"voice": "m",
+"speaker": "misha",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/10_m.mp4",
+"sha1": "cfa89d0ec98309180006e9a15d369e5c8ce0383a",
+"ms": 2985
+},
+{
+"turn": 10,
+"voice": "f",
+"speaker": "misha",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/10_f.mp4",
+"sha1": "cfa89d0ec98309180006e9a15d369e5c8ce0383a",
+"ms": 2985
+},
+{
+"turn": 11,
+"voice": "m",
+"speaker": "am",
+"emotion": "neutral",
+"key": "audio/ru/r4_culture_a1/11_m.mp4",
+"sha1": "21f88c0547fa8a687753fcef39711b29ffadea03",
+"ms": 2794
+},
+{
+"turn": 11,
+"voice": "f",
+"speaker": "af",
+"emotion": "neutral",
+"key": "audio/ru/r4_culture_a1/11_f.mp4",
+"sha1": "a9b3d5c866f94273ed9e6546227abe49325ef996",
+"ms": 2800
+},
+{
+"turn": 12,
+"voice": "m",
+"speaker": "misha",
+"emotion": "neutral+shy",
+"key": "audio/ru/r4_culture_a1/12_m.mp4",
+"sha1": "2ebcea988213383faa6a03394f3751b96c9eed49",
+"ms": 3900
+},
+{
+"turn": 12,
+"voice": "f",
+"speaker": "misha",
+"emotion": "neutral+shy",
+"key": "audio/ru/r4_culture_a1/12_f.mp4",
+"sha1": "2ebcea988213383faa6a03394f3751b96c9eed49",
+"ms": 3900
+},
+{
+"turn": 13,
+"voice": "m",
+"speaker": "am",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/13_m.mp4",
+"sha1": "bc1b9f55418b85ea5531b3f9b29b5a14eb313d35",
+"ms": 1016
+},
+{
+"turn": 13,
+"voice": "f",
+"speaker": "af",
+"emotion": "shy",
+"key": "audio/ru/r4_culture_a1/13_f.mp4",
+"sha1": "2cc998151862c81d3fe44929b652d9c9ca546858",
+"ms": 1252
+},
+{
+"turn": 14,
+"voice": "m",
+"speaker": "misha",
+"emotion": "cheerful",
+"key": "audio/ru/r4_culture_a1/14_m.mp4",
+"sha1": "2351ef8bcf336458b43665c5c8165cecd200b4eb",
+"ms": 4200
+},
+{
+"turn": 14,
+"voice": "f",
+"speaker": "misha",
+"emotion": "cheerful",
+"key": "audio/ru/r4_culture_a1/14_f.mp4",
+"sha1": "2351ef8bcf336458b43665c5c8165cecd200b4eb",
+"ms": 4200
+},
+{
+"turn": 15,
+"voice": "m",
+"speaker": "am",
+"emotion": "teasing",
+"key": "audio/ru/r4_culture_a1/15_m.mp4",
+"sha1": "a5b0de003e2ee1c8b39d95621940ceb4d9cae4bb",
+"ms": 3200
+},
+{
+"turn": 15,
+"voice": "f",
+"speaker": "af",
+"emotion": "teasing",
+"key": "audio/ru/r4_culture_a1/15_f.mp4",
+"sha1": "b0cf98bf693bd712d37d883ab16da8ec3d594240",
+"ms": 3100
+},
+{
+"turn": 16,
+"voice": "m",
+"speaker": "misha",
+"emotion": "tsukkomi",
+"key": "audio/ru/r4_culture_a1/16_m.mp4",
+"sha1": "d87009567b8cca9b96f6adee596186983d149e1e",
+"ms": 2936
+},
+{
+"turn": 16,
+"voice": "f",
+"speaker": "misha",
+"emotion": "tsukkomi",
+"key": "audio/ru/r4_culture_a1/16_f.mp4",
+"sha1": "d87009567b8cca9b96f6adee596186983d149e1e",
+"ms": 2936
+}
+],
+"r5_travel_b1": [
+{
+"turn": 1,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/01_m.mp4",
+"sha1": "e5e66309b4fcc4a1e1bd6e556a84a6fe2c0360f9",
+"ms": 3900
+},
+{
+"turn": 1,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/01_f.mp4",
+"sha1": "ca6188e152d3c91eee4d8e2b328c8481023c07c1",
+"ms": 4000
+},
+{
+"turn": 2,
+"voice": "m",
+"speaker": "am",
+"emotion": "polite",
+"key": "audio/ru/r5_travel_b1/02_m.mp4",
+"sha1": "a0bf9043e6223185d53edd962bc39f687d4450aa",
+"ms": 2542
+},
+{
+"turn": 2,
+"voice": "f",
+"speaker": "af",
+"emotion": "polite",
+"key": "audio/ru/r5_travel_b1/02_f.mp4",
+"sha1": "d7ef4c83d0b3ae0db20f10167441a753223b3c5d",
+"ms": 2942
+},
+{
+"turn": 3,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/03_m.mp4",
+"sha1": "0cf7119ccafeedfb9c512f3da1e1ea8d0bea8cc0",
+"ms": 2984
+},
+{
+"turn": 3,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/03_f.mp4",
+"sha1": "0cf7119ccafeedfb9c512f3da1e1ea8d0bea8cc0",
+"ms": 2984
+},
+{
+"turn": 4,
+"voice": "m",
+"speaker": "katya",
+"emotion": "teasing",
+"key": "audio/ru/r5_travel_b1/04_m.mp4",
+"sha1": "f917d6eaacc43a43c645120ea14daf72f18ccd15",
+"ms": 3700
+},
+{
+"turn": 4,
+"voice": "f",
+"speaker": "katya",
+"emotion": "teasing",
+"key": "audio/ru/r5_travel_b1/04_f.mp4",
+"sha1": "f917d6eaacc43a43c645120ea14daf72f18ccd15",
+"ms": 3700
+},
+{
+"turn": 5,
+"voice": "m",
+"speaker": "am",
+"emotion": "surprised+polite",
+"key": "audio/ru/r5_travel_b1/05_m.mp4",
+"sha1": "5f044b0bdf96b3c389048a1c826dd8d9a3465743",
+"ms": 3600
+},
+{
+"turn": 5,
+"voice": "f",
+"speaker": "af",
+"emotion": "surprised+polite",
+"key": "audio/ru/r5_travel_b1/05_f.mp4",
+"sha1": "fd75e708eef750fd852b87c79141ba99a0bef995",
+"ms": 5100
+},
+{
+"turn": 6,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/06_m.mp4",
+"sha1": "2a816d34c52a171fc77f1b32d59f2b34e41f5c5e",
+"ms": 6600
+},
+{
+"turn": 6,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "cheerful",
+"key": "audio/ru/r5_travel_b1/06_f.mp4",
+"sha1": "4d01b0e178430402a0108ed0ed54be0b2b55f9d4",
+"ms": 4200
+},
+{
+"turn": 7,
+"voice": "m",
+"speaker": "am",
+"emotion": "polite",
+"key": "audio/ru/r5_travel_b1/07_m.mp4",
+"sha1": "9de3648da88f132a6a05b26590dc7cf0fecb2e92",
+"ms": 1154
+},
+{
+"turn": 7,
+"voice": "f",
+"speaker": "af",
+"emotion": "polite",
+"key": "audio/ru/r5_travel_b1/07_f.mp4",
+"sha1": "a1ed09072ca384d80288ca67f03707a2a88b603b",
+"ms": 1922
+},
+{
+"turn": 8,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/08_m.mp4",
+"sha1": "6908b3f1aee37e044d1c149dabd181510789673f",
+"ms": 2667
+},
+{
+"turn": 8,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/08_f.mp4",
+"sha1": "6908b3f1aee37e044d1c149dabd181510789673f",
+"ms": 2667
+},
+{
+"turn": 9,
+"voice": "m",
+"speaker": "katya",
+"emotion": "teasing",
+"key": "audio/ru/r5_travel_b1/09_m.mp4",
+"sha1": "c2f8678d6793689c95857fb78c18d3cdeb7cb2e5",
+"ms": 4500
+},
+{
+"turn": 9,
+"voice": "f",
+"speaker": "katya",
+"emotion": "teasing",
+"key": "audio/ru/r5_travel_b1/09_f.mp4",
+"sha1": "617c379d2bed390588fc8d0a97f1a01609524aa3",
+"ms": 4900
+},
+{
+"turn": 10,
+"voice": "m",
+"speaker": "am",
+"emotion": "flustered",
+"key": "audio/ru/r5_travel_b1/10_m.mp4",
+"sha1": "e7ea4d02d05350761a1708896e4224baf066b96a",
+"ms": 3300
+},
+{
+"turn": 10,
+"voice": "f",
+"speaker": "af",
+"emotion": "flustered",
+"key": "audio/ru/r5_travel_b1/10_f.mp4",
+"sha1": "65ba850719c3a7d3960cd5c262efe790c3993a62",
+"ms": 3500
+},
+{
+"turn": 11,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/11_m.mp4",
+"sha1": "ccaa7822b414755343b32ee93fb36b824bd9ebf0",
+"ms": 5000
+},
+{
+"turn": 11,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/11_f.mp4",
+"sha1": "ccaa7822b414755343b32ee93fb36b824bd9ebf0",
+"ms": 5000
+},
+{
+"turn": 12,
+"voice": "m",
+"speaker": "am",
+"emotion": "worried",
+"key": "audio/ru/r5_travel_b1/12_m.mp4",
+"sha1": "1ae32f42a6b9470c041eb31cb20dd949b2e04688",
+"ms": 4600
+},
+{
+"turn": 12,
+"voice": "f",
+"speaker": "af",
+"emotion": "worried",
+"key": "audio/ru/r5_travel_b1/12_f.mp4",
+"sha1": "150a454b6951a2bbbdf08c0f23aa2ee4d02f74cc",
+"ms": 5000
+},
+{
+"turn": 13,
+"voice": "m",
+"speaker": "katya",
+"emotion": "neutral+teasing",
+"key": "audio/ru/r5_travel_b1/13_m.mp4",
+"sha1": "6fce97b1b7b7ddec8cece8e9e7176cab4509af2e",
+"ms": 3300
+},
+{
+"turn": 13,
+"voice": "f",
+"speaker": "katya",
+"emotion": "neutral+teasing",
+"key": "audio/ru/r5_travel_b1/13_f.mp4",
+"sha1": "6fce97b1b7b7ddec8cece8e9e7176cab4509af2e",
+"ms": 3300
+},
+{
+"turn": 14,
+"voice": "m",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/14_m.mp4",
+"sha1": "6adf921b315e70352ecf3eb8a5baf7e7aea69d5b",
+"ms": 2912
+},
+{
+"turn": 14,
+"voice": "f",
+"speaker": "woman_o",
+"emotion": "excited",
+"key": "audio/ru/r5_travel_b1/14_f.mp4",
+"sha1": "6adf921b315e70352ecf3eb8a5baf7e7aea69d5b",
+"ms": 2912
+}
+]
+}

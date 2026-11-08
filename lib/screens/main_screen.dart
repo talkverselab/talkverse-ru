@@ -409,7 +409,7 @@ class _MenuGrid extends StatelessWidget {
           builder: (_) => const SpeakingPracticeScreen()),
       ]),
       (tr('단어'), [
-        _MenuItem(label: tr('절벽 단어'), sub: tr('R1~R5 · 빈도 2,000'), badge: 'F', color: AppColors.mar,
+        _MenuItem(label: tr('절벽 단어'), sub: tr('R1~R5 · 빈도 3,000'), badge: 'F', color: AppColors.mar,
           builder: (_) => const WordFreqScreen()),
         _MenuItem(label: tr('단어 카드'), sub: 'Карточки', badge: 'R', color: AppColors.gualdaDeep,
           builder: (_) => const WordFlashcardScreen()),

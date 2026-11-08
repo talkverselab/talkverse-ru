@@ -9,7 +9,7 @@ import '../core/platform.dart';
 import '../core/theme.dart';
 import '../services/tts_service.dart';
 
-/// 절벽 단어 — 빈도 1~2,000위를 절벽구간(R1~R5)별 **20어 단원**, 단어는 **네모 타일**(일본어앱 구조, 2026-11-07).
+/// 절벽 단어 — 빈도 1~3,000위를 절벽구간(R1~R5)별 **20어 단원**, 단어는 **네모 타일**(일본어앱 구조, 2026-11-07).
 /// 「회화 단어 포함」이면 assets/data/freq/conv_words_ru.json 의 단어가 「회화」 구간으로 뒤에 붙는다.
 /// 빈도표가 비어 있으면(콘텐츠 동결 중) 준비 중 안내만 보인다.
 class WordFreqScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ class _WordFreqScreenState extends State<WordFreqScreen> {
         'R2': const _Region('R2 · 157-251', AppColors.beniLight),
         'R3': const _Region('R3 · 252-685', AppColors.kinDeep),
         'R4': const _Region('R4 · 686-1985', AppColors.matcha),
-        'R5': const _Region('R5 · 1986-2000', AppColors.muted),
+        'R5': const _Region('R5 · 1986-3000', AppColors.muted),
         'C': _Region(tr('회화'), AppColors.ai),
       };
 

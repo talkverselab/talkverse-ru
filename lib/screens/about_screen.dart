@@ -10,10 +10,10 @@ import '../core/theme.dart';
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
-  // 누적 55/60/70/80% 에 처음 닿는 순위. R5 는 2,000위에서 끊음(2,000위 누적 80.1%).
+  // 누적 55/60/70/80% 에 처음 닿는 순위. R5 는 3,000위에서 끊음(3,000위 누적 83.6%, 사용자 결정 2026-11-08).
   static const wordCliffs = [156, 251, 685, 1985];
-  static const wordCap = 2000;
-  static const wordCapPct = 80.1;
+  static const wordCap = 3000;
+  static const wordCapPct = 83.6;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class AboutScreen extends StatelessWidget {
             cap: wordCap,
             capPct: wordCapPct,
             unit: tr('어'),
-            note: tr('기본형과 품사가 같으면 단어 1개로 셉니다(격·시제로 바뀐 모양은 모두 기본형 하나). R5 는 2,000위에서 끊습니다(누적 80.1%).'),
+            note: tr('기본형과 품사가 같으면 단어 1개로 셉니다(격·시제로 바뀐 모양은 모두 기본형 하나). R5 는 3,000위에서 끊습니다(누적 83.6%).'),
           ),
           const SizedBox(height: 18),
           _H(tr('2. 산출 방식')),
@@ -50,7 +50,7 @@ class AboutScreen extends StatelessWidget {
           _Para(tr('구간 — 빈도순으로 누적해 55%·60%·70%·80%에 처음 닿는 순위가 R1·R2·R3·R4 의 끝. 80% 밖은 R5. 이 네 비율은 Talkverse 19개 언어 공통 기준입니다.')),
           const SizedBox(height: 18),
           _H(tr('3. 앱에서 쓰는 곳')),
-          _Para(tr('절벽 단어 — R1→R5 순서로 20어씩 한 단원. 「회화 단어 포함」을 누르면 이 앱의 회화에 나오는 단어가 「회화」 구간으로 뒤에 붙습니다.')),
+          _Para(tr('절벽 단어 — R1→R5 순서로 20어씩 한 단원(3,000어). 회화 레벨(0~5)은 문법 단계라 이 구간 번호와 뜻이 다릅니다. 「회화 단어 포함」을 누르면 이 앱의 회화에 나오는 단어가 「회화」 구간으로 뒤에 붙습니다.')),
           _Para(tr('성과 — 회화를 얼마나 익혔는지 구간별로 보여 줍니다.')),
         ],
       ),

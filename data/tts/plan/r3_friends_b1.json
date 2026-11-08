@@ -1,0 +1,53 @@
+{
+ "ep": "r3_friends_b1",
+ "cast": {
+  "B": "dima"
+ },
+ "turns": {
+  "1": [
+   "cheerful"
+  ],
+  "2": [
+   "neutral"
+  ],
+  "3": {
+   "segs": [
+    [
+     "neutral",
+     "То́лько я и мой брат."
+    ],
+    [
+     "amused",
+     "Ну, и его́ жена́."
+    ]
+   ]
+  },
+  "4": [
+   "worried"
+  ],
+  "5": [
+   "cheerful"
+  ],
+  "6": [
+   "worried"
+  ],
+  "7": [
+   "neutral"
+  ],
+  "8": [
+   "tsukkomi"
+  ],
+  "9": [
+   "amused"
+  ],
+  "10": [
+   "flustered"
+  ],
+  "11": [
+   "amused"
+  ],
+  "12": [
+   "neutral"
+  ]
+ }
+}

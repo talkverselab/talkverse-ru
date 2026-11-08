@@ -1,0 +1,132 @@
+{
+ "_meta": "러시아어 회화 음성 목소리·감정. ref = 참고 음성 전용 문장(앱에 나오지 않는다).",
+ "base_text": "Сегодня днём у меня встреча, поэтому я заранее подготовлю все документы.",
+ "voices": {
+  "am": {
+   "desc": "A young man in his twenties speaking fluent Russian with a light foreign accent, clear and gentle voice"
+  },
+  "af": {
+   "desc": "A young woman in her twenties speaking fluent Russian with a light foreign accent, clear and soft voice"
+  },
+  "anya": {
+   "desc": "A young Russian woman in her early twenties, bright, witty and lively voice"
+  },
+  "katya": {
+   "desc": "A young Russian woman in her early twenties, calm, intelligent and slightly cool voice"
+  },
+  "dima": {
+   "desc": "A Russian man in his mid twenties, relaxed, joking and slightly deep voice"
+  },
+  "misha": {
+   "desc": "A Russian man in his mid twenties, serious, shy and soft voice"
+  },
+  "man_y": {
+   "desc": "A Russian man around twenty, natural and clear voice"
+  },
+  "man_m": {
+   "desc": "A Russian man in his forties, steady and calm voice"
+  },
+  "man_o": {
+   "desc": "A Russian man in his seventies, aged and gentle voice"
+  },
+  "woman_y": {
+   "desc": "A Russian woman around twenty, natural and clear voice"
+  },
+  "woman_m": {
+   "desc": "A Russian woman in her forties, steady and warm voice"
+  },
+  "woman_o": {
+   "desc": "A Russian woman in her seventies, an energetic grandmother, aged and warm voice"
+  },
+  "casu": {
+   "desc": "A small playful alien character speaking fluent Russian, light, high, rhythmic and androgynous voice"
+  }
+ },
+ "emotions": {
+  "neutral": {
+   "instruct": "calm and natural, everyday tone",
+   "ref": "Сегодня хорошая погода, давай немного посидим здесь."
+  },
+  "polite": {
+   "instruct": "polite and professional, like a clerk or staff",
+   "ref": "Здравствуйте. Вот ваш заказ, пожалуйста, приятного аппетита."
+  },
+  "stiff": {
+   "instruct": "very nervous and stiff, formal and overly polite",
+   "ref": "Большое спасибо, что нашли время. Я постараюсь сделать всё возможное."
+  },
+  "cheerful": {
+   "instruct": "cheerful, bright and friendly",
+   "ref": "О, ты уже здесь? Как здорово, сегодня отлично погуляем!"
+  },
+  "amused": {
+   "instruct": "amused, laughing warmly, relaxed",
+   "ref": "Ха-ха, ну ты даёшь. Ладно, пусть будет так."
+  },
+  "teasing": {
+   "instruct": "teasing, playful and mischievous",
+   "ref": "Что это ты покраснел? Ну давай, скажи правду, я никому не расскажу."
+  },
+  "excited": {
+   "instruct": "excited, bursting with energy, bright and loud",
+   "ref": "Получилось, получилось! Боже мой, я так рада, просто супер!"
+  },
+  "surprised": {
+   "instruct": "surprised, caught off guard, voice jumps",
+   "ref": "Что? Правда? Подожди, это как вообще?"
+  },
+  "shout": {
+   "instruct": "surprised and loud, an exaggerated comic retort",
+   "ref": "Что?! Прямо сейчас?! Ты с ума сошёл?!"
+  },
+  "tsukkomi": {
+   "instruct": "a quick sharp comic retort, exasperated but fond",
+   "ref": "Да нет же, не так! Ну зачем ты это сделал!"
+  },
+  "annoyed": {
+   "instruct": "annoyed, irritated, sighing",
+   "ref": "Опять ты об этом? Ну хватит уже, пожалуйста."
+  },
+  "sad": {
+   "instruct": "sad, quiet, voice slightly trembling",
+   "ref": "Просто я очень устала. Ничего, не волнуйся за меня."
+  },
+  "worried": {
+   "instruct": "worried and anxious, hesitant",
+   "ref": "Ты в порядке? Где болит? Может, пойдём к врачу?"
+  },
+  "flustered": {
+   "instruct": "flustered and embarrassed, stammering, unsure",
+   "ref": "Ой, я, это, подожди, я даже не знаю, что сказать."
+  },
+  "shy": {
+   "instruct": "shy and soft, a little embarrassed, quiet",
+   "ref": "Ну, мне с тобой хорошо. Только никому не говори."
+  },
+  "gentle": {
+   "instruct": "gentle, warm and tender, close and quiet",
+   "ref": "Всё хорошо, я рядом. Не бойся, я никуда не уйду."
+  }
+ },
+ "fill": {
+  "{name}": {
+   "m": {
+    "es": "А́лекс",
+    "rd": "알렉스",
+    "ko": "알렉스"
+   },
+   "f": {
+    "es": "Э́мма",
+    "rd": "에마",
+    "ko": "에마"
+   }
+  }
+ },
+ "names": {
+  "А́ня": "anya",
+  "Ка́тя": "katya",
+  "Ди́ма": "dima",
+  "Ми́ша": "misha",
+  "Касу": "casu"
+ }
+}
