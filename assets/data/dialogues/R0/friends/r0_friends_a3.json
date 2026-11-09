@@ -3,11 +3,11 @@
  "region": "R0",
  "island": "friends",
  "kind": "short",
- "title": "응, 아니, 몰라",
+ "title": "응 아니 몰라",
  "emoji": "🤷",
  "register": "ty",
  "where": "미샤 집",
- "scene": "미샤가 질문을 쏟아낸다. A 는 세 마디로만 버틴다",
+ "scene": "미샤가 소파에서 질문을 쏟아낸다. A 는 세 마디로만 버틴다",
  "purpose": [
   "making_friends"
  ],
@@ -31,98 +31,103 @@
   {
    "num": 1,
    "speaker": "B",
-   "es": "Ты зна́ешь Ди́му?",
-   "rd": "띄 즈나예시 지무",
-   "ko": "너 지마 알아?",
-   "note": "Ди́му = 지마를(대격)",
+   "es": "Ди́му зна́ешь?",
+   "ko": "지마 알아?",
+   "note": "Ди́му = 지마를",
    "tags": [],
    "emotion": "shy",
-   "new": []
+   "new": [],
+   "rd": "지무 즈나예시"
   },
   {
    "num": 2,
    "speaker": "A",
-   "es": "Да, зна́ю.",
-   "rd": "다 즈나유",
-   "ko": "응, 알아.",
-   "note": null,
+   "es": "Да.",
+   "ko": "응.",
+   "note": "",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "cheerful",
+   "new": [],
+   "rd": "다"
   },
   {
    "num": 3,
    "speaker": "B",
-   "es": "Он твой друг?",
-   "rd": "온 뜨보이 드룩",
-   "ko": "네 친구야?",
-   "note": null,
+   "es": "Он тебе́ друг?",
+   "ko": "너한테 친구야?",
+   "note": "тебе́ = 너에게",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "curious",
+   "new": [],
+   "rd": "온 찌볘 드룩"
   },
   {
    "num": 4,
    "speaker": "A",
-   "es": "Нет, не друг.",
-   "rd": "녵 니 드룩",
-   "ko": "아니, 친구 아니야.",
-   "note": null,
+   "es": "Нет.",
+   "ko": "아니.",
+   "note": "",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "amused",
+   "new": [],
+   "rd": "녵"
   },
   {
    "num": 5,
    "speaker": "B",
-   "es": "А кто он тебе́?",
-   "rd": "아 끄또 온 찌볘",
-   "ko": "그럼 너한테 누군데?",
-   "note": "кто он тебе́ = 너에게 그는 누구",
+   "es": "А кто он?",
+   "ko": "그럼 누군데?",
+   "note": "",
    "tags": [],
    "emotion": "surprised",
-   "new": []
+   "new": [],
+   "rd": "아 끄또 온"
   },
   {
    "num": 6,
    "speaker": "A",
-   "es": "Не зна́ю. Он сам не зна́ет.",
-   "rd": "니 즈나유 온 삼 니 즈나옡",
-   "ko": "몰라. 자기도 몰라.",
-   "note": null,
+   "es": "Не зна́ю.",
+   "ko": "몰라.",
+   "note": "Не зна́ю = 몰라",
    "tags": [],
    "emotion": "amused",
-   "new": []
+   "new": [],
+   "rd": "니 즈나유"
   },
   {
    "num": 7,
    "speaker": "B",
-   "es": "Он говори́т, что ты его́ друг.",
-   "rd": "온 가바맅 시또 띄 이보 드룩",
-   "ko": "걔는 네가 자기 친구라는데.",
-   "note": "что = ~라고(접속사)",
+   "es": "Он говори́т: ты друг.",
+   "ko": "걔가 네가 친구라는데.",
+   "note": "",
    "tags": [
     "twist"
    ],
    "emotion": "teasing",
-   "new": []
+   "new": [
+    "подруга"
+   ],
+   "rd": "온 가바맅 띄 드룩",
+   "es_f": "Он говори́т: ты подру́га.",
+   "ko_f": "걔가 네가 친구라는데.",
+   "rd_f": "온 가바맅 띄 빠드루가"
   },
   {
    "num": 8,
    "speaker": "A",
-   "es": "Тогда́ да. Друг.",
-   "rd": "따그다 다 드룩",
-   "ko": "그럼 응. 친구.",
-   "note": null,
+   "es": "Ну, да. Друг.",
+   "ko": "음, 응. 친구.",
+   "note": "Ну = 음",
    "tags": [],
    "emotion": "cheerful",
-   "new": []
+   "new": [],
+   "rd": "누 다 드룩"
   }
  ],
  "draft": true,
  "flags": [],
  "review": {
-  "stage": "claude_draft",
-  "date": "2026-11-08"
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
  }
 }

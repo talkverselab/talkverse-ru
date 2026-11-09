@@ -3,11 +3,11 @@
  "region": "R0",
  "island": "culture",
  "kind": "short",
- "title": "이거 뭐야",
+ "title": "내 작업이야?",
  "emoji": "📱",
  "register": "ty",
- "where": "카페 아닌 까쨔 집",
- "scene": "까쨔가 폰으로 뭘 보여 준다. A 는 「이거 뭐야」만 묻는데 답이 점점 이상하다",
+ "where": "까쨔 집 거실",
+ "scene": "까쨔가 소파에서 폰으로 사진 보여 준다. A 는 「뭐야」만 묻는데 답이 점점 이상해진다",
  "purpose": [
   "media",
   "making_friends"
@@ -35,86 +35,86 @@
    "num": 1,
    "speaker": "A",
    "es": "Что э́то?",
-   "rd": "시또 에따",
    "ko": "이거 뭐야?",
    "note": "Что э́то? = 이게 뭐야?",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "curious",
+   "new": [],
+   "rd": "시또 에따"
   },
   {
    "num": 2,
    "speaker": "B",
-   "es": "Э́то моя́ рабо́та.",
-   "rd": "에따 마야 라보따",
-   "ko": "내 작업이야.",
-   "note": "рабо́та = 일, 작업",
+   "es": "Ну, моя́ рабо́та.",
+   "ko": "음, 내 작업이야.",
+   "note": "Ну = 음",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "cheerful",
+   "new": [],
+   "rd": "누 마야 라보따"
   },
   {
    "num": 3,
    "speaker": "A",
-   "es": "А э́то что?",
-   "rd": "아 에따 시또",
-   "ko": "그럼 이건?",
-   "note": null,
+   "es": "Пра́вда?",
+   "ko": "진짜?",
+   "note": "Пра́вда? = 진짜야?",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "surprised",
+   "new": [],
+   "rd": "쁘라브다"
   },
   {
    "num": 4,
    "speaker": "B",
-   "es": "Э́то то́же моя́ рабо́та.",
-   "rd": "에따 또지 마야 라보따",
-   "ko": "이것도 내 작업.",
-   "note": null,
+   "es": "Да. То́же рабо́та.",
+   "ko": "응. 이것도 작업.",
+   "note": "",
    "tags": [],
-   "emotion": "neutral",
-   "new": []
+   "emotion": "amused",
+   "new": [],
+   "rd": "다 또지 라보따"
   },
   {
    "num": 5,
    "speaker": "A",
-   "es": "А э́то кто? Э́то же я!",
-   "rd": "아 에따 끄또 에따 제 야",
-   "ko": "이건 누구? 이거 나잖아!",
-   "note": "же = 강조",
+   "es": "А э́то кто? Я!",
+   "ko": "이건 누구? 나잖아!",
+   "note": "",
    "tags": [
     "twist"
    ],
    "emotion": "surprised",
-   "new": []
+   "new": [],
+   "rd": "아 에따 끄또 야"
   },
   {
    "num": 6,
    "speaker": "B",
-   "es": "Да. Ты то́же моя́ рабо́та.",
-   "rd": "다 띄 또지 마야 라보따",
-   "ko": "응. 너도 내 작업이야.",
-   "note": null,
+   "es": "Класс! Ты то́же рабо́та.",
+   "ko": "멋져! 너도 작업이야.",
+   "note": "Класс = 멋져",
    "tags": [],
    "emotion": "teasing",
-   "new": []
+   "new": [],
+   "rd": "끌라스 띄 또지 라보따"
   },
   {
    "num": 7,
    "speaker": "A",
-   "es": "Ка́тя, что ты де́лаешь?!",
-   "rd": "까쨔 시또 띄 젤라예시",
-   "ko": "까쨔, 뭐 하는 거야?!",
-   "note": null,
+   "es": "Ка́тя! Что?!",
+   "ko": "까쨔! 뭐야?!",
+   "note": "",
    "tags": [],
    "emotion": "shout",
-   "new": []
+   "new": [],
+   "rd": "까쨔 시또"
   }
  ],
  "draft": true,
  "flags": [],
  "review": {
-  "stage": "claude_draft",
-  "date": "2026-11-08"
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
  }
 }
