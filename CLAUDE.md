@@ -127,6 +127,12 @@ adb -s R3CY20HDN2K install --user 0 -r <apk>
 - `ios/Runner/Info.plist` 에 마이크·음성 인식 권한 문구가 있다(말하기 연습). 지우면 iOS 에서 크래시.
 - `release.yml`(Android) 은 `ios/**`·`docs/**`·`tools/**` 만 바뀐 푸시는 건너뛴다.
 
+## 7-1. 통합 앱 연결 · 패키지 이름 (2026-11-09)
+
+- 안드로이드 `applicationId`·`namespace` = **`com.talkverse.russian_universe`**(옛 `com.example.russian_universe` 에서 변경 — 폰의 옛 앱과 다른 앱으로 깔린다, 서명 키는 §1 그대로). iOS 번들 `com.talkverse.russianUniverse`.
+- Talkverse 통합 앱(`~/talkverse/talkverse-app`)이 이 저장소를 패키지 `russian_universe` 로 가져간다: `lib/embed.dart`(`embedInit`·`embedApp`), 에셋은 `assetPath()`, 설정 키는 `Prefs`(접두 `ru_`), 계정 clientId = 통합 앱 `talkverse` / 단독 `ru`, 콜백 `talkverse.ru://auth`, 통합 앱에선 결제 스트림을 통합 앱이 넘김(`Purchase.ownStream`). 안내서 `~/talkverse/talkverse-app/EMBED_GUIDE.md`. 통합 앱은 이 세션에서 고치거나 빌드하지 않는다.
+- 결제 화면 `lib/screens/paywall_screen.dart`(가격 `~/talkverse/PRICING.md`, 상품 `lang_ru_*`·`all_*`), 지금 잠긴 기능 없음.
+
 ## 8. Zealot 무선 설치 (apps.talkverse.uk) — 2026-10-11
 
 - **Zealot 앱이름: 러시아어유니버스** (앱 표시 이름 그대로. 2026-10-11 정함 — 그전에 Zealot 에 올린 적 없음. 바꾸면 Zealot 에 다른 앱이 새로 생긴다.)

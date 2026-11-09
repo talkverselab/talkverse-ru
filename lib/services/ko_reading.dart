@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../core/prefs.dart';
 import '../core/l10n.dart';
 import '../core/theme.dart';
 
@@ -13,7 +13,7 @@ class KoReadingPrefs {
   static final ValueNotifier<bool> show = ValueNotifier<bool>(false);
 
   static Future<void> load() async {
-    final p = await SharedPreferences.getInstance();
+    final p = await Prefs.getInstance();
     show.value = p.getBool(_key) ?? false;
   }
 
@@ -29,7 +29,7 @@ class KoReadingPrefs {
           backgroundColor: AppColors.sumi,
         ));
     }
-    final p = await SharedPreferences.getInstance();
+    final p = await Prefs.getInstance();
     await p.setBool(_key, show.value);
   }
 }

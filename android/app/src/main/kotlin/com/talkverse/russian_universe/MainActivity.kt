@@ -1,4 +1,4 @@
-package com.example.russian_universe
+package com.talkverse.russian_universe
 
 import android.content.Intent
 import android.net.Uri

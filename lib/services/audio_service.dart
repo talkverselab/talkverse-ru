@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import '../core/embed_env.dart';
 import '../core/platform.dart';
 
 class AudioService {
@@ -25,7 +26,7 @@ class AudioService {
       ));
     }
     try {
-      final raw = await rootBundle.loadString('assets/data/audio_manifest.json');
+      final raw = await rootBundle.loadString(assetPath('assets/data/audio_manifest.json'));
       final data = json.decode(raw) as Map<String, dynamic>;
       final words = (data['words'] as Map<String, dynamic>?) ?? {};
       _wordMap = words.map((k, v) => MapEntry(k, v.toString()));
@@ -43,10 +44,11 @@ class AudioService {
     await ensureLoaded();
     final path = _wordMap[word];
     if (path == null) return false;
-    final assetPath = path.startsWith('assets/') ? path.substring('assets/'.length) : path;
+    final rel = path.startsWith('assets/') ? path.substring('assets/'.length) : path;
     try {
       await _player.stop();
-      await _player.play(AssetSource(assetPath));
+      if (embedded) _player.audioCache = AudioCache(prefix: assetPath('assets/')); // 통합 앱: packages/russian_universe/assets/
+      await _player.play(AssetSource(rel));
       return true;
     } catch (e) {
       return false;

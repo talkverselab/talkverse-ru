@@ -1,3 +1,9 @@
+import '../embed.dart' show switchLanguage;
+import '../services/account.dart';
+import '../services/purchase.dart';
+import '../widgets/legal_links.dart';
+import 'login_screen.dart';
+import 'paywall_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'about_screen.dart';
@@ -101,6 +107,16 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
+          if (switchLanguage != null) ...[
+            _SettingsGroup(items: [
+              _SettingItem(icon: Icons.swap_horiz, title: tr('다른 언어 배우기'), subtitle: tr('Talkverse 의 다른 언어로 이동'), onTap: switchLanguage!),
+            ]),
+            const SizedBox(height: 16),
+          ],
+          _SectionTitle(tr('계정')),
+          const SizedBox(height: 8),
+          _AccountSection(),
+          const SizedBox(height: 16),
           _SectionTitle(tr('설정')),
           const SizedBox(height: 8),
           ValueListenableBuilder<bool>(valueListenable: KoReadingPrefs.show, builder: (context, _, _) => _SettingsGroup(items: [
@@ -126,6 +142,8 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () => openPane(context, (_) => const AboutScreen())),
             _SettingItem(icon: Icons.info_outline, title: tr('앱 버전'), subtitle: '0.1.0 · alpha'),
             _SettingItem(icon: Icons.copyright, title: tr('저작권'), subtitle: tr('러시아어유니버스 · 2026')),
+            _SettingItem(icon: Icons.description_outlined, title: tr('이용약관'), subtitle: 'talkverse.uk/terms', onTap: () => Legal.open(Legal.terms)),
+            _SettingItem(icon: Icons.privacy_tip_outlined, title: tr('개인정보처리방침'), subtitle: 'talkverse.uk/talkverse/ru/privacy', onTap: () => Legal.open(Legal.privacy)),
           ]),
           const SizedBox(height: 20),
           const BandDivider(),
@@ -135,6 +153,49 @@ class ProfileScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Talkverse 계정 — 로그인 전: 로그인 타일 / 로그인 후: 이름·이메일·로그아웃·계정 삭제(스토어 심사 요구) + 이용권(일본어앱 방식).
+class _AccountSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => ValueListenableBuilder<Map<String, dynamic>?>(
+        valueListenable: Account.user,
+        builder: (context, u, _) => _SettingsGroup(items: [
+          if (u == null)
+            _SettingItem(icon: Icons.account_circle_outlined, title: tr('로그인'), subtitle: tr('Talkverse 계정 하나로 모든 앱에서 (선택)'), onTap: () => LoginScreen.open(context))
+          else ...[
+            _SettingItem(icon: Icons.account_circle, title: (u['display_name'] as String?) ?? tr('이름 없음'), subtitle: (u['email'] as String?) ?? ''),
+            _SettingItem(icon: Icons.logout, title: tr('로그아웃'), subtitle: tr('이 기기에서만 로그아웃'), onTap: () => Account.signOut()),
+            _SettingItem(icon: Icons.person_remove_outlined, title: tr('계정 삭제'), subtitle: tr('서버의 개인정보 삭제 · 모든 기기 로그아웃'), onTap: () => _confirmDelete(context)),
+          ],
+          _SettingItem(
+            icon: Icons.workspace_premium_outlined,
+            title: tr('이용권'),
+            subtitle: Account.has('ru') || Purchase.owns('ru') ? tr('보유 중') : tr('1개월·3개월·1년·평생 · 구매 또는 이전 구매 복원'),
+            onTap: () => PaywallScreen.show(context),
+          ),
+        ]),
+      );
+
+  Future<void> _confirmDelete(BuildContext context) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: Text(tr('계정을 삭제할까요?')),
+        content: Text(tr('Talkverse 계정과 이름·이메일·로그인 정보가 지워지고 모든 기기에서 로그아웃됩니다. 이 기기의 학습 기록은 그대로 남습니다. 되돌릴 수 없습니다.')),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: Text(tr('취소'))),
+          TextButton(onPressed: () => Navigator.pop(c, true), child: Text(tr('삭제'), style: const TextStyle(color: Colors.redAccent))),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    try {
+      await Account.deleteAccount();
+    } catch (_) {
+      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('삭제하지 못했습니다. 네트워크를 확인하고 다시 시도해 주세요.'))));
+    }
   }
 }
 

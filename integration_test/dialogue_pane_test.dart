@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:russian_universe/core/l10n.dart';
 import 'package:russian_universe/data/db/app_database.dart';
 import 'package:russian_universe/data/db/seed_loader.dart';
-import 'package:russian_universe/main.dart';
+import 'package:russian_universe/embed.dart';
 import 'package:russian_universe/services/achievement_service.dart';
 import 'package:russian_universe/services/ko_reading.dart';
 import 'package:russian_universe/services/learner_prefs.dart';
@@ -39,7 +39,7 @@ void main() {
     await AppLangPrefs.load();
     await LearnerPrefs.load();
     await AchievementService.instance.load();
-    await t.pumpWidget(const GermanUniverseApp());
+    await t.pumpWidget(const RussianUniverseApp());
     await wait(t, 1500);
     await shot(t, '01_home_wide');
 
