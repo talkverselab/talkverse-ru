@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
 /// 통합 앱(Talkverse, com.talkverse.app) 안에 패키지로 들어갔는지 — `embedInit()` 이 정한다(2026-11-09 uk `EMBED_GUIDE.md`).
 /// 단독 앱(러시아어 유니버스)에서는 false 이고 모든 동작이 예전과 같다.
 bool embedded = false;
@@ -12,3 +16,14 @@ String assetPath(String p) => embedded ? '$_pkg$p' : p;
 
 /// AssetManifest 의 키 → 앱 안 상대 경로(`assets/...`). 패키지 접두가 있으면 뗀다.
 String stripAssetPrefix(String p) => p.startsWith(_pkg) ? p.substring(_pkg.length) : p;
+
+String? _dir;
+
+/// 이 언어 전용 기기 저장 폴더(Application Support/ru) — 통합 앱에서 다른 언어와 겹치지 않게(2026-11-18, 일본어앱 방식).
+Future<String> dataDir() async {
+  if (_dir != null) return _dir!;
+  final base = (await getApplicationSupportDirectory()).path;
+  final d = Directory('$base/ru');
+  if (!d.existsSync()) d.createSync(recursive: true);
+  return _dir = d.path;
+}

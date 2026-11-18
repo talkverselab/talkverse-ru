@@ -6,6 +6,7 @@ import 'core/theme.dart';
 import 'data/db/app_database.dart';
 import 'data/db/seed_loader.dart';
 import 'screens/main_screen.dart';
+import 'services/script_sync.dart';
 import 'services/account.dart';
 import 'services/achievement_service.dart';
 import 'services/entitlement.dart';
@@ -37,6 +38,10 @@ Future<void> embedInit({bool standalone = false}) async {
   await AppLangPrefs.load();
   await LearnerPrefs.load();
   await AchievementService.instance.load();
+  // 회화 원고 서버 판 — 켤 때마다 무조건 확인(일본어앱 빌드 114). 15초 넘으면 앱을 열고 뒤에서 마저 받는다.
+  try {
+    await ScriptSync.instance.refresh().timeout(ScriptSync.startupWait);
+  } catch (_) {}
   // Talkverse ID 로그인(선택) + 스토어 결제 — 통합 앱이면 결제 스트림은 공용 결제가 넘겨준다(Purchase.ownStream)
   Account.load();
   await Entitlement.load();
