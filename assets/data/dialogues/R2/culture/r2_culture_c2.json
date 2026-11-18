@@ -53,7 +53,7 @@
    "speaker": "A",
    "es": "Не грусти́! 😅",
    "ko": "슬퍼하지 마! 😅",
-   "note": "-",
+   "note": "",
    "tags": [],
    "emotion": "cheerful",
    "new": [
@@ -66,7 +66,7 @@
    "speaker": "B",
    "es": "Ха-ха? Что?",
    "ko": "하핫? 뭐야?",
-   "note": "-",
+   "note": "",
    "tags": [],
    "emotion": "surprised",
    "new": [],
@@ -103,7 +103,7 @@
    "speaker": "A",
    "es": "Ой, со́ри! Вот друго́е.",
    "ko": "어머, 미안! 다른 거.",
-   "note": "-",
+   "note": "",
    "tags": [],
    "emotion": "flustered",
    "new": [
