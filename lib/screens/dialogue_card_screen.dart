@@ -115,6 +115,8 @@ class _CardArt extends StatelessWidget {
   const _CardArt({super.key, required this.d, required this.t});
 
   Future<String?> _url() async {
+    final scene = await ArtService.instance.sceneCut(d.id, t.num, large: true);
+    if (scene != null) return scene;
     if (t.art != null) return t.art;
     for (final w in t.pictureWords) {
       final u = await ArtService.instance.urlFor(w);
