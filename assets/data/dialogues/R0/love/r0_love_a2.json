@@ -1,0 +1,135 @@
+{
+ "id": "r0_love_a2",
+ "region": "R0",
+ "island": "love",
+ "kind": "short",
+ "title": "오늘? 몇 시?",
+ "emoji": "⏰",
+ "register": "ty",
+ "where": "대학 복도",
+ "scene": "아냐가 A 에게 오늘 몇 시에 끝나냐고 묻는다. 그냥 묻는 줄 알았는데",
+ "purpose": [
+  "love"
+ ],
+ "domain": [
+  "love"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "А́ня"
+ },
+ "twist": 6,
+ "twist_type": "emotion",
+ "expressions": [
+  "Когда́",
+  "Сего́дня",
+  "Вме́сте",
+  "Ну"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Когда́ сего́дня?",
+   "ko": "오늘 언제?",
+   "note": "когда́ = 언제",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "까그다 시보드냐"
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "В пять.",
+   "ko": "다섯 시.",
+   "note": "пять = 다섯",
+   "tags": [],
+   "emotion": "neutral",
+   "new": [
+    "пять"
+   ],
+   "rd": "브 뺘찌"
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "А пото́м?",
+   "ko": "그다음엔?",
+   "note": "пото́м = 그다음",
+   "tags": [],
+   "emotion": "curious",
+   "new": [],
+   "rd": "아 빠똠"
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Иду́ домо́й.",
+   "ko": "집에 가.",
+   "note": "дом = 집",
+   "tags": [],
+   "emotion": "polite",
+   "new": [
+    "домой"
+   ],
+   "rd": "이두 다모이"
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Ты оди́н?",
+   "ko": "혼자야?",
+   "note": "оди́н = 혼자",
+   "tags": [],
+   "emotion": "teasing",
+   "new": [],
+   "rd": "띄 아진",
+   "es_f": "Ты одна́?",
+   "ko_f": "혼자야?",
+   "rd_f": "띄 아드나"
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Да. Почему́?",
+   "ko": "응. 왜?",
+   "note": "почему́ = 왜",
+   "tags": [],
+   "emotion": "surprised",
+   "new": [],
+   "rd": "다 빠치무"
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Я то́же в пять...",
+   "ko": "나도 다섯 시...",
+   "note": "то́же = 도",
+   "tags": [],
+   "emotion": "shy",
+   "new": [
+    "пять"
+   ],
+   "rd": "야 또지 브 뺘찌"
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Ну... вме́сте?",
+   "ko": "그럼... 같이?",
+   "note": "вме́сте = 같이",
+   "tags": [],
+   "emotion": "flustered",
+   "new": [],
+   "rd": "누 브몌스찌"
+  }
+ ]
+}

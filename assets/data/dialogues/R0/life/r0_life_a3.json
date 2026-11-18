@@ -1,0 +1,133 @@
+{
+ "id": "r0_life_a3",
+ "region": "R0",
+ "island": "life",
+ "kind": "short",
+ "title": "이거, 이거, 이거도",
+ "emoji": "🥐",
+ "register": "ty",
+ "where": "미샤가 일하는 빵집",
+ "scene": "A 가 빵 이름을 몰라 손가락으로 「이거」만 가리킨다. 미샤가 신나서 계속 담는다",
+ "purpose": [
+  "daily_life"
+ ],
+ "domain": [
+  "life"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ми́ша"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Э́то",
+  "Ещё",
+  "Всё",
+  "Ско́лько"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "A",
+   "es": "Э́то, пожа́луйста.",
+   "ko": "이거, 주세요.",
+   "note": "э́то = 이거",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "에따 빠잘루스따"
+  },
+  {
+   "num": 2,
+   "speaker": "B",
+   "es": "Э́то? Беру́!",
+   "ko": "이거? 담을게!",
+   "note": "беру́ = 담다",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [
+    "брать"
+   ],
+   "rd": "에따 비루"
+  },
+  {
+   "num": 3,
+   "speaker": "A",
+   "es": "Ещё одно́.",
+   "ko": "하나 더.",
+   "note": "ещё = 더",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "이쇼 아드노"
+  },
+  {
+   "num": 4,
+   "speaker": "B",
+   "es": "Ещё? Дава́й!",
+   "ko": "더? 좋아!",
+   "note": "дава́й = 좋아",
+   "tags": [],
+   "emotion": "excited",
+   "new": [],
+   "rd": "이쇼 다바이"
+  },
+  {
+   "num": 5,
+   "speaker": "A",
+   "es": "И э́то.",
+   "ko": "이것도.",
+   "note": "и э́то = 이것도",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [],
+   "rd": "이 에따"
+  },
+  {
+   "num": 6,
+   "speaker": "B",
+   "es": "Всё?! Весь магази́н?",
+   "ko": "전부?! 가게 전부?",
+   "note": "всё = 전부",
+   "tags": [],
+   "emotion": "surprised",
+   "new": [
+    "магазин"
+   ],
+   "rd": "프쇼 볘시 마가진"
+  },
+  {
+   "num": 7,
+   "speaker": "A",
+   "es": "Ско́лько сто́ит?",
+   "ko": "얼마야?",
+   "note": "ско́лько = 얼마",
+   "tags": [],
+   "emotion": "worried",
+   "new": [],
+   "rd": "스꼴까 스또잍"
+  },
+  {
+   "num": 8,
+   "speaker": "B",
+   "es": "Беспла́тно. За́втра!",
+   "ko": "공짜야. 내일!",
+   "note": "беспла́тно = 공짜",
+   "tags": [],
+   "emotion": "teasing",
+   "new": [
+    "бесплатно",
+    "завтра"
+   ],
+   "rd": "비스쁠라뜨나 자프뜨라"
+  }
+ ]
+}

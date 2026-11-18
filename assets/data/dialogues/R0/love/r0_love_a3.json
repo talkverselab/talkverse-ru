@@ -1,0 +1,132 @@
+{
+ "id": "r0_love_a3",
+ "region": "R0",
+ "island": "love",
+ "kind": "short",
+ "title": "번호",
+ "emoji": "📱",
+ "register": "ty",
+ "where": "카페 계산대 앞",
+ "scene": "아냐가 A 이름 철자를 묻다가 폰을 내민다",
+ "purpose": [
+  "love"
+ ],
+ "domain": [
+  "love"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "А́ня"
+ },
+ "twist": 5,
+ "twist_type": "emotion",
+ "expressions": [
+  "Как",
+  "Ещё раз",
+  "Пиши́",
+  "Ну"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Как пи́шешь?",
+   "ko": "어떻게 써?",
+   "note": "как = 어떻게",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "깍 삐시시"
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Меня́ {name}.",
+   "ko": "나 {name}.",
+   "note": "{name} = 이름",
+   "tags": [],
+   "emotion": "neutral",
+   "new": [],
+   "rd": "미냐 {name}"
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Ещё раз?",
+   "ko": "다시 한 번?",
+   "note": "ещё раз = 다시",
+   "tags": [],
+   "emotion": "curious",
+   "new": [],
+   "rd": "이쇼 라스"
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Сно́ва {name}.",
+   "ko": "다시 {name}.",
+   "note": "{name} = 이름",
+   "tags": [],
+   "emotion": "polite",
+   "new": [
+    "снова"
+   ],
+   "rd": "스노바 {name}"
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Ну, пиши́.",
+   "ko": "그냥 써.",
+   "note": "пиши́ = 써",
+   "tags": [],
+   "emotion": "shy",
+   "new": [],
+   "rd": "누 삐시"
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Вот, гото́во.",
+   "ko": "여기, 다 썼어.",
+   "note": "гото́во = 다 함",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [
+    "готовый"
+   ],
+   "rd": "봍 가또바"
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Но́мер то́же.",
+   "ko": "번호도.",
+   "note": "но́мер = 번호",
+   "tags": [],
+   "emotion": "teasing",
+   "new": [
+    "номер"
+   ],
+   "rd": "노미르 또지"
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Уже́.",
+   "ko": "이미.",
+   "note": "уже́ = 이미",
+   "tags": [],
+   "emotion": "amused",
+   "new": [],
+   "rd": "우제"
+  }
+ ]
+}

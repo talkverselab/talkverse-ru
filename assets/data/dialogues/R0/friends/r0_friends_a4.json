@@ -1,0 +1,134 @@
+{
+ "id": "r0_friends_a4",
+ "region": "R0",
+ "island": "friends",
+ "kind": "short",
+ "title": "배고파?",
+ "emoji": "🍲",
+ "register": "ty",
+ "where": "지마 집 부엌",
+ "scene": "지마가 A 에게 배고프냐고 자꾸 묻는다. 알고 보니 지마가 배고프다",
+ "purpose": [
+  "making_friends"
+ ],
+ "domain": [
+  "friends"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ди́ма"
+ },
+ "twist": 6,
+ "twist_type": "reveal",
+ "expressions": [
+  "Хо́чешь",
+  "Есть",
+  "Я то́же",
+  "Ну"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Хо́чешь есть?",
+   "ko": "배고파?",
+   "note": "хо́чешь есть = 먹고 싶어",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [],
+   "rd": "호치시 예스찌"
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Не́т, спаси́бо.",
+   "ko": "아니, 고마워.",
+   "note": "не́т = 아니",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "녵 스빠씨바"
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Суп есть. Ну?",
+   "ko": "수프 있어. 응?",
+   "note": "суп = 수프",
+   "tags": [],
+   "emotion": "teasing",
+   "new": [
+    "суп"
+   ],
+   "rd": "숩 예스찌 누"
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Я норма́льно.",
+   "ko": "난 괜찮아.",
+   "note": "норма́льно = 괜찮아",
+   "tags": [],
+   "emotion": "neutral",
+   "new": [
+    "нормально"
+   ],
+   "rd": "야 나르말나"
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Хлеб то́же.",
+   "ko": "빵도 있어.",
+   "note": "хлеб = 빵",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [
+    "хлеб"
+   ],
+   "rd": "흘롑 또지"
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Почему́ спра́шиваешь?",
+   "ko": "왜 물어?",
+   "note": "почему́ = 왜",
+   "tags": [],
+   "emotion": "surprised",
+   "new": [
+    "спрашивать"
+   ],
+   "rd": "빠치무 스쁘라시바예시"
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Я хочу́.",
+   "ko": "나 배고파.",
+   "note": "я = 나",
+   "tags": [],
+   "emotion": "shy",
+   "new": [],
+   "rd": "야 하추"
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Я то́же.",
+   "ko": "나도.",
+   "note": "я то́же = 나도",
+   "tags": [],
+   "emotion": "amused",
+   "new": [],
+   "rd": "야 또지"
+  }
+ ]
+}

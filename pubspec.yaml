@@ -70,6 +70,7 @@ flutter:
     - assets/data/dialogues/R1/love/
     - assets/data/dialogues/R2/culture/
     - assets/data/dialogues/R2/friends/
+    - assets/data/dialogues/R2/life/
     - assets/data/dialogues/R2/love/
     - assets/data/dialogues/R3/culture/
     - assets/data/dialogues/R3/friends/

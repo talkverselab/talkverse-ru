@@ -1,0 +1,151 @@
+{
+ "id": "r2_culture_c3",
+ "region": "R2",
+ "island": "culture",
+ "kind": "chat",
+ "title": "생일 축하… 내일?",
+ "emoji": "🎂",
+ "register": "chat",
+ "where": "단톡방",
+ "scene": "A 가 단톡방에 미샤 생일 축하를 먼저 올리자 모두 따라 올리기 시작한다. 생일은 내일이다",
+ "purpose": [
+  "culture"
+ ],
+ "domain": [
+  "culture"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ми́ша"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Поздравля́ю",
+  "Серьёзно",
+  "Ну всё",
+  "Ой"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "A",
+   "es": "Поздравля́ю с днём рожде́ния!",
+   "ko": "생일 축하해!",
+   "note": "поздравля́ю = 축하해",
+   "tags": [],
+   "emotion": "excited",
+   "new": [
+    "рождение"
+   ],
+   "rd": "빠즈드라블랴유 스 드뇸 라즈제니야"
+  },
+  {
+   "num": 2,
+   "speaker": "B",
+   "es": "Спаси́бо…?",
+   "ko": "고마워…?",
+   "note": "-",
+   "tags": [],
+   "emotion": "surprised",
+   "new": [],
+   "rd": "스빠씨바"
+  },
+  {
+   "num": 3,
+   "speaker": "A",
+   "es": "Смотри́, торт!",
+   "ko": "봐, 케이크!",
+   "note": "торт = 케이크",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [
+    "торт"
+   ],
+   "rd": "스마뜨리 또르뜨"
+  },
+  {
+   "num": 4,
+   "speaker": "B",
+   "es": "Ой, все пи́шут, да́же ма́ма.",
+   "ko": "어머, 다들 보내, 엄마까지.",
+   "note": "ма́ма = 엄마",
+   "tags": [],
+   "emotion": "flustered",
+   "new": [
+    "писать"
+   ],
+   "rd": "오이 프셰 삐슡 다지 마마"
+  },
+  {
+   "num": 5,
+   "speaker": "A",
+   "es": "Кру́то же!",
+   "ko": "신나지 않아!",
+   "note": "-",
+   "tags": [],
+   "emotion": "excited",
+   "new": [
+    "круто"
+   ],
+   "rd": "끄루따 제"
+  },
+  {
+   "num": 6,
+   "speaker": "B",
+   "es": "Серьёзно? Мой день рожде́ния за́втра.",
+   "ko": "진짜? 내 생일은 내일이야.",
+   "note": "за́втра = 내일",
+   "tags": [],
+   "emotion": "surprised",
+   "new": [
+    "рождение"
+   ],
+   "rd": "시리요즈나 모이 젠 라즈제니야 자프뜨라"
+  },
+  {
+   "num": 7,
+   "speaker": "A",
+   "es": "Ой…",
+   "ko": "어머…",
+   "note": "-",
+   "tags": [],
+   "emotion": "flustered",
+   "new": [],
+   "rd": "오이"
+  },
+  {
+   "num": 8,
+   "speaker": "B",
+   "es": "Ну всё, у нас нельзя́ ра́ньше.",
+   "ko": "됐어, 우리는 미리 하면 안 돼.",
+   "note": "нельзя́ = 하면 안 돼",
+   "tags": [],
+   "emotion": "annoyed",
+   "new": [
+    "ранний"
+   ],
+   "rd": "누 프쇼 우 나스 닐쟈 란시"
+  },
+  {
+   "num": 9,
+   "speaker": "A",
+   "es": "Ла́дно, за́втра сно́ва.",
+   "ko": "알겠어, 내일 다시.",
+   "note": "-",
+   "tags": [],
+   "emotion": "shy",
+   "new": [
+    "снова"
+   ],
+   "rd": "라드나 자프뜨라 스노바"
+  }
+ ]
+}

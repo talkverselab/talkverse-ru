@@ -1,0 +1,137 @@
+{
+ "id": "r0_culture_a2",
+ "region": "R0",
+ "island": "culture",
+ "kind": "short",
+ "title": "고마워, 고마워…",
+ "emoji": "🥟",
+ "register": "ty",
+ "where": "까쨔 할머니 댁",
+ "scene": "까쨔 할머니 댁. A 가 고맙다고 할 때마다 접시가 하나씩 늘어난다",
+ "purpose": [
+  "culture"
+ ],
+ "domain": [
+  "culture"
+ ],
+ "speakers": {
+  "A": "{name}",
+  "B": "Ка́тя"
+ },
+ "twist": 6,
+ "twist_type": "chaos",
+ "expressions": [
+  "Спаси́бо",
+  "Ещё",
+  "Хва́тит",
+  "Вку́сно"
+ ],
+ "allow": [],
+ "draft": true,
+ "flags": [],
+ "review": {
+  "stage": "grok_rewrite",
+  "date": "2026-11-09"
+ },
+ "turns": [
+  {
+   "num": 1,
+   "speaker": "B",
+   "es": "Ба́бушкин. Ешь!",
+   "ko": "할머니 거야. 먹어!",
+   "note": "ешь = 먹어",
+   "tags": [],
+   "emotion": "cheerful",
+   "new": [
+    "бабушкин"
+   ],
+   "rd": "바부시낀 예시"
+  },
+  {
+   "num": 2,
+   "speaker": "A",
+   "es": "Спаси́бо. Вку́сно!",
+   "ko": "고마워. 맛있어!",
+   "note": "спаси́бо = 고마워",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "스빠씨바 프꾸스나"
+  },
+  {
+   "num": 3,
+   "speaker": "B",
+   "es": "Ещё одну́!",
+   "ko": "하나 더!",
+   "note": "ещё = 더",
+   "tags": [],
+   "emotion": "excited",
+   "new": [],
+   "rd": "이쇼 아드누"
+  },
+  {
+   "num": 4,
+   "speaker": "A",
+   "es": "Спаси́бо ещё.",
+   "ko": "또 고마워.",
+   "note": "спаси́бо = 고마워",
+   "tags": [],
+   "emotion": "polite",
+   "new": [],
+   "rd": "스빠씨바 이쇼"
+  },
+  {
+   "num": 5,
+   "speaker": "B",
+   "es": "Ещё таре́лка!",
+   "ko": "접시 또!",
+   "note": "таре́лка = 접시",
+   "tags": [],
+   "emotion": "amused",
+   "new": [
+    "тарелка"
+   ],
+   "rd": "이쇼 따롈까"
+  },
+  {
+   "num": 6,
+   "speaker": "A",
+   "es": "Хва́тит уже́!",
+   "ko": "이제 그만!",
+   "note": "хва́тит = 그만",
+   "tags": [],
+   "emotion": "worried",
+   "new": [],
+   "rd": "흐바찥 우제"
+  },
+  {
+   "num": 7,
+   "speaker": "B",
+   "es": "Не хва́тит. Сыт!",
+   "ko": "「그만」안 돼. 「배불러」!",
+   "note": "сыт = 배부르다",
+   "tags": [],
+   "emotion": "teasing",
+   "new": [
+    "сытый"
+   ],
+   "rd": "니 흐바찥 싙"
+  },
+  {
+   "num": 8,
+   "speaker": "A",
+   "es": "Я сыт!",
+   "ko": "나 배불러!",
+   "note": "я сыт = 나 배부르다",
+   "tags": [],
+   "emotion": "shout",
+   "new": [
+    "сытый"
+   ],
+   "rd": "야 싙",
+   "es_f": "Я сыта́!",
+   "ko_f": "나 배불러!",
+   "rd_f": "야 싀따"
+  }
+ ]
+}
