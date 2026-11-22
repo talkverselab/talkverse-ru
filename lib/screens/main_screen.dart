@@ -1,3 +1,4 @@
+import 'curriculum_screen.dart';
 import 'alphabet_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -431,6 +432,7 @@ class _MenuGrid extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const CurriculumHomeCard(), // 토크버스 커리큘럼(홈 첫 자리, 2026-11-22 CURRICULUM_SPEC)
         for (final (title, items) in sections) ...[
           Padding(
             padding: const EdgeInsets.only(top: 6, bottom: 8),
