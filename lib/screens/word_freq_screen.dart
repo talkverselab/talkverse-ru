@@ -9,6 +9,8 @@ import '../core/l10n.dart';
 import '../core/platform.dart';
 import '../core/theme.dart';
 import '../services/tts_service.dart';
+import '../core/pane.dart';
+import 'word_quiz_screen.dart';
 
 /// 절벽 단어 — 빈도 1~3,000위를 절벽구간(R1~R5)별 **20어 단원**, 단어는 **네모 타일**(일본어앱 구조, 2026-11-07).
 /// 「회화 단어 포함」이면 assets/data/freq/conv_words_ru.json 의 단어가 「회화」 구간으로 뒤에 붙는다.
@@ -132,6 +134,26 @@ class _WordFreqScreenState extends State<WordFreqScreen> {
                                   })),
                           const SizedBox(width: 8),
                           _ModeButton(label: trf('회화 단어 포함 (+{0})', [_conv.length]), selected: _withConv, onTap: () => setState(() => _withConv = true)),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          for (final st in kWordQuizStages) ...[
+                            if (st != kWordQuizStages.first) const SizedBox(width: 6),
+                            Expanded(
+                              child: OutlinedButton(
+                                key: ValueKey('wq-stage-${st.$2}'),
+                                style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 6), visualDensity: VisualDensity.compact),
+                                onPressed: () => openPane(
+                                    context,
+                                    (_) => WordQuizScreen(
+                                        title: tr(st.$1.split(' · ').first),
+                                        words: [for (final w in _words) if (w.rank <= st.$2) WQWord(w.word, w.ko, w.rank)])),
+                                child: Text('📝 ${tr(st.$1.split(' · ').first)}', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700)),
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                       const SizedBox(height: 8),
