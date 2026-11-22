@@ -13,6 +13,7 @@ import 'dialogue_screen.dart';
 import 'episode_screen.dart';
 import 'grammar_lesson_screen.dart';
 import 'profile_screen.dart';
+import 'sense_course_screen.dart';
 import 'sentence_flashcard_screen.dart';
 import 'speaking_practice_screen.dart';
 import 'progress_screen.dart';
@@ -400,6 +401,8 @@ class _MenuGrid extends StatelessWidget {
       (tr('문법'), [
         _MenuItem(label: tr('문법'), sub: 'Грамматика', badge: 'G', color: AppColors.rojoDeep,
           builder: (_) => const GrammarHubScreen()),
+        _MenuItem(label: tr('언어감각 익히기'), sub: tr('통째로 외워 격 감각 익히기'), badge: '感', color: AppColors.ai,
+          builder: (_) => const SenseCourseScreen()),
       ]),
       (tr('회화'), [
         _MenuItem(label: tr('회화'), sub: 'Разговор', badge: 'Ch', color: AppColors.beni,
