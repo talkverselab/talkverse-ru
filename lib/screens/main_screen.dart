@@ -1,4 +1,5 @@
 import 'curriculum_screen.dart';
+import 'custom_script_screen.dart';
 import 'alphabet_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -412,6 +413,10 @@ class _MenuGrid extends StatelessWidget {
           builder: (_) => const SentenceFlashcardScreen()),
         _MenuItem(label: tr('문장 말하기'), sub: tr('한글 보고 러시아어로'), badge: '🎙', color: AppColors.rojo,
           builder: (_) => const SpeakingPracticeScreen()),
+        // AI 회화 작성(일본어앱 맞춤 회화와 같게) — kCustomScriptLive=false 동안 숨김, 켜는 건 사용자 결정(2026-11-22 uk)
+        if (kCustomScriptLive)
+          _MenuItem(label: tr('맞춤 회화'), sub: tr('AI 가 내 상황으로 써 줌'), badge: 'AI', color: AppColors.kinDeep,
+            builder: (_) => const CustomScriptScreen()),
       ]),
       (tr('단어'), [
         _MenuItem(label: tr('절벽 단어'), sub: tr('R1~R5 · 빈도 3,000'), badge: 'F', color: AppColors.mar,
