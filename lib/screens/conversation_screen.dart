@@ -52,7 +52,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
           : ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                for (final level in EpisodeCatalog.levels) ...[
+                // 내용이 없는 급은 통째로 숨긴다(심사 빌드에 「준비 중」 자리표시 금지, 2026-11-22 uk)
+                for (final level in EpisodeCatalog.levels)
+                  if (catalog.forLevel(level).isNotEmpty) ...[
                   Row(
                     children: [
                       TileBadge(text: level, size: 28),
