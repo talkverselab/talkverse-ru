@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
+
 import '../core/embed_env.dart';
+import '../services/script_sync.dart';
 
 import '../core/theme.dart';
 import '../services/ko_reading.dart';
@@ -26,23 +28,40 @@ class GrammarLesson {
   int get exampleCount =>
       patterns.fold(0, (n, p) => n + ((p['examples'] as List?)?.length ?? 0));
 
+  /// 문법 스텝 = 데이터에 있는 `grammar/lessonN.json` 전부(개수·순서·제목을 코드에 두지 않음 — 사용자 지시 2026-11-23
+  /// 「스텝 15까지 … 내용이 없으면 자동으로 안나타나게」「DB가 업데이트되면 앱을 빌드안하고 스텝이 늘어날수도 줄어들수도」).
+  /// 목록 = 앱 안 파일 + 서버에만 있는 새 파일 − 서버 목록에서 빠진 파일(ScriptSync, 회화 편과 같은 길). 서버를 못 받았으면 앱 안 목록.
+  /// 패턴이 비었거나 `hidden: true` 인 스텝은 숨긴다(「준비 중」 칸 없음). 순서는 파일의 `lesson` 번호.
+  static final _pat = RegExp(r'^grammar/lesson\d+\.json$');
+
   static Future<List<GrammarLesson>> loadAll() async {
+    final sync = ScriptSync.instance;
+    await sync.init();
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    final rels = <String>{
+      for (final p in manifest.listAssets().map(stripAssetPrefix))
+        if (p.startsWith('assets/data/') && _pat.hasMatch(p.substring('assets/data/'.length))) p.substring('assets/data/'.length),
+      ...sync.added.where(_pat.hasMatch),
+    }..removeAll(sync.removed);
     final out = <GrammarLesson>[];
-    for (var i = 1; i <= 20; i++) {
+    for (final rel in rels) {
+      final i = int.parse(RegExp(r'\d+').firstMatch(rel)!.group(0)!);
       try {
-        final raw = await rootBundle.loadString(assetPath('assets/data/grammar/lesson$i.json'));
-        final d = json.decode(raw) as Map<String, dynamic>;
+        final d = json.decode(await sync.load(rel)) as Map<String, dynamic>;
+        final patterns = [for (final p in (d['patterns'] as List? ?? const [])) Map<String, dynamic>.from(p as Map)];
+        if (patterns.isEmpty || d['hidden'] == true) continue;
         out.add(GrammarLesson(
           (d['lesson'] as num?)?.toInt() ?? i,
           d['title'] as String? ?? trf('문법 {0}', [i]),
           d['subtitle'] as String? ?? '',
           [for (final s in (d['stages'] as List? ?? const [])) Map<String, dynamic>.from(s as Map)],
-          [for (final p in (d['patterns'] as List? ?? const [])) Map<String, dynamic>.from(p as Map)],
+          patterns,
         ));
       } catch (_) {
-        break;
+        // 읽을 수 없는 스텝은 건너뜀
       }
     }
+    out.sort((a, b) => a.number.compareTo(b.number));
     return out;
   }
 }

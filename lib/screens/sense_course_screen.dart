@@ -18,9 +18,15 @@ const _kAsset = 'assets/data/grammar/sense_course.json';
 
 class SenseCourse {
   static Map<String, dynamic>? _cache;
-  static Future<Map<String, dynamic>> load() async =>
-      // loadString 은 큰 파일을 다른 isolate 에서 풀어 위젯 테스트가 멈춘다 — 바이트로 읽어 여기서 푼다.
-      _cache ??= json.decode(await ScriptSync.instance.load(_kAsset.substring('assets/data/'.length))) as Map<String, dynamic>;
+  static int _cacheRev = -1;
+  static Future<Map<String, dynamic>> load() async {
+    // 서버 원고가 새로 오면(rev 바뀜) 다시 읽는다(2026-11-23 「DB업데이트 하면서 업뎃」).
+    await ScriptSync.instance.init();
+    if (_cache != null && _cacheRev == ScriptSync.instance.shownRev) return _cache!;
+    _cacheRev = ScriptSync.instance.shownRev;
+    // loadString 은 큰 파일을 다른 isolate 에서 풀어 위젯 테스트가 멈춘다 — 바이트로 읽어 여기서 푼다.
+    return _cache = json.decode(await ScriptSync.instance.load(_kAsset.substring('assets/data/'.length))) as Map<String, dynamic>;
+  }
 
   static Future<Set<String>> done() async => ((await Prefs.getInstance()).getStringList(_kDoneKey) ?? const []).toSet();
 
@@ -93,6 +99,7 @@ class _SenseCourseScreenState extends State<SenseCourseScreen> {
     ];
     var i = 0;
     for (final lv in (d['levels'] as List).cast<Map<String, dynamic>>()) {
+      if ((lv['lessons'] as List? ?? const []).isEmpty) continue; // 내용 없는 급은 숨김(서버에 오르면 나타남)
       children.add(Padding(
         padding: const EdgeInsets.fromLTRB(2, 18, 2, 8),
         child: Text('${lv['id']}  ${lv['title']}',
