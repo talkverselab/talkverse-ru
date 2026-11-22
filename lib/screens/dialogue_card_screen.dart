@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../core/l10n.dart';
 import '../core/platform.dart';
 import '../core/theme.dart';
+import '../services/dialogue_audio.dart';
 import '../services/achievement_service.dart';
 import '../services/art_service.dart';
 import '../services/dialogue_service.dart';
 import '../services/ko_reading.dart';
 import '../services/learner_prefs.dart';
-import '../services/tts_service.dart';
 import '../widgets/spanish_decor.dart';
 
 /// 편의 문장 플래시카드 — 일본어앱에서 옮김(2026-11-02). 앞면은 **그림만**(글자 없음), 탭하면 러시아어·독음·한국어.
@@ -32,7 +32,7 @@ class _DialogueCardScreenState extends State<DialogueCardScreen> {
 
   @override
   void dispose() {
-    TtsService.instance.stop();
+    DialogueAudio.instance.stop();
     super.dispose();
   }
 
@@ -100,7 +100,7 @@ class _DialogueCardScreenState extends State<DialogueCardScreen> {
           padding: EdgeInsets.fromLTRB(16, 6, 16, 20 + bottomInset(context)),
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             _Btn(icon: Icons.close, label: tr('틀렸어요'), color: AppColors.beni, onTap: () => _mark(false)),
-            _Btn(icon: Icons.volume_up, label: tr('듣기'), color: AppColors.ai, onTap: () => TtsService.instance.speakAs(t.tl.replaceAll(RegExp(r'\([^)]*\)'), '').replaceAll(RegExp(r'\{[a-z_]+\}'), ''), gender: d.voiceGender(t.speaker))),
+            _Btn(icon: Icons.volume_up, label: tr('듣기'), color: AppColors.ai, onTap: () => speakTurn(d, t)),
             _Btn(icon: Icons.check, label: tr('맞았어요'), color: AppColors.matcha, onTap: () => _mark(true)),
           ]),
         ),
