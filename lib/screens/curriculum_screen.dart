@@ -1,3 +1,4 @@
+import '../services/entitlement.dart';
 import 'package:flutter/material.dart';
 
 import '../core/l10n.dart';
@@ -161,7 +162,9 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
       for (final lv in _svc.levels)
         if (_svc.levelList(lv).isNotEmpty)
           _card(
-            onTap: () => _setLevel(lv),
+            onTap: () async {
+              if (await Entitlement.unlock(context, Entitlement.levelFree(lv))) _setLevel(lv);
+            },
             selected: _st.level == lv,
             child: Row(children: [
               TileBadge(text: lv, size: 40, color: AppColors.beni),
@@ -175,6 +178,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
                   ),
                 ]),
               ),
+              if (!Entitlement.levelFree(lv) && !Entitlement.premium) const Icon(Icons.lock_outline, size: 18, color: AppColors.muted),
               if (_st.level == null && lv == lowest) _pill(tr('추천'), AppColors.matcha),
             ]),
           ),
@@ -319,7 +323,10 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
       if (_svc.levelDone(lv) && _svc.nextLevel(lv) != null) ...[
         const SizedBox(height: 12),
         _card(
-          onTap: () => _setLevel(_svc.nextLevel(lv)!),
+          onTap: () async {
+            final nx = _svc.nextLevel(lv)!;
+            if (await Entitlement.unlock(context, Entitlement.levelFree(nx))) _setLevel(nx);
+          },
           child: Text(trf('{0} 편을 모두 통과했어요 → {1} 로', [_svc.levelLabel(lv), _svc.levelLabel(_svc.nextLevel(lv)!)]), style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.matcha)),
         ),
       ],
@@ -339,7 +346,9 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
       if (doneLevel && next != null) ...[
         const SizedBox(height: 8),
         _card(
-          onTap: () => _setLevel(next),
+          onTap: () async {
+            if (await Entitlement.unlock(context, Entitlement.levelFree(next))) _setLevel(next);
+          },
           child: Text(trf('{0} 편을 모두 통과했어요 → {1} 로', [_svc.levelLabel(lv), _svc.levelLabel(next)]), style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.matcha)),
         ),
       ],

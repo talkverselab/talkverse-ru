@@ -1,3 +1,4 @@
+import '../services/entitlement.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -36,6 +37,9 @@ class SenseCourse {
     await p.setStringList(_kDoneKey, s.toList());
   }
 
+  /// 회차가 든 급의 번호(1부터, 데이터 순서) — 이용권 잠금(PAYWALL_SPEC: 언어감각 1급 무료).
+  static int levelNo(Map<String, dynamic> d, Map<String, dynamic> lv) => (d['levels'] as List).indexOf(lv) + 1;
+
   /// 모든 회차를 순서대로 (레벨, 회차) 쌍으로.
   static List<(Map<String, dynamic>, Map<String, dynamic>)> flat(Map<String, dynamic> d) => [
         for (final lv in (d['levels'] as List).cast<Map<String, dynamic>>())
@@ -71,6 +75,9 @@ class _SenseCourseScreenState extends State<SenseCourseScreen> {
   }
 
   Future<void> _open(int index) async {
+    final d = _data!;
+    final free = Entitlement.senseLevelFree(SenseCourse.levelNo(d, SenseCourse.flat(d)[index].$1));
+    if (!await Entitlement.unlock(context, free) || !mounted) return;
     await openFull(context, (_) => SenseLessonScreen(index: index));
     _load();
   }
@@ -150,7 +157,9 @@ class _SenseCourseScreenState extends State<SenseCourseScreen> {
                     child: Text(ls['title'] as String,
                         style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.sumi)),
                   ),
-                  if (isDone)
+                  if (!Entitlement.senseLevelFree(SenseCourse.levelNo(d, lv)) && !Entitlement.premium)
+                    const Icon(Icons.lock_outline, color: AppColors.muted, size: 20)
+                  else if (isDone)
                     const Icon(Icons.check_circle, color: AppColors.matcha, size: 20)
                   else if (isNext)
                     Text(tr('다음'), style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: AppColors.ai)),
@@ -198,6 +207,12 @@ class _SenseLessonScreenState extends State<SenseLessonScreen> {
     var nextIdx = widget.index + 1;
     while (nextIdx < all.length && all[nextIdx].$2['kind'] == 'ref') {
       nextIdx++;
+    }
+    final d = await SenseCourse.load();
+    if (!mounted) return;
+    if (nextIdx < all.length && !Entitlement.senseLevelFree(SenseCourse.levelNo(d, all[nextIdx].$1)) && !Entitlement.premium) {
+      Navigator.of(context).pop(); // 다음 회차가 잠긴 급이면 목록으로(자물쇠에서 결제 화면)
+      return;
     }
     if (nextIdx < all.length) {
       Navigator.of(context).pushReplacement(

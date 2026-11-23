@@ -1,3 +1,4 @@
+import '../services/entitlement.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -112,18 +113,23 @@ class _GrammarHubScreenState extends State<GrammarHubScreen> {
                           subtitle: Text(
                               '${l.subtitle.isEmpty ? '' : '${l.subtitle}\n'}${trf('패턴 {0} · 예문 {1}', [l.patterns.length, l.exampleCount])}',
                               style: const TextStyle(fontSize: 12, height: 1.4)),
-                          trailing: IconButton(
-                            tooltip: tr('테스트'),
-                            icon: const Icon(Icons.quiz, color: AppColors.rojo),
-                            onPressed: () => Navigator.push(
+                          trailing: !Entitlement.grammarStepFree(l.number) && !Entitlement.premium
+                              ? const Padding(padding: EdgeInsets.all(12), child: Icon(Icons.lock_outline, color: AppColors.tintaLight))
+                              : IconButton(
+                                  tooltip: tr('테스트'),
+                                  icon: const Icon(Icons.quiz, color: AppColors.rojo),
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => GrammarTestScreen(lesson: l)),
+                                  ),
+                                ),
+                          onTap: () async {
+                            if (!await Entitlement.unlock(context, Entitlement.grammarStepFree(l.number)) || !context.mounted) return;
+                            Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (_) => GrammarTestScreen(lesson: l)),
-                            ),
-                          ),
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => GrammarLessonScreen(lesson: l)),
-                          ),
+                              MaterialPageRoute(builder: (_) => GrammarLessonScreen(lesson: l)),
+                            );
+                          },
                         ),
                       ),
                   ],

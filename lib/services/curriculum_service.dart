@@ -461,7 +461,8 @@ class CurriculumStage {
   final List<int> pick;
   final int pass;
   final Map<int, int> daily; // 1 가볍게 · 2 보통 · 3 집중 → 하루 새 편 수
-  const CurriculumStage(this.n, this.title, this.desc, this.dialogueIds, this.pick, this.pass, [this.daily = const {1: 1, 2: 2, 3: 3}]);
+  final bool free; // 이용권 없이 열림(PAYWALL_SPEC §2, 기본 1단계만)
+  const CurriculumStage(this.n, this.title, this.desc, this.dialogueIds, this.pick, this.pass, [this.daily = const {1: 1, 2: 2, 3: 3}, bool? free]) : free = free ?? n == 1;
   factory CurriculumStage.fromJson(Map j) => CurriculumStage(
         (j['n'] as num).toInt(),
         '${j['title'] ?? '${j['n']}단계'}',
@@ -472,6 +473,7 @@ class CurriculumStage {
         {
           for (final (k, n) in [('light', 1), ('normal', 2), ('focus', 3)]) n: ((j['daily'] as Map?)?[k] as num?)?.toInt() ?? n,
         },
+        j['free'] as bool?,
       );
 }
 
@@ -479,9 +481,12 @@ class CurriculumStage {
 class CurriculumPlan {
   final int rev;
   final List<CurriculumStage> stages;
-  const CurriculumPlan(this.rev, this.stages);
+  final int freeSteps, freeSenseLevels; // 이용권 없이 여는 문법 스텝 수·언어감각 급 수(PAYWALL_SPEC §2)
+  const CurriculumPlan(this.rev, this.stages, {this.freeSteps = 2, this.freeSenseLevels = 1});
   factory CurriculumPlan.fromJson(Map j) => CurriculumPlan(
         (j['rev'] as num?)?.toInt() ?? 0,
         [for (final s in (j['stages'] as List? ?? const [])) if (s is Map) CurriculumStage.fromJson(s)]..sort((a, b) => a.n.compareTo(b.n)),
+        freeSteps: (j['freeSteps'] as num?)?.toInt() ?? 2,
+        freeSenseLevels: (j['freeSenseLevels'] as num?)?.toInt() ?? 1,
       );
 }

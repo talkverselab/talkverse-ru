@@ -5,6 +5,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/prefs.dart';
 
 import 'account.dart';
@@ -38,6 +39,8 @@ class Purchase {
   /// 상품 ID → 만료 시각(ms, 평생이면 0)
   static final owned = ValueNotifier<Map<String, int>>(const {});
   static final products = ValueNotifier<Map<String, ProductDetails>>(const {});
+  /// 스토어 상품 조회를 한 번 끝냈는가(성공·실패 모두) — 결제 화면이 끝없이 「연결 중」에 머물지 않게.
+  static final loadTried = ValueNotifier<bool>(false);
   /// 구매 진행 상태 알림(화면이 듣고 안내): null = 없음, 'pending' · 'error' · 'done' · 'restored' · 'nothing'
   static final status = ValueNotifier<String?>(null);
   static StreamSubscription<List<PurchaseDetails>>? _sub;
@@ -62,19 +65,45 @@ class Purchase {
     lang = code;
     plans = list;
     final p = await Prefs.getInstance();
-    final raw = p.getString('iap_owned2');
-    final m = <String, int>{if (raw != null) ...(jsonDecode(raw) as Map).map((k, v) => MapEntry('$k', (v as num).toInt()))};
+    final m = <String, int>{};
+    // 저장(PAYWALL_SPEC §4): 언어 이용권 `ru_entitlement_v1`(Prefs 접두) · 종합 `all_entitlement_v1`(22개 언어 공통, 접두 없음) · 옛 `iap_owned2`
+    for (final raw in [p.getString('iap_owned2'), p.getString('entitlement_v1'), await _allRaw()]) {
+      if (raw == null) continue;
+      try {
+        m.addAll((jsonDecode(raw) as Map).map((k, v) => MapEntry('$k', (v as num).toInt())));
+      } catch (_) {}
+    }
     if ((p.getStringList('iap_owned') ?? const []).contains(code)) m['lang_${code}_life'] = 0; // 옛 저장 방식(평생 하나)
     owned.value = m;
     Account.user.addListener(_onAccount);
-    if (kIsWeb || !(Platform.isIOS || Platform.isAndroid)) return;
+    if (kIsWeb || !(Platform.isIOS || Platform.isAndroid)) {
+      loadTried.value = true;
+      return;
+    }
     if (ownStream) _sub ??= InAppPurchase.instance.purchaseStream.listen(onPurchaseUpdates, onError: (_) => status.value = 'error');
-    try {
-      if (!await InAppPurchase.instance.isAvailable()) return;
-      final r = await InAppPurchase.instance.queryProductDetails({for (final x in list) x.id});
-      products.value = {for (final d in r.productDetails) d.id: d};
-    } catch (_) {}
+    await loadProducts();
+    // 시작 때 복원 조회(PAYWALL_SPEC §4) — 안드로이드는 조용히 된다. iOS 는 restore 가 Apple ID 암호 창을 띄울 수 있어
+    // 시작 때는 하지 않고(스토어가 미완료 거래를 스트림으로 다시 보냄), 결제 화면의 「구매 복원」으로.
+    if (ownStream && Platform.isAndroid) {
+      try {
+        await InAppPurchase.instance.restorePurchases();
+      } catch (_) {}
+    }
   }
+
+  /// 스토어 상품 조회(15초 상한). 결제 화면의 「다시 시도」도 이것.
+  static Future<void> loadProducts() async {
+    loadTried.value = false;
+    try {
+      if (await InAppPurchase.instance.isAvailable().timeout(const Duration(seconds: 10))) {
+        final r = await InAppPurchase.instance.queryProductDetails({for (final x in plans) x.id}).timeout(const Duration(seconds: 15));
+        products.value = {for (final d in r.productDetails) d.id: d};
+      }
+    } catch (_) {}
+    loadTried.value = true;
+  }
+
+  static Future<String?> _allRaw() async => (await SharedPreferences.getInstance()).getString('all_entitlement_v1');
 
   /// 스토어 표시 가격(예 ₩3,900). 상품을 못 받았으면 null.
   static String? price(String id) => products.value[id]?.price;
@@ -148,6 +177,16 @@ class Purchase {
     if (!keep) owned.value = {...owned.value, id: exp};
     final p = await Prefs.getInstance();
     await p.setString('iap_owned2', jsonEncode(owned.value));
+    await p.setString('entitlement_v1', jsonEncode({for (final e in owned.value.entries) if (e.key.startsWith('lang_')) e.key: e.value}));
+    final all = {for (final e in owned.value.entries) if (e.key.startsWith('all_')) e.key: e.value};
+    if (all.isNotEmpty) {
+      final sp = await SharedPreferences.getInstance();
+      final prev = <String, dynamic>{};
+      try {
+        prev.addAll(jsonDecode(sp.getString('all_entitlement_v1') ?? '{}') as Map<String, dynamic>);
+      } catch (_) {}
+      await sp.setString('all_entitlement_v1', jsonEncode({...prev, ...all}));
+    }
     // 서버로 보낼 영수증 — 로그인 전이면 쌓아 두었다가 로그인 때 보낸다
     final rec = {
       'platform': Platform.isIOS ? 'ios' : 'android',
