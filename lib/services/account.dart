@@ -48,7 +48,8 @@ class Account {
     try {
       final r = await http.get(Uri.parse('$base/providers')).timeout(const Duration(seconds: 6));
       final j = jsonDecode(r.body) as Map<String, dynamic>;
-      out.addAll((j['web'] as List).cast<String>());
+      // 앱용 목록(app)이 있으면 그것, 없으면 web — 앱에 연결 코드가 있는 제공자만(애플 2.1: 「준비 중」 버튼 금지, uk 11-23)
+      out.addAll(((j['app'] ?? j['web']) as List).cast<String>().where(const {'apple', 'google', 'kakao', 'naver'}.contains));
     } catch (_) {}
     if (_iosNativeApple && !out.contains('apple')) out.add('apple');
     const order = ['apple', 'google', 'kakao', 'naver'];

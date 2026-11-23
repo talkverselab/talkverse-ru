@@ -7,7 +7,7 @@ import '../core/theme.dart';
 import '../services/account.dart';
 
 /// 로그인 — Talkverse 공용 계정(한자앱 `login_screen.dart` 복제, 2026-11-02). 서버에 설정된 제공자만 버튼으로 보인다(iOS 는 Apple 네이티브 항상).
-/// 네 버튼은 늘 구글·네이버·카카오·애플 순(사용자 지시); 서버에 아직 없는 제공자는 누르면 '준비 중'. 아래 이메일 로그인은 심사·테스트용 데모 계정만.
+/// 버튼은 구글·네이버·카카오·애플 순(사용자 지시), 서버에 켜진 제공자만 보인다(없는 것은 숨김, 2026-11-23). 아래 이메일 로그인.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   static Future<bool?> open(BuildContext context) => Navigator.of(context, rootNavigator: true).push<bool>(MaterialPageRoute(builder: (_) => const LoginScreen()));
@@ -96,7 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (providers == null)
                     const Center(child: Padding(padding: EdgeInsets.all(24), child: CircularProgressIndicator(color: AppColors.beni)))
                   else
-                    for (final p in const ['google', 'naver', 'kakao', 'apple']) Padding(padding: const EdgeInsets.only(bottom: 12), child: _button(p)),
+                    // 서버에서 켜진 제공자만 보임 — 누르면 「준비 중」이 뜨는 버튼은 두지 않는다(애플 2.1, uk 11-23). 이메일 로그인은 아래에 그대로.
+                    for (final p in const ['google', 'naver', 'kakao', 'apple'])
+                      if (_ready(p)) Padding(padding: const EdgeInsets.only(bottom: 12), child: _button(p)),
                   // 로그인 동의 안내(출시 점검 2026-11-09)
                   const SizedBox(height: 4),
                   LegalLinks(lead: tr('로그인하면 이용약관에 동의하고, 개인정보처리방침에 따른 정보(이메일·이름·계정 ID) 수집에 동의하는 것으로 봅니다.')),
