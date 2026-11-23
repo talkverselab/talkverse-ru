@@ -49,4 +49,25 @@ void main() {
     expect(missing, isEmpty);
     expect(p.stages.map((s) => s.n), [1, 2, 3, 4, 5]);
   });
+
+  test('단계 JSON 의 pick·pass·daily 를 씀(없으면 3·5·10 / 80 / 1·2·3)', () {
+    final r0 = DialogueService.instance.list(region: 'R0').first.id;
+    final svc = CurriculumService.instance;
+    svc.state = CurriculumState(level: '1', dailyGoal: 3);
+    svc.usePlan(CurriculumPlan.fromJson({
+      'rev': 9,
+      'stages': [
+        {'n': 1, 'dialogueIds': [r0], 'pick': [2, 4], 'pass': 70, 'daily': {'light': 1, 'normal': 3, 'focus': 5}},
+        {'n': 2, 'dialogueIds': [r0]},
+      ],
+    }));
+    expect(svc.pickFor(), [2, 4]);
+    expect(svc.passFor(), 70);
+    expect(svc.state.dailyNew, 5);
+    expect(svc.levelLabel('2'), '2단계');
+    expect(svc.pickFor('2'), [3, 5, 10]);
+    expect(svc.passFor('2'), 80);
+    final st = CurriculumState(course: Course('c', ['a']));
+    expect(st.recordExam(7, 10, {}, '2026-11-23', pass: svc.passFor()), isTrue);
+  });
 }
