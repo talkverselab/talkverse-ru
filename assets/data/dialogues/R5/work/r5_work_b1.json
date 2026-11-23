@@ -219,10 +219,5 @@
    "new": [],
    "rd": "나치나이찌 이 쁘라빌라 뼤르바예 또르뜨 모이"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

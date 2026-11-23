@@ -13,6 +13,7 @@
 편을 지우면 index 에서 빠져 앱에서 숨는다. 턴 번호·편 id 는 다시 매기지 말 것(tools/turn_lock.py).
 """
 import glob
+import re
 import hashlib
 import json
 import subprocess
@@ -32,7 +33,11 @@ def current():
     out = {}
     for p in paths:
         b = Path(p).read_bytes()
-        json.loads(b)  # 깨진 JSON 은 올리지 않는다
+        j = json.loads(b)  # 깨진 JSON 은 올리지 않는다
+        # 작업 기록 칸·AI 이름은 공개 원고에 두지 않는다(출처 이름 공개 금지, 심사 점검 2026-11-23)
+        bad = [k for k in ('review', 'draft', 'grok', 'grok_rewrite', 'prev', 'src') if isinstance(j, dict) and k in j]
+        if bad or re.search(rb'(?i)\b(claude|grok|gemini|chatgpt|gpt-?\d)\b', b):
+            sys.exit(f'작업 기록·AI 이름이 남은 원고 {p}: {bad or "본문"} — 빼고 다시')
         out[str(Path(p).relative_to(DATA))] = hashlib.sha1(b).hexdigest()[:12]
     return out
 

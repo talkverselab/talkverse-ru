@@ -197,10 +197,5 @@
    "new": [],
    "rd": "끌라스 나 루치시 자 스딸롬 스 차옘 니치보 다"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

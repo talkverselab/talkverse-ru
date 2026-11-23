@@ -152,10 +152,5 @@
    "new": [],
    "rd": "미샤 에따 이 예스찌 드루지야"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

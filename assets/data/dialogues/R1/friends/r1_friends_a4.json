@@ -140,10 +140,5 @@
    "rd": "시보드냐 부두 젤라찌 아 자프뜨라 스젤라유"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

@@ -121,10 +121,5 @@
    "rd": "시또 미샤 띄 빠치무 브 마욤 도미"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

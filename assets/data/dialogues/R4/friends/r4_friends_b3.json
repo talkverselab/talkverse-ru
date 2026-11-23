@@ -188,10 +188,5 @@
    "new": [],
    "rd": "오이 야 이쇼 니 아젤샤 라드나 비구"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

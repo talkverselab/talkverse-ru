@@ -152,10 +152,5 @@
    "new": [],
    "rd": "녵 아니 프셰 우실리 빠따무 시또 믜 쁘리실리"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

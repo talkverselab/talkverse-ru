@@ -167,10 +167,5 @@
    ],
    "rd": "가바리 깍 씨차스 에따 나르말나"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

@@ -127,10 +127,5 @@
    "rd": "아나 스까잘라 모즈나 에따 프쇼"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

@@ -146,10 +146,5 @@
    "rd": "까녜시나 야 쁘리두 사믬 뼤르븸"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

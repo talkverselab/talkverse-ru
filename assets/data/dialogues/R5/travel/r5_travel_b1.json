@@ -222,12 +222,7 @@
    "rd": "누 시또 자 말라듸흐 고리까"
   }
  ],
- "draft": true,
  "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- },
  "cast": {
   "B": "katya",
   "C": "woman_o"

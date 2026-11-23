@@ -203,10 +203,5 @@
    "new": [],
    "rd": "프치라 노치유 빠까 띄 스빨 라드나 누"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

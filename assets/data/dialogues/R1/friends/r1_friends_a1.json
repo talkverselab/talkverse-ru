@@ -119,10 +119,5 @@
    "rd": "아 그제 즈제시 마요 몌스따"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

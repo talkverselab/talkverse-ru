@@ -192,10 +192,5 @@
    "new": [],
    "rd": "시리요즈나 야 비구 라드나"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

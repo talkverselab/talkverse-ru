@@ -156,10 +156,5 @@
    "new": [],
    "rd": "찌뼤리 야 즈나유"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

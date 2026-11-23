@@ -124,10 +124,5 @@
    "rd": "누 다 프쇼 에따 띄"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

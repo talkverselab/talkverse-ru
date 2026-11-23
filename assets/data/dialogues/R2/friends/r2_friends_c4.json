@@ -144,10 +144,5 @@
    "new": [],
    "rd": "라드나 야 우제 브 마스끄볘"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

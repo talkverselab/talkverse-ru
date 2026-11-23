@@ -201,10 +201,5 @@
    "new": [],
    "rd": "라드나 자또 우 찌뱌 노븨 드룩 이 이보 사바까 누 이 누"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

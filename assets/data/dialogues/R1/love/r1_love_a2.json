@@ -128,10 +128,5 @@
    "rd": "따그다 우 찌뱌 녵 쁘라블례믜"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

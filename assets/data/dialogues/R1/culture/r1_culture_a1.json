@@ -126,10 +126,5 @@
    "rd": "따그다 야 니치보 니 가바류"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }

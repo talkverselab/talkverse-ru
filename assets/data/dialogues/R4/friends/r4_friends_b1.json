@@ -204,10 +204,5 @@
    "new": [],
    "rd": "라드나 자프뜨라 부짐 우비라찌 브몌스찌 이 우비룜"
   }
- ],
- "draft": true,
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ ]
 }

@@ -69,11 +69,11 @@ class _PaywallScreenState extends State<PaywallScreen> {
               child: SingleChildScrollView(
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 16 + bottomInset(context)),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  Text(tr('러시아어 유니버스 이용권'), style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.beni)),
+                  Text(tr('Talkverse 이용권'), style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.beni)),
                   Text(tr('이용권 선택'), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.sumi)),
                   const SizedBox(height: 10),
                   _row(Icons.check_circle, tr('앞으로 추가되는 레벨·회화·음성·장면 그림을 추가 결제 없이')),
-                  _row(Icons.check_circle, tr('로그인하면 아이폰·아이패드·안드로이드 어디서나')),
+                  _row(Icons.check_circle, isIOS ? tr('로그인하면 아이폰·아이패드 어디서나') : tr('로그인하면 다른 기기에서도')),
                   _row(Icons.check_circle_outline, tr('지금은 모든 학습 기능이 무료입니다'), muted: true),
                   const SizedBox(height: 10),
                   Text(tr('러시아어'), style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.sumiLight)),
@@ -111,8 +111,8 @@ class _PaywallScreenState extends State<PaywallScreen> {
                   const SizedBox(height: 8),
                   Text(
                     isIOS
-                        ? tr('구독 해지: 아이폰 설정 → 내 이름(Apple ID) → 구독 → 러시아어 유니버스 → 구독 취소')
-                        : tr('구독 해지: Google Play → 프로필 → 결제 및 정기 결제 → 정기 결제 → 러시아어 유니버스 → 해지'),
+                        ? tr('구독 해지: 아이폰 설정 → 내 이름(Apple ID) → 구독 → Talkverse → 구독 취소')
+                        : tr('구독 해지: Google Play → 프로필 → 결제 및 정기 결제 → 정기 결제 → Talkverse → 해지'),
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 11.5, color: AppColors.sumiLight, height: 1.4),
                   ),
@@ -133,7 +133,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                         : Text(tr('로그인됨 — 구매는 Talkverse 계정에 기록되어 다른 기기에서도 열립니다.'), textAlign: TextAlign.center, style: const TextStyle(fontSize: 12.5, color: AppColors.muted)),
                   ),
                   Text(
-                    tr('결제는 App Store / Google Play 에서 처리됩니다. 표시 가격은 스토어 가격을 따르며 세금이 포함될 수 있습니다. 숨은 요금은 없습니다.'),
+                    isIOS ? tr('결제는 App Store 에서 처리됩니다. 표시 가격은 스토어 가격을 따르며 세금이 포함될 수 있습니다. 숨은 요금은 없습니다.') : tr('결제는 Google Play 에서 처리됩니다. 표시 가격은 스토어 가격을 따르며 세금이 포함될 수 있습니다. 숨은 요금은 없습니다.'),
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 11, color: AppColors.muted, height: 1.4),
                   ),

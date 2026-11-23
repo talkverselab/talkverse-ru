@@ -125,10 +125,5 @@
    "rd": "시또 에따 야 이 즈제시 프쇼 마요"
   }
  ],
- "draft": true,
- "flags": [],
- "review": {
-  "stage": "grok_rewrite",
-  "date": "2026-11-09"
- }
+ "flags": []
 }
