@@ -38,14 +38,31 @@ def fetch(path):
     sh('scp', '-q', '-r', f'{PC}:D:/tts_test/job/out/{L.LANG}/{path}', os.path.dirname(f'{work}/wav/{path}') + '/', check=False)
 
 
+def make_refs(ids):
+    """PC 에 없는 참고 음성만 만든다. 다 있으면 PC 를 돌리지 않는다(모델을 두 번 읽어 15분을 잃는다)."""
+    p = f'{work}/job/vox_jobs.json'
+    if os.path.exists(p):
+        os.remove(p)
+    sh(sys.executable, f'{HERE}/make_jobs.py', *G, f'{work}/job', '--refs', *ids)
+    d = f'D:\\tts_test\\job\\out\\ref_{L.LANG}'
+    have = set(sh('ssh', PC, f"if (Test-Path {d}) {{ Get-ChildItem {d} -File | Where-Object Length -gt 0 | ForEach-Object Name }}; 'LIST_END'").stdout.split())
+    if 'LIST_END' not in have:             # 목록을 못 받았으면 없는 것으로 보지 않고 멈춘다
+        sys.exit('참고 음성 목록을 못 받음')
+    jobs = [j for j in json.load(open(p, encoding='utf-8')) if os.path.basename(j['out']) not in have]
+    if not jobs:
+        os.remove(p); log('참고 음성 다 있음 — 건너뜀'); return
+    json.dump(jobs, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    log('참고 음성', len(jobs)); pc_run('vox_jobs.json'); os.remove(p); log('참고 음성 끝')
+
+
 if REFS:
-    if not os.path.exists(f'{work}/job/vox_jobs.json'):
-        sh(sys.executable, f'{HERE}/make_jobs.py', *G, f'{work}/job', '--refs', *A)
-    pc_run('vox_jobs.json'); log('참고 음성 끝'); sys.exit()
+    make_refs(A); sys.exit()
 sh(sys.executable, f'{HERE}/plan_from_dialogue.py')   # 회화 파일의 감정 → 계획
 done = set(open(f'{work}/done.txt').read().split()) if os.path.exists(f'{work}/done.txt') else set()
 ids = [e for e in (A or L.planned()) if e not in done]
 log('남은 편', len(ids))
+if ids:
+    make_refs(ids)                         # 빠진 참고 음성이 있으면 문장 생성이 첫 조각에서 멈춘다
 for i in range(0, len(ids), N):
     eps = ids[i:i + N]
     if os.path.exists(f'{work}/job/moss_jobs.json'):
@@ -76,6 +93,12 @@ for i in range(0, len(ids), N):
         pc_run()
         for ep in eps:
             fetch(f'retake/{ep}')
+    for ep in eps:                         # 마지막(3회째) 재생성본도 검사해 나은 판을 고른 뒤 묶는다
+        try:
+            r = subprocess.run([sys.executable, f'{HERE}/qa.py', *G, f'{work}/wav', ep], capture_output=True, text=True, timeout=600)
+            log('마지막 검사', ep, r.stdout.strip() or r.stderr.strip()[-200:])
+        except subprocess.TimeoutExpired:
+            log('TIMEOUT', ep)
     for ep in eps:
         r = sh(sys.executable, f'{HERE}/pack.py', *G, f'{work}/wav', ep, '--upload', check=False)
         if r.returncode:
